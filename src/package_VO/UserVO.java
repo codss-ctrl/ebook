@@ -7,6 +7,7 @@ public class UserVO {
 	
 	private String pw;
 	private int point;
+	private boolean isActivate = true;
 	
 
 	
@@ -42,6 +43,12 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "";
+	}
+	public boolean isActivate() {
+		return isActivate;
+	}
+	public void setActivate(boolean isActivate) {
+		this.isActivate = isActivate;
 	}
 	
 }
