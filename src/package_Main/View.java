@@ -52,11 +52,10 @@ public class View {
 	void startMethod(){
 		String message = "";
 		while (true) {
-			System.out.println("┌─────────────────────────────┐");
-			System.out.println("| ┌──────────────────────────┐|");
-			System.out.println("	   이북사이트에 오신걸 환영합니다.     ");
-			System.out.println("| └──────────────────────────┘ ");
-			System.out.println("└─────────────────────────────┘");
+			System.out.println(" ┌──────────────────────────┐ ");
+			System.out.println("  ꧁글사랑닷컴에 오신걸 환영합니다.꧂");
+			System.out.println(" └────────────γ─────────────┘ ");
+			System.out.println("︵‿︵‿︵‿︵‿◝(⁰▿⁰)◜︵‿︵‿︵‿︵‿︵ ");
 			System.out.println();
 			System.out.println("[1] 로그인");
 			System.out.println("[2] 회원가입");
@@ -81,6 +80,24 @@ public class View {
 					message = "잘못 입력하셨습니다. 다시 입력해 주세요.";
 			}
 		}
+	}
+	
+	/**
+	 * 배너 표시
+	 * 
+	 * @author 
+	 * @param string - 표시해줄 문자열
+	 */
+	private void showBanner(String string) {
+		System.out.println("");
+		System.out.println(" ┌───────────────────────────────┐ ");
+		System.out.println(" |   개미는  (ง˙∇˙)ว 오늘도              ♪ ♬ | ");
+		System.out.println(" |        열심히  (ว˙∇˙)ง           | ");
+		System.out.println(" | ♬♪                     일을  ٩(ˊᗜˋ*)و 하네  | ");
+		System.out.println(" └───────────────────────────────┘ ");
+		System.out.println("\t" + string);
+		System.out.println("  ‿︵‿︵‿︵‿︵‿︵‿︵☆︵‿︵‿︵‿︵‿︵︵‿︵");
+		System.out.println();
 	}
 	
 	/**
@@ -131,7 +148,7 @@ public class View {
 			}
 			break;
 		}
-		if (iServiceImpl.insertUser(user)){
+		if (iServiseImpl.insertUser(user)){
 			System.out.println("회원 등록 완료");
 		}
 	}
@@ -264,7 +281,7 @@ public class View {
 	 * 
 	 * @author 조유진
 	 */
-	private void logitView(){
+	private void loginView(){
 		String userId = null;
 		String userPw = null;
 		String message = "";
@@ -304,12 +321,115 @@ public class View {
 			}else if (iServiceImpl.userLogin(loginInfo)){
 				user = iServiceImpl.selectUser(userId);
 				userMainView();
-				breaek;
+				break;
 			}
 			message = "아이디 또는 비밀번호를 확인하세요.";
 			userId = null;
 			userPw = null;
 		}
 	}
+	/**
+	 * 관리자 메인 뷰
+	 */
+	private void adminMainView() {
+		String message = "";
+		while (true) {
+			showBanner("관리자 페이지");
+			System.out.println("[1] 고객 대출 목록 조회");
+			System.out.println("[2] 보유 도서 조회");
+			System.out.println("[3] 회원 목록 조회");
+			System.out.println("[4] 공지 목록 조회");
+			System.out.println("[5] 이용권 조회");
+			System.out.println("[6] 매출 조회");
+			System.out.println("[7] 로그아웃");
+			System.out.println();
+			System.out.println("메뉴를 선택하세요");
+			if (!"".equals(message)) {
+				System.out.println();
+				System.out.println(message);
+				message = "";
+			}//end if
+			switch (iInput()) {
+			case 1:
+				System.out.println("고객 대출 목록 조회입니다.");
+				break;
+			case 2:
+				System.out.println("보유 도서 조회입니다.");
+				break;	
+			case 3:
+				System.out.println("회원 목록 조회입니다.");
+				break;	
+			case 4:
+				System.out.println("공지 목록 조회입니다.");
+				break;	
+			case 5:
+				System.out.println("이용권 조회 메뉴입니다.");
+				break;	
+			case 6:
+				System.out.println("메출 조회 메뉴입니다.");
+				break;	
+			case 7:
+				return;
+				
+			default:
+				break;
+			}
+		}	
+		
+			
+	}//end method
 	
+	/**
+	 * 회원 메인 뷰- 사용자 메서드
+	 * @홍유리
+	 */
+	private void userMainView() {
+		String message = "";
+		while (true) {
+			if (user == null) {
+				return;
+			}
+			System.out.println("-------------------");
+			System.out.println("[1] 대출 목록 조회");
+			System.out.println("[2] 내 정보 조회");
+			System.out.println("[3] 금액 충전");
+			System.out.println("[4] 공지 조회");
+			System.out.println("[5] 이용권 조회");
+			System.out.println("[6] 도서 검색");
+			System.out.println("[7] 로그아웃");
+			System.out.println();
+			System.out.println("메뉴를 선택하세요");
+			if (!"".equals(message)) {
+				System.out.println();
+				System.out.println(message);
+				message = "--------------------";
+			}//end if
+			switch (iInput()) {
+			case 1:
+				System.out.println("대출 목록 조회입니다.");
+				break;
+			case 2:
+				System.out.println("내 정보 조회입니다.");
+				break;	
+			case 3:
+				System.out.println("금액 충전 메뉴입니다.");
+				break;	
+			case 4:
+				System.out.println("공지 조회 메뉴입니다.");
+				break;	
+			case 5:
+				System.out.println("이용권 조회 메뉴입니다.");
+				break;	
+			case 6:
+				System.out.println("도서 검색 메뉴입니다.");
+				break;	
+			case 7:
+				return;
+				break;	
+
+			default:
+				break;
+			}
+		}//end while
+	}//end method	
 }
