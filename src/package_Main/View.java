@@ -20,7 +20,7 @@ public class View {
 	/**
 	 * 메인뷰
 	 * 
-	 * @author 
+	 * @author 홍유리
 	 * 
 	 */
 	
@@ -28,20 +28,39 @@ public class View {
 	void startMethod(){
 		String message = "";
 		while (true) {
-			System.out.println("┌─────────────────────────────┐");
-			System.out.println("| ┌──────────────────────────┐|");
-			System.out.println("	   이북사이트에 오신걸 환영합니다.   ");
-			System.out.println("| └──────────────────────────┘ ");
-			System.out.println("└─────────────────────────────┘");
-		}
-	}	
+			System.out.println(" ┌──────────────────────────┐ ");
+			System.out.println(" ꧁글사랑닷컴에 오신걸 환영합니다.꧂");
+			System.out.println(" └────────────γ─────────────┘ ");
+			System.out.println("︵‿︵‿︵‿︵‿◝(⁰▿⁰)◜︵‿︵‿︵‿︵‿︵ ");
+			System.out.println();
+			System.out.println("[1] 로그인");
+			System.out.println("[2] 회원가입");
+			System.out.println("[3] 종료");
+			if (!"".equals(message)) {
+				System.out.println();
+				System.out.println(message);
+				message = "";
+			}//end if
+		}//end while
+	}//end method	
+	
 	/**
 	 * 배너 표시
 	 * 
 	 * @author 
 	 * @param string - 표시해줄 문자열
 	 */
-	
+	private void showBanner(String string) {
+		System.out.println("");
+		System.out.println(" ┌───────────────────────────────┐ ");
+		System.out.println(" |   개미는  (ง˙∇˙)ว 오늘도              ♪ ♬ | ");
+		System.out.println(" |        열심히  (ว˙∇˙)ง           | ");
+		System.out.println(" | ♬♪                     일을  ٩(ˊᗜˋ*)و 하네  | ");
+		System.out.println(" └───────────────────────────────┘ ");
+		System.out.println("\t" + string);
+		System.out.println("  ‿︵‿︵‿︵‿︵‿︵‿︵☆︵‿︵‿︵‿︵‿︵︵‿︵");
+		System.out.println();
+	}
 	//로그인 - 관리자 main, 회원 main
 	
 	/**
@@ -174,20 +193,9 @@ public class View {
 		
 		// 내정보 수정 -이름 변경, 비밀번호 변경, 회원  탈퇴
 		
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+	
 }
 
 
