@@ -8,9 +8,12 @@ public class View {
 	/**
 	 * 메인뷰
 	 * 
-	 * @author 홍유리
+	 * @author 
 	 * 
 	 */
+	//메인
+	
+	
 	void startMethod(){
 		String message = "";
 		while (true) {
@@ -20,11 +23,26 @@ public class View {
 			System.out.println("| └──────────────────────────┘ ");
 			System.out.println("└─────────────────────────────┘");
 		}
-		
+	}	
+	//로그인 - 관리자 main, 회원 main
+	
+	//회원가입 - id입력, pw 입력, name 입력, point 입력
 	/**
 	 * 관리자 메인뷰 - 관리자 메서드	
 	 */
-		
+	private void adminMainView() {
+		String message = "";
+		while (true) {
+//			showBanner("관리자 페이지");
+			System.out.println("[1] 고객 대출 목록 조회");
+			System.out.println("[2] 보유 도서 조회");
+			System.out.println("[3] 회원 목록 조회");
+			System.out.println("[4] 공지 목록 조회");
+			System.out.println("[5] 이용권 조회");
+			System.out.println("[6] 매출 조회");
+			System.out.println();
+			
+		}
 		//대출 목록 조회
 		
 		//보유 도서 조회-도서 추가, 상세정보 수정,삭제
@@ -46,7 +64,7 @@ public class View {
 		
 		//이용권 조회 - 이용권 구매
 		
-		// 도서 검색 - 대여하기
+		// 도서 검색 -도서 상세 정보 보기 - 대여하기
 		
 		// 대여목록 조회 -대여 상세 정보 조회 - 평점달기
 		
