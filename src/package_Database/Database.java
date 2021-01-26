@@ -431,42 +431,42 @@ public class Database {
 		VoucherVO v1 = new VoucherVO();
 		v1.setSeq(1);
 		v1.setPeriod(7);
-		v1.setKindOfVou("1일권");
-		v1.setPrice(500);
+		v1.setKindVoucher("1일권");
+		v1.setPrice(500);			
 		voucherList.add(v1);
 		
 		VoucherVO v2 = new VoucherVO();
 		v1.setSeq(2);
 		v1.setPeriod(7);
-		v1.setKindOfVou("7일권");
+		v1.setKindVoucher("7일권");
 		v1.setPrice(3000);
 		voucherList.add(v2);
-		
+			
 		VoucherVO v3 = new VoucherVO();
 		v1.setSeq(3);
 		v1.setPeriod(30);
-		v1.setKindOfVou("30일권");
+		v1.setKindVoucher("30일권");
 		v1.setPrice(9900);
 		voucherList.add(v3);
-		
+			
 		VoucherVO v4 = new VoucherVO();
 		v1.setSeq(4);
 		v1.setPeriod(90);
-		v1.setKindOfVou("90일권");
+		v1.setKindVoucher("90일권");
 		v1.setPrice(26000);
 		voucherList.add(v4);
-		
+			
 		VoucherVO v5 = new VoucherVO();
 		v1.setSeq(5);
 		v1.setPeriod(180);
-		v1.setKindOfVou("180일권");
+		v1.setKindVoucher("180일권");
 		v1.setPrice(33000);
 		voucherList.add(v5);
-		
+			
 		VoucherVO v6 = new VoucherVO();
 		v1.setSeq(6);
 		v1.setPeriod(365);
-		v1.setKindOfVou("365일권");
+		v1.setKindVoucher("365일권");
 		v1.setPrice(59500);
 		voucherList.add(v6);
 	}

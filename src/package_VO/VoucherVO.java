@@ -3,7 +3,7 @@ package package_VO;
 public class VoucherVO {
 	private int seq;
 	private int period;
-	private String kindOfVou;
+	private String kindVoucher;
 	private int price;
 
 	public int getSeq(){
@@ -12,8 +12,8 @@ public class VoucherVO {
 	public int getPeriod(){
 		return period;
 	}
-	public String getKindOfVou(){
-		return kindOfVou;
+	public String getKindVoucher(){
+		return kindVoucher;
 	}
 	public int getPrice(){
 		return price;
@@ -24,8 +24,8 @@ public class VoucherVO {
 	public void setPeriod(int period){
 		this.period = period;
 	}
-	public void setKindOfVou(String kindOfVou){
-		this.kindOfVou = kindOfVou;
+	public void setKindVoucher(String kindVoucher){
+		this.kindVoucher = kindVoucher;
 	}
 	public void setPrice(int price){
 		this.price = price;
