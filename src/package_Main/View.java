@@ -5,13 +5,24 @@ package package_Main;
 import package_VO.UserVO;
 
 public class View {
+	
+	/**
+	 * 문자열 입력 메서드
+	 * @return String - 입력받은 문자열
+	 */
+	
+	/**
+	 * 숫자 입력 메서드
+	 * @return int - 입력받은 숫자
+	 */
+	
+	
 	/**
 	 * 메인뷰
 	 * 
 	 * @author 
 	 * 
 	 */
-	//메인
 	
 	
 	void startMethod(){
@@ -24,9 +35,64 @@ public class View {
 			System.out.println("└─────────────────────────────┘");
 		}
 	}	
+	/**
+	 * 배너 표시
+	 * 
+	 * @author 
+	 * @param string - 표시해줄 문자열
+	 */
+	
 	//로그인 - 관리자 main, 회원 main
 	
+	/**
+	 * 로그인 뷰 -관리자/사용자 메서드 -아이디 비밀번호값을 받아 database에서 비교
+	 * 
+	 * @author 
+	 */
+	
+	
 	//회원가입 - id입력, pw 입력, name 입력, point 입력
+	/**
+	 * 회원가입 -사용자 메서드
+	 * 
+	 * @author 
+	 */
+	
+	/**
+	 *  아이디가 유일한지 확인 - 사용자 메서드
+	 *  
+	 *  @return 아이디가 유일한지 확인하고 String 반환 
+	 *  
+	 */
+	
+	/**
+	 * 아이디가 규칙에 맞는지 확인 - 사용자 메서드
+	 * 
+	 * @author 
+	 * @return 아이디의 규칙이 맞는지 확인하고 입력받은 값 반환
+	 */
+	
+	/**
+	 * 이름 받아오는 메서드 - 사용자 메서드
+	 * 
+	 * @author 
+	 * @return 이름이 규칙에 맞는지 확인 후 String 반환
+	 */
+	
+	/**
+	 * 비밀번호 받아오는 메서드 - 사용자 메서드
+	 * 
+	 * @author 
+	 * @return 비밀번호 규칙확인을 위해 String 반환
+	 */
+	
+	/**
+	 * -포인트 받아오는 메서드 - 사용자 메서드
+	 * 
+	 * @author 
+	 * @return 충전하려는 금액 int로 반환
+	 */
+	
 	
 	/**
 	 * 관리자 메인뷰 - 관리자 메서드	
