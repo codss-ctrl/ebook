@@ -11,12 +11,12 @@ public class View {
 	 * @author 홍유리
 	 * 
 	 */
-	void starMethod(){
+	void startMethod(){
 		String message = "";
 		while (true) {
 			System.out.println("┌─────────────────────────────┐");
 			System.out.println("| ┌──────────────────────────┐|");
-			System.out.println("	   이북사이트에 오신걸 환영합니다.     ");
+			System.out.println("	   이북사이트에 오신걸 환영합니다.   ");
 			System.out.println("| └──────────────────────────┘ ");
 			System.out.println("└─────────────────────────────┘");
 		}
