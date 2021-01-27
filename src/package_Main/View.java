@@ -305,7 +305,8 @@ while(true){
 				searchRentList();
 				break;
 			case 2:
-				System.out.println("내 정보 조회입니다.");
+				
+				modifyUserInfo();
 				break;	
 			case 3:
 				System.out.println("금액 충전 메뉴입니다.");
@@ -365,7 +366,76 @@ while(true){
 			}
 		}
 	}
-
+	/**
+	 * 사용자 이름 변경 - 사용자 메서드
+	 * 
+	 * @author 조유진
+	 */
+	private void modifyName(){
+		String message = "";
+		while(true){
+			System.out.println("[ 1 ] 변경하실 이름을 입력해주세요");
+			System.out.println("[ 0 ] 뒤로 가기");
+			
+			switch (iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("이름이 변경되었습니다.");
+				break;
+			default :
+				System.out.println("잘못 입력하셨습니다.");
+			}
+	    }
+	}
+	
+	/**
+	 * 사용자 비밀번호 변경 - 사용자 메서드
+	 * 
+	 * @author 조유진
+	 */
+	private void modifyPassword(){
+		String message = "";
+		while(true){
+		
+		System.out.println("[ 1 ] 새로운 비밀번호를 입력해주세요. ");
+		System.out.println("[ 0 ] 뒤로 가기");
+		
+			switch (iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("비밀번호가 변경되었습니다.");
+				break;
+			default :
+				System.out.println("잘못 입력하셨습니다.");
+			}	
+		}
+	}
+	
+	/**
+	 * 회원 탈퇴 - 사용자 메서드
+	 * 
+	 *  @author 조유진
+	 */
+	private void deleteUser(){
+		String message = "";
+		while(true){
+		System.out.println("정말로 탈퇴하시겠습니까?");
+		System.out.println("[ 1 ] 회원 탈퇴");
+		System.out.println("[ 0 ] 뒤로 가기");
+		
+			switch (iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("회원 탈퇴가 정상적으로 처리되었습니다.");
+				break;
+			default :
+				System.out.println("잘못 입력하셨습니다.");
+			}
+		}	
+	}
 	
 	/**
 	 * 관리자 메인 뷰
