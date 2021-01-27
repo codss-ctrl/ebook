@@ -162,4 +162,106 @@ public class IServiseImpl implements IService{
 		return null;
 	}
 
+	@Override
+	public List<RentVO> rentListView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<RentVO> rentBookDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean giveGrade(int grade) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyGrade(Map<String, Object> UserInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeGrade(Map<String, Object> UserInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int chargePoint(int charge) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<NotifyVO> userNotifyview() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BookVO> newBookView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<RentVO> popularBookView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserInfoVO> voucherView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean buyvoucher(int v_seq) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<BookVO> bookView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BookVO> searchBookName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BookVO> searchBookAuthor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BookVO> searchBookGenre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BookVO> userBookDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<RentVO> rentBook() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
