@@ -5,6 +5,7 @@ public class BookVO {
 	private String bookName;
 	private String author;
 	private String regDate;
+	private int book_grade;
 	private int g_seq;
 
 	public int getSeq() {
@@ -44,6 +45,18 @@ public class BookVO {
 	}
 	public void setG_seq(int g_seq) {
 		this.g_seq = g_seq;
+	}
+	public int getGrade() {
+		return book_grade;
+	}
+	public void setGrade(int grade) {
+		this.book_grade = grade;
+	}
+	public int getBook_grade() {
+		return book_grade;
+	}
+	public void setBook_grade(int book_grade) {
+		this.book_grade = book_grade;
 	}
 	
 	

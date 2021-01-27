@@ -5,6 +5,7 @@ public class RentVO {
 	private String user_Id;
 	private int book_seq;
 	private String rentDate;
+	private String book_Grade;
 	private boolean isActivate;
 	
 	public String getRentDate() {
@@ -41,5 +42,11 @@ public class RentVO {
 	@Override
 	public String toString() {
 		return "";
+	}
+	public String getBook_Grade() {
+		return book_Grade;
+	}
+	public void setBook_Grade(String book_Grade) {
+		this.book_Grade = book_Grade;
 	}
 }

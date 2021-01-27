@@ -15,6 +15,7 @@ import package_VO.VoucherVO;
 //hi00
 
 public class Database {
+	
 	//admin 계정
 	private final AdminVO admin = new AdminVO();
 	

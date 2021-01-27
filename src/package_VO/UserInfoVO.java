@@ -6,6 +6,7 @@ public class UserInfoVO {
 	private boolean isActivate = true;
 	private String user_id;
 	private int v_seq;
+	private int user_Grade;
 	
 	public int getSeq() {
 		return seq;
@@ -36,5 +37,11 @@ public class UserInfoVO {
 	}
 	public void setV_seq(int v_seq) {
 		this.v_seq = v_seq;
+	}
+	public int getUser_Grade() {
+		return user_Grade;
+	}
+	public void setUser_Grade(int user_Grade) {
+		this.user_Grade = user_Grade;
 	}
 }
