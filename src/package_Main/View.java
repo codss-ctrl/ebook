@@ -223,27 +223,27 @@ public class View {
 	 * @author 조유진
 	 * @return 충전하려는 금액을 int로 반환
 	 */
-	private int scanPoint(){
-		String message = "";
-		int point;
-		while(true){
-			System.out.println();
-			System.out.println("포인트 입력");
-			System.out.println();
-			System.out.println("포인트를 입력해주세요");
-			if(!"".equals(message)){
-				System.out.println();
-				System.out.println(message);
-			}
-			point = iInput();
-			
-			if (point > 0) {
-				break;
-			}
-			message = "올바른 숫자를 입력해주세요.";
-		}
-		return point;
-	}
+//	private int scanPoint(){
+//		String message = "";
+//		int point;
+//		while(true){
+//			System.out.println();
+//			System.out.println("포인트 입력");
+//			System.out.println();
+//			System.out.println("포인트를 입력해주세요");
+//			if(!"".equals(message)){
+//				System.out.println();
+//				System.out.println(message);
+//			}
+//			point = iInput();
+//			
+//			if (point > 0) {
+//				break;
+//			}
+//			message = "올바른 숫자를 입력해주세요.";
+//		}
+//		return point;
+//	}
 	/**
 	 * 로그인 뷰 - 관리자/사용자 메서드 - 아이디 비밀번호 값을 받아 database에서 비교
 	 * 
@@ -276,7 +276,7 @@ while(true){
 
 	
 	/**
-	 * 회원 메인 뷰- 사용자 메서드
+	 * 회원 메인 뷰
 	 * @홍유리
 	 */
 	private void userMainView() {
@@ -302,22 +302,22 @@ while(true){
 			}//end if
 			switch (iInput()) {
 			case 1:
-				System.out.println("대출 목록 조회입니다.");
+				searchRentList();
 				break;
 			case 2:
 				System.out.println("내 정보 조회입니다.");
 				break;	
 			case 3:
-				System.out.println("금액 충전 메뉴입니다.");
+				chargePoint();
 				break;	
 			case 4:
-				System.out.println("공지 조회 메뉴입니다.");
+				notifyView();
 				break;	
 			case 5:
-				System.out.println("이용권 조회 메뉴입니다.");
+				voucherView();
 				break;	
 			case 6:
-				System.out.println("도서 검색 메뉴입니다.");
+				bookView();
 				break;	
 			case 7:
 				return;
@@ -327,6 +327,238 @@ while(true){
 			}
 		}//end while
 	}//end method	
+	/**
+	 * 금액 충전 사용자 메서드
+	 * @author 홍유리
+	 */
+	private int chargePoint(){
+		String message = "";
+		int point;
+		while(true){
+			System.out.println();
+			System.out.println("금액 충전");
+			System.out.println();
+			System.out.println("충전하실 금액을 입력해주세요");
+			if(!"".equals(message)){
+				System.out.println();
+				System.out.println(message);
+			}
+			point = iInput();
+			
+			if (point > 0) {
+				break;
+			}
+			message = "올바른 숫자를 입력해주세요.";
+		}
+		return point;
+		//총 금액 출력 줄 추가
+	}
+	/**
+	 * 공지 사항 보기 - 사용자 메서드
+	 * @ 홍유리
+	 */
+	private void notifyView(){
+		String message = "";
+		while(true){
+			System.out.println("[1] 도서 검색");
+			System.out.println("[2] 글사랑 공지사항");
+			System.out.println("[3] 이번주 신간 도서");
+			System.out.println("[4] 이번주 인기 도서");
+			System.out.println("[0] 뒤로 가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				bookView();
+				break;
+			case 2: 
+				userNotifyview();
+				break;
+			case 3:
+				newBookView();
+				break;
+			case 4:
+				popularBookView();
+				break;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}	
+	}
+	/**
+	 * 유저용 공지사항 - 사용자 메서드
+	 * @author 홍유리
+	 * 읽기 기능 외 기능 없음
+	 */
+	private void userNotifyview(){
+		while(true){
+			System.out.println("공지사항1");
+			System.out.println("공지사항2");
+			System.out.println("공지사항3");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			}
+		}
+	}
+	/**
+	 * 신간도서 보기 - 사용자 메서드
+	 * @author 홍유리
+	 * 읽기 기능 외 기능 없음
+	 */
+	private void newBookView(){
+		while(true){
+			System.out.println("신간1");
+			System.out.println("신간2");
+			System.out.println("신간3");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			}
+		}
+	}
+	/**
+	 * 인기도서 보기 - 사용자 메서드
+	 * @author 홍유리
+	 * 읽기 기능 외 기능 없음
+	 */
+	private void popularBookView(){
+		System.out.println("인기도서1");
+		System.out.println("인기도서2");
+		System.out.println("인기도서3");
+		System.out.println("[0] 뒤로가기");
+		
+		switch (iInput()) {
+		case 0:
+			return;
+		}
+	}
+	
+	
+	/**
+	 * 이용권 보기 - 사용자 메서드
+	 * @ 홍유리
+	 */
+	private void voucherView(){
+		String message = "";
+		while(true){
+			System.out.println("이용권 보기입니다.");
+			System.out.println("[1] 이용권 구매");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				buyvoucher();
+				break;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	/**
+	 * 이용권 구매 - 사용자 메서드
+	 * @ 홍유리
+	 */
+	private void buyvoucher(){
+		String message = "";
+		while(true){
+			System.out.println("이용권 구매입니다.");
+			System.out.println("[1] 1일권");
+			System.out.println("[2] 7일권");
+			System.out.println("[3] 14일권");
+			System.out.println("[4] 30일권");
+			System.out.println("[5] 90일권");
+			System.out.println("[6] 180일권");
+			System.out.println("[7] 365일권");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				System.out.println("1일권입니다");
+				return;
+			case 2:
+				System.out.println("7일권입니다");
+				return;
+			case 3:
+				System.out.println("14일권");
+				return;
+			case 4:
+				System.out.println("30일권");
+				return;
+			case 5:
+				System.out.println("90일권");
+				return;
+			case 6:
+				System.out.println("180일권");
+				return;
+			case 7:
+				System.out.println("365일권");
+				return;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	
+	/**
+	 * 도서 검색 - 사용자 메서드
+	 * @author 홍유리
+	 */
+	private void bookView(){
+		String message = "";
+		while(true){
+			System.out.println("도서 검색입니다.");
+			System.out.println("[1] 도서 상세 보기");
+			System.out.println("[2] 대여하기");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				 userBookDetail();
+				break;
+			case 2:
+				rentBook();
+				break;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	/**
+	 * 도서 상세 보기 - 사용자 메서드
+	 * @author  홍유리
+	 */
+	private void userBookDetail(){
+		String message = "";
+		while (true) {
+			System.out.println("도서 상세 정보 페이지");
+		}
+	}
+	/**
+	 * 대여하기 - 사용자 메서드
+	 * @author 홍유리
+	 */
+	private void rentBook(){
+		String message = "";
+		while (true) {
+			System.out.println("대여해주셔서 감사합니다.");
+		}
+	}
 	
 	/**
 	 * 관리자 메인 뷰
