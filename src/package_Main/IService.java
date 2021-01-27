@@ -11,6 +11,7 @@ import package_VO.UserVO;
 import package_VO.VoucherVO;
 
 public interface IService {
+	
 	/**
 	 * 
 	 * 회원가입 - 유저 정보 DB에 입력
@@ -444,12 +445,6 @@ public interface IService {
 	 * @author 홍유리
 	 */
 	List<RentVO> rentBook();
-	
-	
-	
-	
-	
-	
 	
 	
 	

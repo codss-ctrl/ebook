@@ -1,17 +1,20 @@
 package package_Main;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
+import package_VO.BookVO;
+import package_VO.RentVO;
 import package_VO.UserVO;
 
 public class View {
-
+	private UserVO user = null;
+	private final IServiseImpl iServiceImpl = new IServiseImpl();
 	
 	/**
 	 * 문자열 입력 메서드
@@ -131,19 +134,26 @@ public class View {
 	 * @author 조유진
 	 * @return 아이디가 유일한지 확인하고 String 반환
 	 */
-//	private String checkId(){
-//		String id;
-//		while(true){
-//			id = scanId();
+	private String checkId(){
+	//DB
+	//boolean checkId(String id);
+	//@param loginInfo
+	//@return 로그인 성공 시 true, 실패 시 true 반환
+	
+		String id;
+		while(true){
+			id = scanId();
 //			boolean result = iServiceImpl.checkId(id);
-//			if(result){
-//				break;
-//			}else{
-//				System.out.println("중복된 아이디입니다.");
-//			}
-//			return id;
-//		}
-//	}
+//			아이디 중복여부 메서드 구현후
+			boolean result = true;
+			if(result){
+				break;
+			}else{
+				System.out.println("중복된 아이디입니다.");
+			}
+		}
+		return id;
+	}
 	
 	/**
 	 * 아이디가 규칙에 맞는지 확인 - 사용자 메서드
@@ -151,76 +161,65 @@ public class View {
 	 * @author 조유진
 	 * @return 아이디의 규칙이 맞는지 확인하고 입력받은 값 변환
 	 */
-//	private String scanId(){
-//		String input;
-//		String message = "";
-//		while(true){
-//			System.out.println("아이디 입력");
-//			System.out.println("****정규식***** 8~20자리의 영문 또는 숫자 조합이 가능합니다");
-//			if(!"".equals(message)){
-//				System.out.println();
-//				System.out.println(message);
-//			}
-//			input = sInput();
-//			if (RegEx.checkUser_id(input)){
-//				break;
-//			}
-//			message = "올바르지 않은 아이디 형식입니다";
-//		}
-//		return input;
-//	}
+	public String scanId(){
+		String input;
+		while(true){
+			System.out.println("아이디 입력를 입력하세요");
+			System.out.println("****정규식***** 8~20자리의 영문 또는 숫자 조합이 가능합니다");
+			
+			input = sInput();
+//			if(RegEx.checkUserId(input)){
+//			정규식 완료 후
+			if(true){
+				return input;
+			}else{
+				System.out.println("입력하신 아이디가 형식에 맞지 않습니다.");
+			}
+		}
+	}
+	
 	/**
 	 * 이름 받아오는 메서드 - 사용자 메서드
 	 * 
 	 * @author 조유진
 	 * @return 이름이 규칙에 맞는지 확인 후 String 반환
 	 */
-//	private String scanName(){
-//		String input;
-//		String message = "";
-//		while(true){
-//			System.out.println();
-//			System.out.println("이름 입력");
-//			System.out.println("***정규식***2~17자의 한글만 입력해주세요. (※특수기호, 공백 사용 불가※ )");
-//			System.out.println("￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
-//			if(!"".equals(message)){
-//				System.out.println();
-//				System.out.println(message);
-//			}
-//			input = sInput();
-////			if (RegEx.checkUser_name(input)){
-////				break;
-////			}
-//			message = "올바르지 않은 이름 형식입니다.";
-//		}
-//		return input;
-//	}
+	private String scanName(){
+		String input;
+		while(true){
+			System.out.println();
+			System.out.println("이름 입력");
+			System.out.println("***정규식***2~17자의 한글만 입력해주세요. (※특수기호, 공백 사용 불가※ )");
+			System.out.println("========================================================");
+			
+			input = sInput();
+//			if (RegEx.checkUser_name(input))
+//			정규식 완료 후
+			return input;
+		}
+	}
+	
 	/**
 	 * 비밀번호 받아오는 메서드 - 사용자 메서드
 	 * 
 	 * @author 이학재
 	 * @return 비밀번호 규칙확인을 위해 String 반환
 	 */
-//	private String scanPw(){
-//		String message = "";
-//		String input;
-//		while(true){
-//			System.out.println();
-//			System.out.println("비밀번호 입력");
-//			System.out.println("******정규식※8~20자의 숫자 또는 문자를 입력해주세요※");
-//			System.out.println("￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
-//			if(!"".equals(message)){
-//				System.out.println();
-//				System.out.println(message);
-//			}
-//			input = sInput();
+	private String scanPw(){
+		String input;
+		while(true){
+			System.out.println();
+			System.out.println("비밀번호 입력");
+			System.out.println("******정규식※8~20자의 숫자 또는 문자를 입력해주세요※");
+			System.out.println("========================================================");
+			
+			input = sInput();
 //			if (RegEx.checkUser_pw(input)){
-//				break;
-//			}
-//			message = "올바르지 않은 비밀번호 형식입니다";
-//		}
-//		return input;
-//	}
+//			정규식 완료 후
+			return input;
+		}
+	}
+	
 	/**
 	 * 포인트 받아오는 메서드 - 사용자 메서드
 	 * 
@@ -228,26 +227,22 @@ public class View {
 	 * @return 충전하려는 금액을 int로 반환
 	 */
 	private int scanPoint(){
-		String message = "";
 		int point;
 		while(true){
 			System.out.println();
 			System.out.println("포인트 입력");
 			System.out.println();
 			System.out.println("포인트를 입력해주세요");
-			if(!"".equals(message)){
-				System.out.println();
-				System.out.println(message);
-			}
+			
 			point = iInput();
 			
 			if (point > 0) {
 				break;
 			}
-			message = "올바른 숫자를 입력해주세요.";
 		}
 		return point;
 	}
+	
 	/**
 	 * 로그인 뷰 - 관리자/사용자 메서드 - 아이디 비밀번호 값을 받아 database에서 비교
 	 * 
@@ -920,6 +915,31 @@ while(true){
 	//List<RentVO> readRentList();
 	//@param
 	//@return 대여 리스트
+
+		List<RentVO> rentList = new ArrayList<>();
+		rentList = iServiceImpl.readRentList();
+
+		for(RentVO rentInfo : rentList){
+			
+			int book_seq = rentInfo.getBook_seq();
+			List<BookVO> bookList = new ArrayList<>();
+			
+			bookList = iServiceImpl.readBook();
+			BookVO selBook = null;
+			for(BookVO book : bookList){
+				if(book.getSeq() == book_seq){
+					selBook = book;
+					break;
+				}
+			}
+
+			System.out.print(rentInfo.getSeq() + "   ");
+			System.out.print(rentInfo.getUser_Id() + "   ");
+			System.out.print(selBook.getBookName() + "   ");
+			System.out.println(rentInfo.getRentDate());
+		}
+		
+
 		
 		while(true){
 			System.out.println("대출 목록 조회 메서드 호출");
@@ -934,6 +954,7 @@ while(true){
 		
 		}
 	}
+	
 	
 	
 	/**

@@ -3,6 +3,7 @@ package package_Main;
 import java.util.List;
 import java.util.Map;
 
+import package_Database.Database;
 import package_VO.BookVO;
 import package_VO.NotifyVO;
 import package_VO.RentVO;
@@ -11,6 +12,7 @@ import package_VO.UserVO;
 import package_VO.VoucherVO;
 
 public class IServiseImpl implements IService{
+	Database database = new Database();
 
 	@Override
 	public boolean insertUser(UserVO userVO) {
@@ -36,18 +38,20 @@ public class IServiseImpl implements IService{
 		return false;
 	}
 
+	
+	
 	@Override
 	public List<RentVO> readRentList() {
-		// TODO Auto-generated method stub
-		return null;
+		return database.readRentList();
 	}
 
+	
 	@Override
 	public List<BookVO> readBook() {
-		// TODO Auto-generated method stub
-		return null;
+		return database.readBook();
 	}
 
+	
 	@Override
 	public boolean addBook(BookVO book) {
 		// TODO Auto-generated method stub

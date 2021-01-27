@@ -2,7 +2,6 @@ package package_Database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import package_VO.AdminVO;
 import package_VO.BookKindVO;
@@ -105,12 +104,6 @@ public class Database {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	/**
 	 * 대출 목록 조회
 	 * 
@@ -123,8 +116,17 @@ public class Database {
 	}
 	
 	
-	
-	
+	/**
+	 * 
+	 * 보유 도서 조회
+	 * 
+	 * @param 
+	 * @return 보유 책 리스트
+	 * @author 김대호
+	 */
+	public List<BookVO> readBook() {
+		return bookList;
+	}
 	
 	
 	
@@ -141,7 +143,7 @@ public class Database {
 		UserInfoVO i2 = new UserInfoVO();
 		i1.setSeq(2);
 		i1.setV_seq(1);//7일권
-		i1.setUser_id("abc123");
+		i1.setUser_id("ab123");
 		i1.setBuyDate("2021-01-11");
 		i1.setActivate(true);
 		
@@ -153,19 +155,19 @@ public class Database {
 		
 		UserInfoVO i4 = new UserInfoVO();
 		i1.setSeq(3);//7일권
-		i1.setUser_id("abc123");
+		i1.setUser_id("bdc123");
 		i1.setBuyDate("2021-01-13");
 		i1.setActivate(true);
 		
 		UserInfoVO i5 = new UserInfoVO();
 		i1.setSeq(3);//30일권
-		i1.setUser_id("abc123");
+		i1.setUser_id("abcd123");
 		i1.setBuyDate("2021-01-01");
 		i1.setActivate(true);
 		
 		UserInfoVO i6 = new UserInfoVO();
 		i1.setSeq(1);//90일권
-		i1.setUser_id("abc123");
+		i1.setUser_id("agd123");
 		i1.setBuyDate("2021-01-25");
 		i1.setActivate(true);
 		
@@ -189,15 +191,12 @@ public class Database {
 		
 		UserInfoVO i10 = new UserInfoVO();
 		i1.setSeq(6);//365일권
-		i1.setUser_id("bbb123");
+		i1.setUser_id("cbb123");
 		i1.setBuyDate("2020-01-25");
 		i1.setActivate(true);
 		
 		
 	}
-	
-	
-	
 	
 	
 	//공지목록
@@ -218,6 +217,7 @@ public class Database {
 		b1.setBookName("하백의 신부 1");
 		b1.setAuthor("윤미경");
 		b1.setRegDate("2021-01-25");
+		b1.setG_seq(6);
 		bookList.add(b1);
 		
 		BookVO b2 = new BookVO();
@@ -225,6 +225,7 @@ public class Database {
 		b2.setBookName("티아라 7");
 		b2.setAuthor("이윤희");
 		b2.setRegDate("2021-01-25");
+		b2.setG_seq(6);
 		bookList.add(b2);
 		
 		BookVO b3 = new BookVO();
@@ -232,6 +233,7 @@ public class Database {
 		b3.setBookName("나의 짐승남 1");
 		b3.setAuthor("차경희");
 		b3.setRegDate("2021-01-25");
+		b3.setG_seq(6);
 		bookList.add(b3);
 		
 		BookVO b4 = new BookVO();
@@ -239,6 +241,7 @@ public class Database {
 		b4.setBookName("지나치게 낭만적인 1");
 		b4.setAuthor("김설희");
 		b4.setRegDate("2021-01-25");
+		b4.setG_seq(6);
 		bookList.add(b4);
 		
 		BookVO b5 = new BookVO();
@@ -246,8 +249,52 @@ public class Database {
 		b5.setBookName("열혈강호 82 ");
 		b5.setAuthor("전극진");
 		b5.setRegDate("2021-01-25");
+		b5.setG_seq(4);
 		bookList.add(b5);
+		
+		BookVO b6 = new BookVO();
+		b6.setSeq(6);
+		b6.setBookName("원피스 97");
+		b6.setAuthor("오다 에이치로");
+		b6.setRegDate("2021-01-25");
+		b6.setG_seq(4);
+		bookList.add(b6);
+		
+		BookVO b7 = new BookVO();
+		b7.setSeq(7);
+		b7.setBookName("다이아몬드 에이스 21");
+		b7.setAuthor("테라지마 유지");
+		b7.setRegDate("2021-01-25");
+		b7.setG_seq(10);
+		bookList.add(b7);
+		
+		BookVO b8 = new BookVO();
+		b8.setSeq(8);
+		b8.setBookName("하이큐!! 45");
+		b8.setAuthor("후루다테 하루이치");
+		b8.setRegDate("2021-01-25");
+		b8.setG_seq(10);
+		bookList.add(b8);
+		
+		BookVO b9 = new BookVO();
+		b9.setSeq(9);
+		b9.setBookName("신테니스의왕자 30");
+		b9.setAuthor("코노미 다케시");
+		b9.setRegDate("2021-01-25");
+		b9.setG_seq(10);
+		bookList.add(b9);
+		
+		BookVO b10 = new BookVO();
+		b10.setSeq(10);
+		b10.setBookName("날씨의아이 2");
+		b10.setAuthor("신카이 마코토");
+		b10.setRegDate("2021-01-25");
+		b10.setG_seq(6);
+		bookList.add(b10);
 	}
+	
+	
+	
 	
 		//대여목록 생성자
 	{
@@ -492,6 +539,8 @@ public class Database {
 		v1.setKindVoucher("365일권");
 		v1.setPrice(59500);
 		voucherList.add(v6);
+		
+		
 	}
 	
 	
