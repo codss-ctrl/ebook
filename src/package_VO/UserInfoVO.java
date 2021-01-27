@@ -6,10 +6,7 @@ public class UserInfoVO {
 	private boolean isActivate = true;
 	private String user_id;
 	private int v_seq;
-<<<<<<< Updated upstream
-=======
 	private int user_grade;
->>>>>>> Stashed changes
 	
 	public int getSeq() {
 		return seq;
@@ -41,8 +38,6 @@ public class UserInfoVO {
 	public void setV_seq(int v_seq) {
 		this.v_seq = v_seq;
 	}
-<<<<<<< Updated upstream
-=======
 	
 	public int getUser_grade() {
 		return user_grade;
@@ -50,5 +45,4 @@ public class UserInfoVO {
 	public void setUser_grade(int user_grade) {
 		this.user_grade = user_grade;
 	}
->>>>>>> Stashed changes
 }
