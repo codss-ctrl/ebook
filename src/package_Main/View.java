@@ -250,7 +250,7 @@ public class View {
 	 * @author 조유진
 	 */
 	private void loginView(){
-while(true){
+		while(true){
 			System.out.println("로그인 뷰 메서드 호출");
 			System.out.println("[ 1 ] 사용자 화면 ");
 			System.out.println("[ 2 ] 관리자 화면");
@@ -292,7 +292,7 @@ while(true){
 			System.out.println("[4] 공지 조회");
 			System.out.println("[5] 이용권 조회");
 			System.out.println("[6] 도서 검색");
-			System.out.println("[7] 로그아웃");
+			System.out.println("[7] 뒤로 가기");
 			System.out.println();
 			System.out.println("메뉴를 선택하세요");
 			if (!"".equals(message)) {
@@ -302,7 +302,7 @@ while(true){
 			}//end if
 			switch (iInput()) {
 			case 1:
-				searchRentList();
+				rentListView();
 				break;
 			case 2:
 				System.out.println("내 정보 조회입니다.");
@@ -327,6 +327,58 @@ while(true){
 			}
 		}//end while
 	}//end method	
+	/**
+	 * 대여 목록 조회 - 사용자 메서드
+	 * @author 홍유리
+	 */
+	//DB 필요 - rentBook
+	//@param iInput
+	//return
+	private void rentListView(){
+		String message = "";
+		while(true){
+			System.out.println("[1]리스트에서  1");
+			System.out.println("[2]리스트에서  2");
+			System.out.println("[0] 뒤로 가기");
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				
+				break;
+			case 2: 
+			
+			
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	/**
+	 * 평점 달기 - 사용자 메서드
+	 * @author 홍유리 
+	 */
+	private int giveGrade(){
+		String message = "";
+		int grade;
+		while(true){
+			System.out.println();
+			System.out.println("10점 만점 중에 몇 점을 주시겠습니까?");
+			
+			if(!"".equals(message)){
+				System.out.println();
+				System.out.println(message);
+			}
+			grade = iInput();
+			
+			if (grade > 0) {
+				break;
+			}
+			message = "올바른 숫자를 입력해주세요.";
+		}
+		return grade;
+	}
 	/**
 	 * 금액 충전 사용자 메서드
 	 * @author 홍유리
@@ -360,25 +412,22 @@ while(true){
 	private void notifyView(){
 		String message = "";
 		while(true){
-			System.out.println("[1] 도서 검색");
-			System.out.println("[2] 글사랑 공지사항");
-			System.out.println("[3] 이번주 신간 도서");
-			System.out.println("[4] 이번주 인기 도서");
+			
+			System.out.println("[1] 글사랑 공지사항");
+			System.out.println("[2] 이번주 신간 도서");
+			System.out.println("[3] 이번주 인기 도서");
 			System.out.println("[0] 뒤로 가기");
 			
 			switch (iInput()) {
 			case 0:
 				return;
-			case 1:
-				bookView();
-				break;
-			case 2: 
+			case 1: 
 				userNotifyview();
 				break;
-			case 3:
+			case 2:
 				newBookView();
 				break;
-			case 4:
+			case 3:
 				popularBookView();
 				break;
 			default:
@@ -486,25 +535,102 @@ while(true){
 				return;
 			case 1:
 				System.out.println("1일권입니다");
+				pointAfterbuy();
 				return;
 			case 2:
 				System.out.println("7일권입니다");
+				pointAfterbuy();
 				return;
 			case 3:
 				System.out.println("14일권");
+				pointAfterbuy();
 				return;
 			case 4:
 				System.out.println("30일권");
+				pointAfterbuy();
 				return;
 			case 5:
 				System.out.println("90일권");
+				pointAfterbuy();
 				return;
 			case 6:
 				System.out.println("180일권");
+				pointAfterbuy();
 				return;
 			case 7:
 				System.out.println("365일권");
+				pointAfterbuy();
 				return;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	/**
+	 * 이용권 구매 후 포인트 - 사용자 메서드
+	 * @author 홍유리
+	 * @return int
+	 * 
+	 */
+	//DB 필요 - UserInfo, voucherInfo
+	//@param 
+	//@return int point, int price
+	private int pointAfterbuy(){
+		String message = "";
+		System.out.println("이용권을 구매해 주셔서 감사합니다");
+		System.out.println("현재 고객님의 포인트는 : 입니다.");
+		return 0;
+		
+	}
+	/**
+	 * 도서 검색 - 사용자 메서드
+	 * @author 홍유리
+	 */
+	//DB 필요 - bookList
+	//@param iInput() 
+	//return 
+	private void bookView(){
+		String message = "";
+		while(true){
+			System.out.println("[1] 검색 조건을 선택해주세요");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				selectBookFilter();
+				break;
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	/**
+	 * 도서 검색 조건 선택 - 사용자 메서드
+	 */
+	private void selectBookFilter(){
+		String message = "";
+		while(true){
+			System.out.println("[1] 책 제목");
+			System.out.println("[2] 작가");
+			System.out.println("[3] 장르");
+			System.out.println("[0] 뒤로가기");
+			
+			switch (iInput()) {
+			case 0:
+				return;
+			case 1:
+				 System.out.println("책 제목 검색 결과");
+				break;
+			case 2:
+				System.out.println("작가 검색 결과");
+				break;
+			case 3:
+				System.out.println("장르검색 결과");
+				break;
 			default:
 				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
 				continue;
@@ -513,41 +639,18 @@ while(true){
 	}
 	
 	/**
-	 * 도서 검색 - 사용자 메서드
-	 * @author 홍유리
-	 */
-	private void bookView(){
-		String message = "";
-		while(true){
-			System.out.println("도서 검색입니다.");
+	 * System.out.println("도서명을 입력해주세요.");
 			System.out.println("[1] 도서 상세 보기");
 			System.out.println("[2] 대여하기");
-			System.out.println("[0] 뒤로가기");
-			
-			switch (iInput()) {
-			case 0:
-				return;
-			case 1:
-				 userBookDetail();
-				break;
-			case 2:
-				rentBook();
-				break;
-			default:
-				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
-				continue;
-			}
-		}
-	}
-	/**
 	 * 도서 상세 보기 - 사용자 메서드
 	 * @author  홍유리
 	 */
+	
 	private void userBookDetail(){
 		String message = "";
-		while (true) {
+		
 			System.out.println("도서 상세 정보 페이지");
-		}
+		
 	}
 	/**
 	 * 대여하기 - 사용자 메서드
@@ -555,9 +658,9 @@ while(true){
 	 */
 	private void rentBook(){
 		String message = "";
-		while (true) {
+		
 			System.out.println("대여해주셔서 감사합니다.");
-		}
+		
 	}
 	
 	/**
@@ -587,7 +690,6 @@ while(true){
 			
 			switch (iInput()) {
 			case 0:
-				// 뒤로가기
 				return;
 			case 1:
 				// 대출 목록 조회 메서드 호출
