@@ -53,7 +53,7 @@ public class View {
 			System.out.println(" ┌──────────────────────────┐ ");
 			System.out.println("  ꧁글사랑닷컴에 오신걸 환영합니다.꧂");
 			System.out.println(" └────────────γ─────────────┘ ");
-			System.out.println("︵‿︵‿︵‿︵‿◝(⁰▿⁰)◜︵‿︵‿︵‿︵‿︵ ");
+			System.out.println(" ︵‿︵‿︵‿︵‿◝(⁰▿⁰)◜︵‿︵‿︵‿︵‿︵ ");
 			System.out.println();
 			System.out.println("[1] 로그인");
 			System.out.println("[2] 회원가입");
@@ -91,7 +91,7 @@ public class View {
 		System.out.println(" ┌───────────────────────────────┐ ");
 		System.out.println(" |   개미는  (ง˙∇˙)ว 오늘도              ♪ ♬ | ");
 		System.out.println(" |        열심히  (ว˙∇˙)ง           | ");
-		System.out.println(" | ♬♪                     일을  ٩(ˊᗜˋ*)و 하네  | ");
+		System.out.println(" | ♬♪                           일을  ٩(ˊᗜˋ*)و 하네  | ");
 		System.out.println(" └───────────────────────────────┘ ");
 		System.out.println("\t" + string);
 		System.out.println("  ‿︵‿︵‿︵‿︵‿︵‿︵☆︵‿︵‿︵‿︵‿︵︵‿︵");
@@ -103,6 +103,9 @@ public class View {
 	 * 
 	 * @author 조유진
 	 */
+	//DB필요 - checkUser_pw
+	//
+	//
 	public void insertUserView(){
 		UserVO user = new UserVO();
 		
@@ -127,6 +130,7 @@ public class View {
 	 * @author 조유진
 	 * @return 아이디가 유일한지 확인하고 String 반환
 	 */
+	
 //	private String checkId(){
 //		String id;
 //		while(true){
@@ -147,12 +151,15 @@ public class View {
 	 * @author 조유진
 	 * @return 아이디의 규칙이 맞는지 확인하고 입력받은 값 변환
 	 */
+	//DB필요 - checkUser_id
+	//
+	//
 //	private String scanId(){
 //		String input;
 //		String message = "";
 //		while(true){
 //			System.out.println("아이디 입력");
-//			System.out.println("****정규식***** 8~20자리의 영문 또는 숫자 조합이 가능합니다");
+//			System.out.println("8 ~ 20자리의 영문 또는 숫자 조합이 가능합니다");
 //			if(!"".equals(message)){
 //				System.out.println();
 //				System.out.println(message);
@@ -177,7 +184,7 @@ public class View {
 //		while(true){
 //			System.out.println();
 //			System.out.println("이름 입력");
-//			System.out.println("***정규식***2~17자의 한글만 입력해주세요. (※특수기호, 공백 사용 불가※ )");
+//			System.out.println("2 ~ 17자의 한글만 입력해주세요. (※특수기호, 공백 사용 불가※ )");
 //			System.out.println("￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣");
 //			if(!"".equals(message)){
 //				System.out.println();
