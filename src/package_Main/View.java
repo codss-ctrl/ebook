@@ -302,7 +302,7 @@ while(true){
 			}//end if
 			switch (iInput()) {
 			case 1:
-				System.out.println("대출 목록 조회입니다.");
+				searchRentList();
 				break;
 			case 2:
 				System.out.println("내 정보 조회입니다.");
@@ -327,6 +327,45 @@ while(true){
 			}
 		}//end while
 	}//end method	
+	
+	/**
+	 * 내 정보 조회 - 유저 메서드
+	 * 
+	 * @author 조유진
+	 */
+	private void modifyUserInfo(){
+		String message = "";
+		while(true){
+//			if (user == null){
+//				return;
+//			}
+			System.out.println("[ 1 ] 이름 변경");
+			System.out.println("[ 2 ] 비밀번호 변경");
+			System.out.println("[ 3 ] 회원 탈퇴");
+			System.out.println("[ 0 ] 뒤로 가기");
+			
+			switch (iInput()){
+			case 0 :
+				//이전 페이지로 돌아가기
+				return;
+			case 1 :
+				//이름 변경
+				modifyName();
+				break;
+			case 2 :
+				//비밀번호 변경
+				modifyPassword();
+				break;
+			case 3 :
+				//회원 탈퇴
+				deleteUser();
+				break;
+			default :
+				System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
+			}
+		}
+	}
+
 	
 	/**
 	 * 관리자 메인 뷰
