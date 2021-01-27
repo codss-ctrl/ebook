@@ -4,7 +4,21 @@ public class RentVO {
 	private int seq;
 	private String user_Id;
 	private int book_seq;
+	private String rentDate;
+	private boolean isActivate;
 	
+	public String getRentDate() {
+		return rentDate;
+	}
+	public void setRentDate(String rentDate) {
+		this.rentDate = rentDate;
+	}
+	public boolean isActivate() {
+		return isActivate;
+	}
+	public void setActivate(boolean isActivate) {
+		this.isActivate = isActivate;
+	}
 	public int getSeq() {
 		return seq;
 	}

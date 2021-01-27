@@ -2,11 +2,9 @@ package package_VO;
 
 public class NotifyVO {
 	private int seq;
-	
 	private String title;
 	private String date;
-	private int readcount;
-	
+	private int readCount;
 	
 	public int getSeq() {
 		return seq;
@@ -28,10 +26,10 @@ public class NotifyVO {
 		this.date = date;
 	}
 	public int getReadView() {
-		return readcount;
+		return readCount;
 	}
 	public void setReadView(int readView) {
-		this.readcount = readView;
+		this.readCount = readView;
 	}
 	
 	@Override

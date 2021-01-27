@@ -4,13 +4,18 @@ public class UserVO {
 	
 	private String id;
 	private String userName;
-	
 	private String pw;
 	private int point;
-	private boolean isActivate = true;
+	private boolean isActivate;
+		
 	
-
 	
+	public boolean isActivate() {
+		return isActivate;
+	}
+	public void setActivate(boolean isActivate) {
+		this.isActivate = isActivate;
+	}
 	public String getId() {
 		return id;
 	}
@@ -44,12 +49,5 @@ public class UserVO {
 	public String toString() {
 		return "";
 	}
-	public boolean isActivate() {
-		return isActivate;
-	}
-	public void setActivate(boolean isActivate) {
-		this.isActivate = isActivate;
-	}
 	
 }
-

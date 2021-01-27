@@ -6,6 +6,7 @@ public class UserInfoVO {
 	private boolean isActivate = true;
 	private String user_id;
 	private int v_seq;
+	
 	public int getSeq() {
 		return seq;
 	}
