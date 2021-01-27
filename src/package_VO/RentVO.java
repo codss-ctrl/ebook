@@ -5,6 +5,10 @@ public class RentVO {
 	private String user_Id;
 	private int book_seq;
 	private String rentDate;
+<<<<<<< Updated upstream
+=======
+	private String book_grade;
+>>>>>>> Stashed changes
 	private boolean isActivate;
 	
 	public String getRentDate() {
@@ -42,4 +46,13 @@ public class RentVO {
 	public String toString() {
 		return "";
 	}
+<<<<<<< Updated upstream
+=======
+	public String getBook_Grade() {
+		return book_grade;
+	}
+	public void setBook_Grade(String book_Grade) {
+		this.book_grade = book_Grade;
+	}
+>>>>>>> Stashed changes
 }
