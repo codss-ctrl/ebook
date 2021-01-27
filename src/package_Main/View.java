@@ -331,8 +331,7 @@ while(true){
 			}
 		}//end while
 	}//end method	
-<<<<<<< Updated upstream
-=======
+
 	/**
 	 * 대여 목록 조회 - 사용자 메서드
 	 * @author 홍유리
@@ -855,7 +854,7 @@ while(true){
 			System.out.println("대여해주셔서 감사합니다.");
 		//
 	}
->>>>>>> Stashed changes
+
 	
 	/**
 	 * 관리자 메인 뷰
