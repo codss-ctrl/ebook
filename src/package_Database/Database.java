@@ -105,17 +105,29 @@ public class Database {
 	
 	
 	
-	/**
-	 * <code>searchBook</code> 메서드는 도서를 검색하기 위한 메서드입니다.
-	 * 
-	 * @param book_seq
-	 * @return 
-	 * @author 홍유리
-	 */
 	
-//	public String searchBook_Notify(int seq ){
-//		return 
-//	}
+	
+	
+	
+	
+	
+	/**
+	 * 대출 목록 조회
+	 * 
+	 * @param 
+	 * @return 모든 대여 리스트 반환
+	 * @author 김대호
+	 */	
+	public List<RentVO> readRentList() {
+		return rentList;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	//회원정보 생성자
 	{
@@ -236,66 +248,77 @@ public class Database {
 		b5.setRegDate("2021-01-25");
 		bookList.add(b5);
 	}
-	//대여목록 생성자
+	
+		//대여목록 생성자
 	{
 		RentVO r1 = new RentVO();
 		r1.setSeq(1);
 		r1.setBook_seq(1);
 		r1.setUser_Id("abc123");
+		r1.setRentDate("2021-01-25");
 		rentList.add(r1);
 		
 		RentVO r2 = new RentVO();
-		r1.setSeq(2);
-		r1.setBook_seq(2);
-		r1.setUser_Id("abc123");
+		r2.setSeq(2);
+		r2.setBook_seq(2);
+		r2.setUser_Id("des123");
+		r2.setRentDate("2021-01-25");
 		rentList.add(r2);
 		
 		RentVO r3 = new RentVO();
-		r1.setSeq(3);
-		r1.setBook_seq(3);
-		r1.setUser_Id("des123");
+		r3.setSeq(3);
+		r3.setBook_seq(3);
+		r3.setUser_Id("bbb123");
+		r3.setRentDate("2021-01-25");
 		rentList.add(r3);
 		
 		RentVO r4 = new RentVO();
-		r1.setSeq(4);
-		r1.setBook_seq(4);
-		r1.setUser_Id("des123");
+		r4.setSeq(4);
+		r4.setBook_seq(4);
+		r4.setUser_Id("aaa233");
+		r4.setRentDate("2021-01-25");
 		rentList.add(r4);
 		
 		RentVO r5 = new RentVO();
-		r1.setSeq(5);
-		r1.setBook_seq(5);
-		r1.setUser_Id("des123");
+		r5.setSeq(5);
+		r5.setBook_seq(5);
+		r5.setUser_Id("dd1232");
+		r5.setRentDate("2021-01-25");
 		rentList.add(r5);
 		
 		RentVO r6 = new RentVO();
-		r1.setSeq(6);
-		r1.setBook_seq(6);
-		r1.setUser_Id("bbb123");
+		r6.setSeq(6);
+		r6.setBook_seq(6);
+		r6.setUser_Id("zzz654");
+		r6.setRentDate("2021-01-25");
 		rentList.add(r6);
 		
 		RentVO r7 = new RentVO();
-		r1.setSeq(7);
-		r1.setBook_seq(7);
-		r1.setUser_Id("bbb123");
+		r7.setSeq(7);
+		r7.setBook_seq(7);
+		r7.setUser_Id("asdf321");
+		r7.setRentDate("2021-01-25");
 		rentList.add(r7);
 		
 		RentVO r8 = new RentVO();
-		r1.setSeq(8);
-		r1.setBook_seq(8);
-		r1.setUser_Id("bbb123");
+		r8.setSeq(8);
+		r8.setBook_seq(8);
+		r8.setUser_Id("qwer1234");
+		r8.setRentDate("2021-01-25");
 		rentList.add(r8);
 		
 		RentVO r9 = new RentVO();
-		r1.setSeq(9);
-		r1.setBook_seq(9);
-		r1.setUser_Id("aaa233");
+		r9.setSeq(9);
+		r9.setBook_seq(9);
+		r9.setUser_Id("zxcv123");
+		r9.setRentDate("2021-01-25");
 		rentList.add(r9);
 		
 		RentVO r10 = new RentVO();
-		r1.setSeq(10);
-		r1.setBook_seq(10);
-		r1.setUser_Id("aaa233");
+		r10.setSeq(10);
+		r10.setBook_seq(10);
+		r10.setUser_Id("fdsa098");
+		r10.setRentDate("2021-01-25");
 		rentList.add(r10);
 	}
 	
@@ -471,67 +494,6 @@ public class Database {
 		voucherList.add(v6);
 	}
 	
-	//대여목록 생성자
-	{
-		RentVO r1 = new RentVO();
-		r1.setSeq(1);
-		r1.setBook_seq(1);
-		r1.setUser_Id("abc123");
-		rentList.add(r1);
-		
-		RentVO r2 = new RentVO();
-		r1.setSeq(2);
-		r1.setBook_seq(2);
-		r1.setUser_Id("des123");
-		rentList.add(r2);
-		
-		RentVO r3 = new RentVO();
-		r1.setSeq(3);
-		r1.setBook_seq(3);
-		r1.setUser_Id("bbb123");
-		rentList.add(r3);
-		
-		RentVO r4 = new RentVO();
-		r1.setSeq(4);
-		r1.setBook_seq(4);
-		r1.setUser_Id("aaa233");
-		rentList.add(r4);
-		
-		RentVO r5 = new RentVO();
-		r1.setSeq(5);
-		r1.setBook_seq(5);
-		r1.setUser_Id("dd1232");
-		rentList.add(r5);
-		
-		RentVO r6 = new RentVO();
-		r1.setSeq(6);
-		r1.setBook_seq(6);
-		r1.setUser_Id("zzz654");
-		rentList.add(r6);
-		
-		RentVO r7 = new RentVO();
-		r1.setSeq(7);
-		r1.setBook_seq(7);
-		r1.setUser_Id("asdf321");
-		rentList.add(r7);
-		
-		RentVO r8 = new RentVO();
-		r1.setSeq(8);
-		r1.setBook_seq(8);
-		r1.setUser_Id("qwer1234");
-		rentList.add(r8);
-		
-		RentVO r9 = new RentVO();
-		r1.setSeq(9);
-		r1.setBook_seq(9);
-		r1.setUser_Id("zxcv123");
-		rentList.add(r9);
-		
-		RentVO r10 = new RentVO();
-		r1.setSeq(10);
-		r1.setBook_seq(10);
-		r1.setUser_Id("fdsa098");
-		rentList.add(r10);
-	}
+	
 }
 
