@@ -192,12 +192,7 @@ public class IServiseImpl implements IService{
 		return false;
 	}
 
-	@Override
-	public int chargePoint(int charge) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public List<NotifyVO> userNotifyview() {
 		// TODO Auto-generated method stub
@@ -260,6 +255,12 @@ public class IServiseImpl implements IService{
 
 	@Override
 	public List<RentVO> rentBook() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserVO> chargePoint() {
 		// TODO Auto-generated method stub
 		return null;
 	}
