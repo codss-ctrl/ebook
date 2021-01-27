@@ -344,7 +344,7 @@ public interface IService {
 	 * @author 홍유리
 	 */
 	
-	int chargePoint(int charge);
+	List<UserVO> chargePoint();
 	
 	/**
 	 * 유저용 공지사항 - 사용자 메서드
@@ -438,7 +438,7 @@ public interface IService {
 	
 	/**
 	 * 대여하기 - 사용자 메서드
-	 * @para - bookList - book_seq를 받아
+	 * @param - bookList - book_seq를 받아
 	 *  rentList에 저장하여 유저가 확인할 수 있어야함
 	 * @return - 성공시 true, 실패 시 false
 	 * @author 홍유리
