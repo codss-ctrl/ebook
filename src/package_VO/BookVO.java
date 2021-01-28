@@ -1,40 +1,43 @@
 package package_VO;
 
 public class BookVO {
-	private int seq;
-	private String bookName;
-	private String author;
-	private String regDate;
-	private int g_seq;
-
-	public int getSeq() {
-		return seq;
+	private int book_seq; // 책 PK
+	private String book_name; //책이름
+	private String author; //저자
+	private String regDate; //등록일
+	private int book_grade; //책평점
+	private int g_seq; //장르 FK
+	
+	public int getBook_seq() {
+		return book_seq;
 	}
-	public String getBookName() {
-		return bookName;
+	public void setBook_seq(int book_seq) {
+		this.book_seq = book_seq;
+	}
+	public String getBook_name() {
+		return book_name;
+	}
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
 	public String getAuthor() {
 		return author;
 	}
-	
-	public String getRegDate() {
-		return regDate;
-	}
-	
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+	public String getRegDate() {
+		return regDate;
+	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	
+	public int getBook_grade() {
+		return book_grade;
+	}
+	public void setBook_grade(int book_grade) {
+		this.book_grade = book_grade;
+	}
 	@Override
 	public String toString() {
 		return "";

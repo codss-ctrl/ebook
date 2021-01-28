@@ -1,30 +1,31 @@
 package package_VO;
 
 public class UserInfoVO {
-	private int seq;
-	private String buyDate;
-	private boolean isActivate = true;
-	private String user_id;
-	private int v_seq;
-	private int user_grade;
 	
-	public int getSeq() {
-		return seq;
+	private int info_seq; //유저 이용권 내역 PK
+	private String buy_date; //유저 이용권 구매일
+	private boolean info_isActivate = true; // 유저 이용권 만료 여부
+	private String user_id; // 유저 아이디 FK
+	private int v_seq; // 이용권 FK
+	
+	
+	public int getInfo_seq() {
+		return info_seq;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setInfo_seq(int info_seq) {
+		this.info_seq = info_seq;
 	}
-	public String getBuyDate() {
-		return buyDate;
+	public String getBuy_date() {
+		return buy_date;
 	}
-	public void setBuyDate(String buyDate) {
-		this.buyDate = buyDate;
+	public void setBuy_date(String buy_date) {
+		this.buy_date = buy_date;
 	}
-	public boolean isActivate() {
-		return isActivate;
+	public boolean isInfo_isActivate() {
+		return info_isActivate;
 	}
-	public void setActivate(boolean isActivate) {
-		this.isActivate = isActivate;
+	public void setInfo_isActivate(boolean info_isActivate) {
+		this.info_isActivate = info_isActivate;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -39,10 +40,6 @@ public class UserInfoVO {
 		this.v_seq = v_seq;
 	}
 	
-	public int getUser_grade() {
-		return user_grade;
-	}
-	public void setUser_grade(int user_grade) {
-		this.user_grade = user_grade;
-	}
+	
+	
 }

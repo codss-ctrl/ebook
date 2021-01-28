@@ -2,49 +2,63 @@ package package_VO;
 
 public class UserVO {
 	
-	private String id;
-	private String userName;
-	private String pw;
-	private int point;
-	private boolean isActivate;
+	private String user_id; //유저 아이디 PK
+	private String user_name; //유저 이름
+	private String user_pw; //유저 비밀번호
+	private int user_point; //유저 포인트
+	private boolean user_isActivate; //유저 활성화 여부
 		
-	
-	
-	public boolean isActivate() {
-		return isActivate;
+		
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setActivate(boolean isActivate) {
-		this.isActivate = isActivate;
+
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getId() {
-		return id;
+
+
+	public String getUser_name() {
+		return user_name;
 	}
-	public String getUserName() {
-		return userName;
+
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-	
-	public String getPw() {
-		return pw;
+
+
+	public String getUser_pw() {
+		return user_pw;
 	}
-	public int getPoint() {
-		return point;
+
+
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
-	
-	public void setId(String id) {
-		this.id = id;
+
+
+	public int getUser_point() {
+		return user_point;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+
+	public void setUser_point(int user_point) {
+		this.user_point = user_point;
 	}
-	
-	public void setPw(String pw) {
-		this.pw = pw;
+
+
+	public boolean isUser_isActivate() {
+		return user_isActivate;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+
+
+	public void setUser_isActivate(boolean user_isActivate) {
+		this.user_isActivate = user_isActivate;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		return "";

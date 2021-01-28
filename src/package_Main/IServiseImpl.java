@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import package_Database.Database;
+import package_VO.BookKindVO;
 import package_VO.BookVO;
 import package_VO.NotifyVO;
 import package_VO.RentVO;
@@ -15,15 +16,14 @@ public class IServiseImpl implements IService{
 	Database database = new Database();
 
 	@Override
-	public boolean insertUser(UserVO userVO) {
+	public boolean insertUser(UserVO user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean checkId(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return database.checkId(id);
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class IServiseImpl implements IService{
 
 	
 	@Override
-	public List<BookVO> readBook() {
-		return database.readBook();
+	public List<BookVO> readAllBook() {
+		return database.readAllBook();
 	}
 
 	
@@ -267,6 +267,11 @@ public class IServiseImpl implements IService{
 	public List<UserVO> chargePoint() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<BookKindVO> readAllKind() {
+		return database.readAllKind();
 	}
 
 }

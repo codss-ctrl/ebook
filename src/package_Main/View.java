@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import package_VO.BookKindVO;
 import package_VO.BookVO;
 import package_VO.RentVO;
 import package_VO.UserVO;
@@ -143,9 +144,8 @@ public class View {
 		String id;
 		while(true){
 			id = scanId();
-//			boolean result = iServiceImpl.checkId(id);
-//			아이디 중복여부 메서드 구현후
-			boolean result = true;
+			boolean result = iServiceImpl.checkId(id);
+
 			if(result){
 				break;
 			}else{
@@ -168,13 +168,10 @@ public class View {
 			System.out.println("****정규식***** 8~20자리의 영문 또는 숫자 조합이 가능합니다");
 			
 			input = sInput();
-//			if(RegEx.checkUserId(input)){
-//			정규식 완료 후
-			if(true){
+			if(RegEx.checkUser_id(input)){
 				return input;
-			}else{
-				System.out.println("입력하신 아이디가 형식에 맞지 않습니다.");
 			}
+			System.out.println("입력하신 아이디가 형식에 맞지 않습니다.");
 		}
 	}
 	
@@ -193,16 +190,17 @@ public class View {
 			System.out.println("========================================================");
 			
 			input = sInput();
-//			if (RegEx.checkUser_name(input))
-//			정규식 완료 후
-			return input;
+			if (RegEx.checkUser_name(input)){
+				return input;
+			}
+			System.out.println("입력하신 이름이 형식에 맞지 않습니다.");
 		}
 	}
 	
 	/**
 	 * 비밀번호 받아오는 메서드 - 사용자 메서드
 	 * 
-	 * @author 이학재
+	 * @author 조유진
 	 * @return 비밀번호 규칙확인을 위해 String 반환
 	 */
 	private String scanPw(){
@@ -214,9 +212,10 @@ public class View {
 			System.out.println("========================================================");
 			
 			input = sInput();
-//			if (RegEx.checkUser_pw(input)){
-//			정규식 완료 후
-			return input;
+			if (RegEx.checkUser_pw(input)){
+				return input;
+			}
+			System.out.println("입력하신 비밀번호가 형식에 맞지 않습니다.");
 		}
 	}
 	
@@ -249,7 +248,7 @@ public class View {
 	 * @author 조유진
 	 */
 	private void loginView(){
-while(true){
+		while(true){
 			System.out.println("로그인 뷰 메서드 호출");
 			System.out.println("[ 1 ] 사용자 화면 ");
 			System.out.println("[ 2 ] 관리자 화면");
@@ -851,6 +850,10 @@ while(true){
 	}
 
 	
+	
+	
+	
+	
 	/**
 	 * 관리자 메인 뷰
 	 * 
@@ -916,33 +919,27 @@ while(true){
 	//@param
 	//@return 대여 리스트
 
-		List<RentVO> rentList = new ArrayList<>();
-		rentList = iServiceImpl.readRentList();
+		List<RentVO> rentList = iServiceImpl.readRentList();
 
 		for(RentVO rentInfo : rentList){
 			
 			int book_seq = rentInfo.getBook_seq();
-			List<BookVO> bookList = new ArrayList<>();
-			
-			bookList = iServiceImpl.readBook();
+			List<BookVO> bookList = iServiceImpl.readAllBook();
 			BookVO selBook = null;
 			for(BookVO book : bookList){
-				if(book.getSeq() == book_seq){
+				if(book.getBook_seq() == book_seq){
 					selBook = book;
 					break;
 				}
 			}
 
-			System.out.print(rentInfo.getSeq() + "   ");
+			System.out.print(rentInfo.getBook_seq() + "   ");
 			System.out.print(rentInfo.getUser_Id() + "   ");
-			System.out.print(selBook.getBookName() + "   ");
-			System.out.println(rentInfo.getRentDate());
+			System.out.print(selBook.getBook_name() + "   ");
+			System.out.println(rentInfo.getRent_date());
 		}
 		
-
-		
 		while(true){
-			System.out.println("대출 목록 조회 메서드 호출");
 			System.out.println("[ 0 ] 뒤로가기");
 			
 			switch (iInput()) {
@@ -954,7 +951,6 @@ while(true){
 		
 		}
 	}
-	
 	
 	
 	/**
@@ -969,7 +965,22 @@ while(true){
 	//@return 보유 책 리스트	
 		while(true){
 			
-			System.out.println("보유 도서 조회 메서드 호출");
+			List<BookVO> bookList = iServiceImpl.readAllBook();
+			List<BookKindVO> kindList = iServiceImpl.readAllKind();
+			for(BookVO book : bookList){
+				System.out.print(book.getBook_seq() + "  ");
+				System.out.print(book.getBook_name() + "  ");
+				for(BookKindVO kind : kindList){
+					if(kind.getGenre_seq() == book.getG_seq()){
+						System.out.print(kind.getGenre_name() + "  ");
+						break;
+					}
+				}
+				System.out.print(book.getAuthor() + "  ");
+				System.out.println(book.getRegDate());
+		
+			}
+			System.out.println();
 			System.out.println("[ 1 ] 추가하기");
 			System.out.println("[ 2 ] 상세 정보 조회하기");
 			System.out.println("[ 0 ] 뒤로가기");
@@ -998,8 +1009,6 @@ while(true){
 	 * 
 	 * @author 김대호
 	 */
-	
-	
 	private void addBook(){
 	//DB
 	//boolean addBook(BookVO book);
@@ -1007,7 +1016,8 @@ while(true){
 	//@return 책 추가 성공시 true, 실패 시 false반환
 		
 		while(true){
-			
+			BookVO book = new BookVO();
+
 			System.out.println("도서를 추가합니다");
 			System.out.println("[ 0 ] 뒤로가기");
 			switch (iInput()) {

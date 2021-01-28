@@ -3,6 +3,7 @@ package package_Main;
 import java.util.List;
 import java.util.Map;
 
+import package_VO.BookKindVO;
 import package_VO.BookVO;
 import package_VO.NotifyVO;
 import package_VO.RentVO;
@@ -16,11 +17,11 @@ public interface IService {
 	 * 
 	 * 회원가입 - 유저 정보 DB에 입력
 	 * 
-	 * @param userVO
+	 * @param user 유저한명의 정보
 	 * @return 성공 시 true, 실패 시 false 반환
-	 * @author
+	 * @author 구현자
 	 */
-	boolean insertUser(UserVO userVO);
+	boolean insertUser(UserVO user);
 	
 	/**
 	 * 
@@ -37,7 +38,7 @@ public interface IService {
 	 * 
 	 * 관리자 계정 로그인
 	 * 
-	 * @param loginInfo
+	 * @param loginInfo ??
 	 * @return 로그인 성공 시 true, 실패 시 true 반환
 	 * @author
 	 */
@@ -46,247 +47,13 @@ public interface IService {
 	/**
 	 * 회원 계정 로그인
 	 * 
-	 * @param loginInfo
-	 * 	<"user_id","user_id">,<"user_pw","user_pw"> 키/값을 전송하여 로그인
-	 * 성공여부 반환받음
-	 * @return 로그인 성공 시 true, 실패 시 false 반환
+	 * @param loginInfo user_id 유저의 아이디, user_pw 유저의 비밀번호
+	 * @return 로그인 성공 시
 	 * @author
 	 */
-	boolean userLogin(Map<String, String> loginInfo);
+	boolean userLogin(Map<String, String> loginInfo); //반환타입
 	
 	
-////////////////////////////////////////////////////////////////////////
-//							관리자
-////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * 대출 목록 조회
-	 * 
-	 * @param 
-	 * @return 모든 대여 리스트 반환
-	 * @author 김대호
-	 */	
-	List<RentVO> readRentList();
-	
-	
-	/**
-	 * 
-	 * 보유 도서 조회
-	 * 
-	 * @param 
-	 * @return 보유 책 리스트
-	 * @author 김대호
-	 */
-	List<BookVO> readBook();
-	
-	
-	/**
-	 * 
-	 * 보유 도서 조회
-	 * 
-	 * @param 추가할 책 객체 -> get메소드 활용 책속성 설정 
-	 * @return 책 추가 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean addBook(BookVO book);
-	
-	
-	/**
-	 * 
-	 * 선택한 책 상세 정보
-	 * 
-	 * @param 선택한 책  seq
-	 * @return 선택한 책 객체
-	 * @author 김대호
-	 */
-	BookVO bookDetailView(int book_req);
-	
-	
-	/**
-	 * 
-	 * 보유 도서 수정
-	 * 
-	 * @param 수정할 정보 Map으로 전달
-	 * @return 수정 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean modifyBook(Map<String, Object> bookInfo);
-	
-	
-	/**
-	 * 
-	 * 보유 도서 제거
-	 * 
-	 * @param 선택한 책 seq 전달
-	 * @return 삭제 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean deleteBook(int book_seq);
-	
-	
-	/**
-	 * 
-	 * 회원 목록 조회
-	 * 
-	 * @param 
-	 * @return 모든 유저 리스트
-	 * @author 김대호
-	 */
-	List<UserVO> readAllUser();
-	
-	
-	/**
-	 * 
-	 * 선택한 회원 상세 조회
-	 * 
-	 * @param 선택한 유저 id
-	 * @return 선택한 유저 정보
-	 * @author 김대호
-	 */
-	UserVO userDetailView(String user_id);
-	
-	
-	/**
-	 * 
-	 * 모든 공지 조회 
-	 * 
-	 * @param 
-	 * @return 모든 공지 리스트 조회
-	 * @author 김대호
-	 */
-	List<NotifyVO> readAllNotify();
-	
-	
-	/**
-	 * 
-	 * 공지 추가
-	 * 
-	 * @param 추가할 공지 객체 전달
-	 * @return 공지 추가 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean addNotify(NotifyVO notify);
-	
-	
-	/**
-	 * 
-	 * 선택한 공지 상세 조회
-	 * 
-	 * @param 선택한 공지사항 seq 전달
-	 * @return 선택한 공지 객체 가져오기 
-	 * @author 김대호
-	 */
-	NotifyVO notifyDetailView(int notify_seq);
-	
-	
-	/**
-	 * 
-	 * 공지 수정
-	 * 
-	 * @param 수정할 정보 Map으로 전달
-	 * @return 수정 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean modifyNotify(Map<String, Object> notifyInfo);	
-	
-	
-	/**
-	 * 
-	 * 공지 삭제
-	 * 
-	 * @param 선택한 공지 seq 전달
-	 * @return 삭제 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean deleteNotify(int notify_seq);
-	
-	
-	/**
-	 * 
-	 * 모든 이용권 조회
-	 * 
-	 * @param 
-	 * @return 모든 이용권 리스트 
-	 * @author 김대호
-	 */
-	List<VoucherVO> readAllVoucher();
-	
-	
-	/**
-	 * 
-	 * 이용권 추가
-	 * 
-	 * @param 추가할 이용권 객체 전달 
-	 * @return 추가 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean addVoucher(VoucherVO voucher);
-	
-	
-	/**
-	 * 
-	 * 선택한 이용권 상세 보기 
-	 * 
-	 * @param 선택한 이용권 seq 전달 
-	 * @return 선택한 이용권 객체 
-	 * @author 김대호
-	 */
-	VoucherVO voucherDetailView(int voucher_seq);
-	
-	
-	/**
-	 * 
-	 * 이용권 수정
-	 * 
-	 * @param 수정할 이용권 정보 Map으로 전달 
-	 * @return 수정 성공시 true, 실패 시 false반환
-	 * @author 김대호
-	 */
-	boolean modifyVoucher(Map<String, Object> voucherInfo);
-	
-	
-	/**
-	 * 
-	 * 이용권 삭제
-	 * 
-	 * @param 삭제할 이용권 seq 전달 
-	 * @return 삭제 성공시 true, 실패 시 false 반환
-	 * @author 김대호
-	 */
-	boolean deleteVoucher(int voucher_seq);
-	
-	
-	/**
-	 * 
-	 * 일매출 조회
-	 * 
-	 * @param 
-	 * @return 일매출 리스트(유저정보)	
-	 * @author 김대호
-	 */
-	List<UserInfoVO> dailySalesView();
-	
-	
-	/**
-	 * 
-	 * 월매출 조회
-	 * 
-	 * @param 
-	 * @return 월매출 리스트(유저정보)
-	 * @author 김대호
-	 */
-	List<UserInfoVO> monthlySalesView();
-	
-	
-	/**
-	 * 
-	 * 연매출 조회
-	 * 
-	 * @param 
-	 * @return 월매출 리스트(유저정보)
-	 * @author 김대호
-	 */
-	List<UserInfoVO> annualSalesView();
 	
 	
 ////////////////////////////////////////////////////////////////////////
@@ -299,7 +66,7 @@ public interface IService {
 	 * 			
 	 * @author 홍유리
 	 */
-	List<RentVO> rentListView();
+	List<RentVO> rentListView(); //매개변수 user_id
 	
 	/**
 	 * 대여 도서 상세 보기 - 사용자 메서드
@@ -307,7 +74,8 @@ public interface IService {
 	 * @return
 	 * @author 홍유리
 	 */
-	List<RentVO> rentBookDetail();
+	
+	List<RentVO> rentBookDetail(); // 중복메서드
 	
 	/**
 	 * 평점 달기 - 사용자 메서드
@@ -317,7 +85,7 @@ public interface IService {
 	 * @author 홍유리 
 	 */
 	
-	boolean giveGrade(int grade);
+	boolean giveGrade(int grade); //매개변수
 	
 	/**
 	 * 평점 수정 - 사용자 메서드
@@ -345,7 +113,7 @@ public interface IService {
 	 * @author 홍유리
 	 */
 	
-	List<UserVO> chargePoint();
+	List<UserVO> chargePoint(); // 누구의 얼마만큼(매개변수), 반환타입
 	
 	/**
 	 * 유저용 공지사항 - 사용자 메서드
@@ -447,14 +215,247 @@ public interface IService {
 	List<RentVO> rentBook();
 	
 	
+	////////////////////////////////////////////////////////////////////////
+	//관리자
+	////////////////////////////////////////////////////////////////////////
+	
+	/**
+	* 대출 목록 조회
+	* 
+	* @return 모든 대여 리스트 반환
+	* @author 김대호
+	*/	
+	List<RentVO> readRentList();
 	
 	
+	/**
+	* 
+	* 보유 도서 조회
+	* 
+	* @param 
+	* @return 보유 책 리스트
+	* @author 김대호
+	*/
+	List<BookVO> readAllBook();
 	
 	
+	/**
+	* 
+	* 보유 도서 조회
+	* 
+	* @param 추가할 책 객체 -> get메소드 활용 책속성 설정 
+	* @return 책 추가 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean addBook(BookVO book);
 	
 	
+	/**
+	* 
+	* 선택한 책 상세 정보
+	* 
+	* @param 선택한 책  seq
+	* @return 선택한 책 객체
+	* @author 김대호
+	*/
+	BookVO bookDetailView(int book_req);
 	
 	
+	/**
+	* 
+	* 보유 도서 수정
+	* 
+	* @param 수정할 정보 Map으로 전달 
+	* @return 수정 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean modifyBook(Map<String, Object> bookInfo); //매개변수 도서의??
+	
+	
+	/**
+	* 
+	* 보유 도서 제거
+	* 
+	* @param 선택한 책 seq 전달
+	* @return 삭제 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean deleteBook(int book_seq); // list.remoe(Object obj) 반환타입
+	
+	
+	/**
+	* 
+	* 회원 목록 조회
+	* 
+	* @param 
+	* @return 모든 유저 리스트
+	* @author 김대호
+	*/
+	List<UserVO> readAllUser();
+	
+	
+	/**
+	* 
+	* 선택한 회원 상세 조회
+	* 
+	* @param 선택한 유저 id
+	* @return 선택한 유저 정보
+	* @author 김대호
+	*/
+	UserVO userDetailView(String user_id);
+	
+	
+	/**
+	* 
+	* 모든 공지 조회 
+	* 
+	* @param 
+	* @return 모든 공지 리스트 조회
+	* @author 김대호
+	*/
+	List<NotifyVO> readAllNotify();
+	
+	
+	/**
+	* 
+	* 공지 추가
+	* 
+	* @param 추가할 공지 객체 전달
+	* @return 공지 추가 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean addNotify(NotifyVO notify);
+	
+	
+	/**
+	* 
+	* 선택한 공지 상세 조회
+	* 
+	* @param 선택한 공지사항 seq 전달
+	* @return 선택한 공지 객체 가져오기 
+	* @author 김대호
+	*/
+	NotifyVO notifyDetailView(int notify_seq);
+	
+	
+	/**
+	* 
+	* 공지 수정
+	* 
+	* @param 수정할 정보 Map으로 전달
+	* @return 수정 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean modifyNotify(Map<String, Object> notifyInfo);	
+	
+	
+	/**
+	* 
+	* 공지 삭제
+	* 
+	* @param 선택한 공지 seq 전달
+	* @return 삭제 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean deleteNotify(int notify_seq);
+	
+	
+	/**
+	* 
+	* 모든 이용권 조회
+	* 
+	* @param 
+	* @return 모든 이용권 리스트 
+	* @author 김대호
+	*/
+	List<VoucherVO> readAllVoucher();
+	
+	
+	/**
+	* 
+	* 이용권 추가
+	* 
+	* @param 추가할 이용권 객체 전달 
+	* @return 추가 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean addVoucher(VoucherVO voucher);
+	
+	
+	/**
+	* 
+	* 선택한 이용권 상세 보기 
+	* 
+	* @param 선택한 이용권 seq 전달 
+	* @return 선택한 이용권 객체 
+	* @author 김대호
+	*/
+	VoucherVO voucherDetailView(int voucher_seq);
+	
+	
+	/**
+	* 
+	* 이용권 수정
+	* 
+	* @param 수정할 이용권 정보 Map으로 전달 
+	* @return 수정 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean modifyVoucher(Map<String, Object> voucherInfo);
+	
+	
+	/**
+	* 
+	* 이용권 삭제
+	* 
+	* @param 삭제할 이용권 seq 전달 
+	* @return 삭제 성공시 true, 실패 시 false 반환
+	* @author 김대호
+	*/
+	boolean deleteVoucher(int voucher_seq);
+	
+	
+	/**
+	* 
+	* 일매출 조회
+	* 
+	* @param 
+	* @return 일매출 리스트(유저정보)	
+	* @author 김대호
+	*/
+	List<UserInfoVO> dailySalesView(); // 반환타입 int
+	
+	
+	/**
+	* 
+	* 월매출 조회
+	* 
+	* @param 
+	* @return 월매출 리스트(유저정보)
+	* @author 김대호
+	*/
+	List<UserInfoVO> monthlySalesView(); // 반환타입 int 
+	
+	/**
+	* 
+	* 연매출 조회
+	* 
+	* @param 
+	* @return 월매출 리스트(유저정보)
+	* @author 김대호
+	*/
+	List<UserInfoVO> annualSalesView();
+	
+	
+	/**
+	* 
+	* 모든 장르 조회
+	* 
+	* @param 
+	* @return 모든 이용권 리스트 
+	* @author 김대호
+	*/
+	List<BookKindVO> readAllKind();
 	
 	
 }

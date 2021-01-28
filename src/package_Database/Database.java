@@ -58,7 +58,7 @@ public class Database {
 	
 	public NotifyVO selectNotify(int seq){
 		for(NotifyVO notify : notifyList){
-			if (notify.getSeq()== seq) {
+			if (notify.getNotify_seq()== seq) {
 				return notify;
 			}
 		}
@@ -124,9 +124,45 @@ public class Database {
 	 * @return 보유 책 리스트
 	 * @author 김대호
 	 */
-	public List<BookVO> readBook() {
+	public List<BookVO> readAllBook() {
 		return bookList;
 	}
+	
+	
+	
+	/**
+	 * 
+	 * id 중복 여부와 조건을 만족하는지 확인
+	 * 
+	 * @param id
+	 * @return 만족하면 true, 불만족하면 false 반환
+	 * @author
+	 * 
+	 */
+	public boolean checkId(String id) {
+		for(UserVO user : userList){
+			if(!(user.getUser_id().equals(id))){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * 모든 장르 조회
+	 * 
+	 * @param 
+	 * @return 모든 이용권 리스트 
+	 * @author 김대호
+	 */
+	public List<BookKindVO> readAllKind() {
+		return kindList;
+	}
+	
+	
 	
 	
 	
@@ -134,66 +170,66 @@ public class Database {
 	//회원정보 생성자
 	{
 		UserInfoVO i1 = new UserInfoVO();
-		i1.setSeq(1);//1일권
+		i1.setInfo_seq(1);//1일권
 		i1.setV_seq(1);
 		i1.setUser_id("abc123");
-		i1.setBuyDate("2021-01-10");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-10");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i2 = new UserInfoVO();
-		i1.setSeq(2);
+		i1.setInfo_seq(2);
 		i1.setV_seq(1);//7일권
 		i1.setUser_id("ab123");
-		i1.setBuyDate("2021-01-11");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-11");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i3 = new UserInfoVO();
-		i1.setSeq(2);//7일권
+		i1.setInfo_seq(2);//7일권
 		i1.setUser_id("des123");
-		i1.setBuyDate("2021-01-12");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-12");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i4 = new UserInfoVO();
-		i1.setSeq(3);//7일권
+		i1.setInfo_seq(3);//7일권
 		i1.setUser_id("bdc123");
-		i1.setBuyDate("2021-01-13");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-13");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i5 = new UserInfoVO();
-		i1.setSeq(3);//30일권
+		i1.setInfo_seq(3);//30일권
 		i1.setUser_id("abcd123");
-		i1.setBuyDate("2021-01-01");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-01");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i6 = new UserInfoVO();
-		i1.setSeq(1);//90일권
+		i1.setInfo_seq(1);//90일권
 		i1.setUser_id("agd123");
-		i1.setBuyDate("2021-01-25");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-25");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i7 = new UserInfoVO();
-		i1.setSeq(4);//1일권
+		i1.setInfo_seq(4);//1일권
 		i1.setUser_id("dd1232");
-		i1.setBuyDate("2021-01-23");
-		i1.setActivate(true);
+		i1.setBuy_date("2021-01-23");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i8 = new UserInfoVO();
-		i1.setSeq(6);//365일권
+		i1.setInfo_seq(6);//365일권
 		i1.setUser_id("des123");
-		i1.setBuyDate("2019-01-25");
-		i1.setActivate(true);
+		i1.setBuy_date("2019-01-25");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i9 = new UserInfoVO();
-		i1.setSeq(5);//180일권
+		i1.setInfo_seq(5);//180일권
 		i1.setUser_id("bbb123");
-		i1.setBuyDate("2020-10-25");
-		i1.setActivate(true);
+		i1.setBuy_date("2020-10-25");
+		i1.setInfo_isActivate(true);
 		
 		UserInfoVO i10 = new UserInfoVO();
-		i1.setSeq(6);//365일권
+		i1.setInfo_seq(6);//365일권
 		i1.setUser_id("cbb123");
-		i1.setBuyDate("2020-01-25");
-		i1.setActivate(true);
+		i1.setBuy_date("2020-01-25");
+		i1.setInfo_isActivate(true);
 		
 		
 	}
@@ -202,9 +238,9 @@ public class Database {
 	//공지목록
 	{
 		NotifyVO n1 = new NotifyVO();
-		n1.setSeq(1);
-		n1.setDate("2015-01-25");
-		n1.setTitle("안녕하세요");
+		n1.setNotify_seq(1);
+		n1.setNotify_date("2015-01-25");
+		n1.setNotify_title("안녕하세요");
 //		n1.setTopRent(topRent);
 //		n1.setPopularBook(popularBook);
 	}
@@ -213,80 +249,80 @@ public class Database {
 	// 책 리스트 생성자
 	{
 		BookVO b1 = new BookVO();
-		b1.setSeq(1);
-		b1.setBookName("하백의 신부 1");
+		b1.setBook_seq(1);
+		b1.setBook_name("하백의 신부 1");
 		b1.setAuthor("윤미경");
 		b1.setRegDate("2021-01-25");
 		b1.setG_seq(6);
 		bookList.add(b1);
 		
 		BookVO b2 = new BookVO();
-		b2.setSeq(2);
-		b2.setBookName("티아라 7");
+		b2.setBook_seq(2);
+		b2.setBook_name("티아라 7");
 		b2.setAuthor("이윤희");
 		b2.setRegDate("2021-01-25");
 		b2.setG_seq(6);
 		bookList.add(b2);
 		
 		BookVO b3 = new BookVO();
-		b3.setSeq(3);
-		b3.setBookName("나의 짐승남 1");
+		b3.setBook_seq(3);
+		b3.setBook_name("나의 짐승남 1");
 		b3.setAuthor("차경희");
 		b3.setRegDate("2021-01-25");
 		b3.setG_seq(6);
 		bookList.add(b3);
 		
 		BookVO b4 = new BookVO();
-		b4.setSeq(4);
-		b4.setBookName("지나치게 낭만적인 1");
+		b4.setBook_seq(4);
+		b4.setBook_name("지나치게 낭만적인 1");
 		b4.setAuthor("김설희");
 		b4.setRegDate("2021-01-25");
 		b4.setG_seq(6);
 		bookList.add(b4);
 		
 		BookVO b5 = new BookVO();
-		b5.setSeq(5);
-		b5.setBookName("열혈강호 82 ");
+		b5.setBook_seq(5);
+		b5.setBook_name("열혈강호 82 ");
 		b5.setAuthor("전극진");
 		b5.setRegDate("2021-01-25");
 		b5.setG_seq(4);
 		bookList.add(b5);
 		
 		BookVO b6 = new BookVO();
-		b6.setSeq(6);
-		b6.setBookName("원피스 97");
+		b6.setBook_seq(6);
+		b6.setBook_name("원피스 97");
 		b6.setAuthor("오다 에이치로");
 		b6.setRegDate("2021-01-25");
 		b6.setG_seq(4);
 		bookList.add(b6);
 		
 		BookVO b7 = new BookVO();
-		b7.setSeq(7);
-		b7.setBookName("다이아몬드 에이스 21");
+		b7.setBook_seq(7);
+		b7.setBook_name("다이아몬드 에이스 21");
 		b7.setAuthor("테라지마 유지");
 		b7.setRegDate("2021-01-25");
 		b7.setG_seq(10);
 		bookList.add(b7);
 		
 		BookVO b8 = new BookVO();
-		b8.setSeq(8);
-		b8.setBookName("하이큐!! 45");
+		b8.setBook_seq(8);
+		b8.setBook_name("하이큐!! 45");
 		b8.setAuthor("후루다테 하루이치");
 		b8.setRegDate("2021-01-25");
 		b8.setG_seq(10);
 		bookList.add(b8);
 		
 		BookVO b9 = new BookVO();
-		b9.setSeq(9);
-		b9.setBookName("신테니스의왕자 30");
+		b9.setBook_seq(9);
+		b9.setBook_name("신테니스의왕자 30");
 		b9.setAuthor("코노미 다케시");
 		b9.setRegDate("2021-01-25");
 		b9.setG_seq(10);
 		bookList.add(b9);
 		
 		BookVO b10 = new BookVO();
-		b10.setSeq(10);
-		b10.setBookName("날씨의아이 2");
+		b10.setBook_seq(10);
+		b10.setBook_name("날씨의아이 2");
 		b10.setAuthor("신카이 마코토");
 		b10.setRegDate("2021-01-25");
 		b10.setG_seq(6);
@@ -299,146 +335,146 @@ public class Database {
 		//대여목록 생성자
 	{
 		RentVO r1 = new RentVO();
-		r1.setSeq(1);
+		r1.setBook_seq(1);
 		r1.setBook_seq(1);
 		r1.setUser_Id("abc123");
-		r1.setRentDate("2021-01-25");
+		r1.setRent_date("2021-01-25");
 		rentList.add(r1);
 		
 		RentVO r2 = new RentVO();
-		r2.setSeq(2);
+		r2.setBook_seq(2);
 		r2.setBook_seq(2);
 		r2.setUser_Id("des123");
-		r2.setRentDate("2021-01-25");
+		r2.setRent_date("2021-01-25");
 		rentList.add(r2);
 		
 		RentVO r3 = new RentVO();
-		r3.setSeq(3);
+		r3.setBook_seq(3);
 		r3.setBook_seq(3);
 		r3.setUser_Id("bbb123");
-		r3.setRentDate("2021-01-25");
+		r3.setRent_date("2021-01-25");
 		rentList.add(r3);
 		
 		RentVO r4 = new RentVO();
-		r4.setSeq(4);
+		r4.setBook_seq(4);
 		r4.setBook_seq(4);
 		r4.setUser_Id("aaa233");
-		r4.setRentDate("2021-01-25");
+		r4.setRent_date("2021-01-25");
 		rentList.add(r4);
 		
 		RentVO r5 = new RentVO();
-		r5.setSeq(5);
+		r5.setBook_seq(5);
 		r5.setBook_seq(5);
 		r5.setUser_Id("dd1232");
-		r5.setRentDate("2021-01-25");
+		r5.setRent_date("2021-01-25");
 		rentList.add(r5);
 		
 		RentVO r6 = new RentVO();
-		r6.setSeq(6);
+		r6.setBook_seq(6);
 		r6.setBook_seq(6);
 		r6.setUser_Id("zzz654");
-		r6.setRentDate("2021-01-25");
+		r6.setRent_date("2021-01-25");
 		rentList.add(r6);
 		
 		RentVO r7 = new RentVO();
-		r7.setSeq(7);
+		r7.setBook_seq(7);
 		r7.setBook_seq(7);
 		r7.setUser_Id("asdf321");
-		r7.setRentDate("2021-01-25");
+		r7.setRent_date("2021-01-25");
 		rentList.add(r7);
 		
 		RentVO r8 = new RentVO();
-		r8.setSeq(8);
+		r8.setBook_seq(8);
 		r8.setBook_seq(8);
 		r8.setUser_Id("qwer1234");
-		r8.setRentDate("2021-01-25");
+		r8.setRent_date("2021-01-25");
 		rentList.add(r8);
 		
 		RentVO r9 = new RentVO();
-		r9.setSeq(9);
+		r9.setBook_seq(9);
 		r9.setBook_seq(9);
 		r9.setUser_Id("zxcv123");
-		r9.setRentDate("2021-01-25");
+		r9.setRent_date("2021-01-25");
 		rentList.add(r9);
 		
 		RentVO r10 = new RentVO();
-		r10.setSeq(10);
+		r10.setBook_seq(10);
 		r10.setBook_seq(10);
 		r10.setUser_Id("fdsa098");
-		r10.setRentDate("2021-01-25");
+		r10.setRent_date("2021-01-25");
 		rentList.add(r10);
 	}
 	
 	//유저 초기화
 	{
 		UserVO u1 = new UserVO();
-		u1.setUserName("김대호");
-		u1.setId("abc123");
-		u1.setPw("abc123");
-		u1.setPoint(2000);
+		u1.setUser_name("김대호");
+		u1.setUser_id("abc123");
+		u1.setUser_pw("abc123");
+		u1.setUser_point(2000);
 		userList.add(u1);
 
 		UserVO u2 = new UserVO();
-		u2.setUserName("홍유리");
-		u2.setId("des123");
-		u2.setPw("des123");
-		u2.setPoint(20000);
+		u2.setUser_name("홍유리");
+		u2.setUser_id("des123");
+		u2.setUser_pw("des123");
+		u2.setUser_point(20000);
 		userList.add(u2);
 		
 		UserVO u3 = new UserVO();
-		u3.setUserName("조유진");
-		u3.setId("bbb123");
-		u3.setPw("bbb123");
-		u3.setPoint(10000);
+		u3.setUser_name("조유진");
+		u3.setUser_id("bbb123");
+		u3.setUser_pw("bbb123");
+		u3.setUser_point(10000);
 		userList.add(u3);
 		
 		UserVO u4 = new UserVO();
-		u4.setUserName("김대순");
-		u4.setId("aaa233");
-		u4.setPw("aaa233");
-		u4.setPoint(100);
+		u4.setUser_name("김대순");
+		u4.setUser_id("aaa233");
+		u4.setUser_pw("aaa233");
+		u4.setUser_point(100);
 		userList.add(u4);
 		
 		UserVO u5 = new UserVO();
-		u5.setUserName("강남훈");
-		u5.setId("dd1232");
-		u5.setPw("dd1232");
-		u5.setPoint(10000);
+		u5.setUser_name("강남훈");
+		u5.setUser_id("dd1232");
+		u5.setUser_pw("dd1232");
+		u5.setUser_point(10000);
 		userList.add(u5);
 		
 		UserVO u6 = new UserVO();
-		u6.setUserName("하윤주");
-		u6.setId("zzz654");
-		u6.setPw("zzz654");
-		u6.setPoint(1000);
+		u6.setUser_name("하윤주");
+		u6.setUser_id("zzz654");
+		u6.setUser_pw("zzz654");
+		u6.setUser_point(1000);
 		userList.add(u6);
 		
 		UserVO u7 = new UserVO();
-		u7.setUserName("이학재");
-		u7.setId("asdf321");
-		u7.setPw("asdf321");
-		u7.setPoint(2000);
+		u7.setUser_name("이학재");
+		u7.setUser_id("asdf321");
+		u7.setUser_pw("asdf321");
+		u7.setUser_point(2000);
 		userList.add(u7);
 		
 		UserVO u8 = new UserVO();
-		u8.setUserName("권민정");
-		u8.setId("qwer1234");
-		u8.setPw("qwer1234");
-		u8.setPoint(100);
+		u8.setUser_name("권민정");
+		u8.setUser_id("qwer1234");
+		u8.setUser_pw("qwer1234");
+		u8.setUser_point(100);
 		userList.add(u8);
 		
 		UserVO u9 = new UserVO();
-		u9.setUserName("이규방");
-		u9.setId("zxcv123");
-		u9.setPw("zxcv123");
-		u9.setPoint(7000);
+		u9.setUser_name("이규방");
+		u9.setUser_id("zxcv123");
+		u9.setUser_pw("zxcv123");
+		u9.setUser_point(7000);
 		userList.add(u9);
 		
 		UserVO u10 = new UserVO();
-		u10.setUserName("유은서");
-		u10.setId("fdsa098");
-		u10.setPw("fdsa098");
-		u10.setPoint(5000);
+		u10.setUser_name("유은서");
+		u10.setUser_id("fdsa098");
+		u10.setUser_pw("fdsa098");
+		u10.setUser_point(5000);
 		userList.add(u10);
 		
 	}
@@ -446,98 +482,98 @@ public class Database {
 	//책 분류 초기화 블럭
 	{
 		BookKindVO b1 = new BookKindVO();
-		b1.setSeq(1);
-		b1.setGenre("일상");
+		b1.setGenre_seq(1);
+		b1.setGenre_name("일상");
 		kindList.add(b1);
 		
 		BookKindVO b2 = new BookKindVO();
-		b1.setSeq(2);
-		b1.setGenre("개그");
+		b2.setGenre_seq(2);
+		b2.setGenre_name("개그");
 		kindList.add(b2);
 		
 		BookKindVO b3 = new BookKindVO();
-		b1.setSeq(3);
-		b1.setGenre("판타지");
+		b3.setGenre_seq(3);
+		b3.setGenre_name("판타지");
 		kindList.add(b3);
 		
 		BookKindVO b4 = new BookKindVO();
-		b1.setSeq(4);
-		b1.setGenre("액션");
+		b4.setGenre_seq(4);
+		b4.setGenre_name("액션");
 		kindList.add(b4);
 		
 		BookKindVO b5 = new BookKindVO();
-		b1.setSeq(5);
-		b1.setGenre("드라마");
+		b5.setGenre_seq(5);
+		b5.setGenre_name("드라마");
 		kindList.add(b5);
 		
 		BookKindVO b6 = new BookKindVO();
-		b1.setSeq(6);
-		b1.setGenre("순정");
+		b6.setGenre_seq(6);
+		b6.setGenre_name("순정");
 		kindList.add(b6);
 		
 		BookKindVO b7 = new BookKindVO();
-		b1.setSeq(7);
-		b1.setGenre("감성");
+		b7.setGenre_seq(7);
+		b7.setGenre_name("감성");
 		kindList.add(b7);
 		
 		BookKindVO b8 = new BookKindVO();
-		b1.setSeq(8);
-		b1.setGenre("스릴러");
+		b8.setGenre_seq(8);
+		b8.setGenre_name("스릴러");
 		kindList.add(b8);
 		
 		BookKindVO b9 = new BookKindVO();
-		b1.setSeq(9);
-		b1.setGenre("시대극");
+		b9.setGenre_seq(9);
+		b9.setGenre_name("시대극");
 		kindList.add(b9);
 		
 		BookKindVO b10 = new BookKindVO();
-		b1.setSeq(10);
-		b1.setGenre("스포츠");
+		b10.setGenre_seq(10);
+		b10.setGenre_name("스포츠");
 		kindList.add(b10);
 	}
 	
 	//이용권 목록 초기화 블럭
 	{
 		VoucherVO v1 = new VoucherVO();
-		v1.setSeq(1);
-		v1.setPeriod(7);
-		v1.setKindVoucher("1일권");
-		v1.setPrice(500);			
+		v1.setV_seq(1);
+		v1.setV_period(7);
+		v1.setV_name("1일권");
+		v1.setV_price(500);			
 		voucherList.add(v1);
 		
 		VoucherVO v2 = new VoucherVO();
-		v1.setSeq(2);
-		v1.setPeriod(7);
-		v1.setKindVoucher("7일권");
-		v1.setPrice(3000);
+		v1.setV_seq(2);
+		v1.setV_period(7);
+		v1.setV_name("7일권");
+		v1.setV_price(3000);
 		voucherList.add(v2);
 			
 		VoucherVO v3 = new VoucherVO();
-		v1.setSeq(3);
-		v1.setPeriod(30);
-		v1.setKindVoucher("30일권");
-		v1.setPrice(9900);
+		v1.setV_seq(3);
+		v1.setV_period(30);
+		v1.setV_name("30일권");
+		v1.setV_price(9900);
 		voucherList.add(v3);
 			
 		VoucherVO v4 = new VoucherVO();
-		v1.setSeq(4);
-		v1.setPeriod(90);
-		v1.setKindVoucher("90일권");
-		v1.setPrice(26000);
+		v1.setV_seq(4);
+		v1.setV_period(90);
+		v1.setV_name("90일권");
+		v1.setV_price(26000);
 		voucherList.add(v4);
 			
 		VoucherVO v5 = new VoucherVO();
-		v1.setSeq(5);
-		v1.setPeriod(180);
-		v1.setKindVoucher("180일권");
-		v1.setPrice(33000);
+		v1.setV_seq(5);
+		v1.setV_period(180);
+		v1.setV_name("180일권");
+		v1.setV_price(33000);
 		voucherList.add(v5);
 			
 		VoucherVO v6 = new VoucherVO();
-		v1.setSeq(6);
-		v1.setPeriod(365);
-		v1.setKindVoucher("365일권");
-		v1.setPrice(59500);
+		v1.setV_seq(6);
+		v1.setV_period(365);
+		v1.setV_name("365일권");
+		v1.setV_price(59500);
 		voucherList.add(v6);
 		
 		

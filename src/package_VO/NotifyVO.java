@@ -1,37 +1,61 @@
 package package_VO;
 
 public class NotifyVO {
-	private int seq;
-	private String title;
-	private String date;
-	private int readCount;
+	private int notify_seq; // 공지 PK
+	private String notify_title; // 공지 타이틀
+	private String notify_date; // 공지 날짜
+	private int readCount; // 조회수
 	
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
 	
-	public String getTitle() {
-		return title;
+	
+	public int getNotify_seq() {
+		return notify_seq;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+
+
+	public void setNotify_seq(int notify_seq) {
+		this.notify_seq = notify_seq;
 	}
-	public String getDate() {
-		return date;
+
+
+
+	public String getNotify_title() {
+		return notify_title;
 	}
-	public void setDate(String date) {
-		this.date = date;
+
+
+
+	public void setNotify_title(String notify_title) {
+		this.notify_title = notify_title;
 	}
-	public int getReadView() {
+
+
+
+	public String getNotify_date() {
+		return notify_date;
+	}
+
+
+
+	public void setNotify_date(String notify_date) {
+		this.notify_date = notify_date;
+	}
+
+
+
+	public int getReadCount() {
 		return readCount;
 	}
-	public void setReadView(int readView) {
-		this.readCount = readView;
+
+
+
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "";

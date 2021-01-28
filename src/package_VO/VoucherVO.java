@@ -1,36 +1,52 @@
 package package_VO;
 
 public class VoucherVO {
-	private int seq;
-	private int period;
-	private String kindVoucher;
-	private int price;
+	private int v_seq; //이용권 PK
+	private int v_period; //이용권 기간
+	private String v_name; //이용권 이름
+	private int v_price; //이용권 가격
 
-	public int getSeq(){
-		return seq;
-	}
-	public int getPeriod(){
-		return period;
-	}
-	public String getKindVoucher(){
-		return kindVoucher;
-	}
-	public int getPrice(){
-		return price;
-	}
-	public void setSeq(int seq){
-		this.seq = seq;
-	}
-	public void setPeriod(int period){
-		this.period = period;
-	}
-	public void setKindVoucher(String kindVoucher){
-		this.kindVoucher = kindVoucher;
-	}
-	public void setPrice(int price){
-		this.price = price;
-	}
 	
+	public int getV_seq() {
+		return v_seq;
+	}
+
+
+	public void setV_seq(int v_seq) {
+		this.v_seq = v_seq;
+	}
+
+
+	public int getV_period() {
+		return v_period;
+	}
+
+
+	public void setV_period(int v_period) {
+		this.v_period = v_period;
+	}
+
+
+	public String getV_name() {
+		return v_name;
+	}
+
+
+	public void setV_name(String v_name) {
+		this.v_name = v_name;
+	}
+
+
+	public int getV_price() {
+		return v_price;
+	}
+
+
+	public void setV_price(int v_price) {
+		this.v_price = v_price;
+	}
+
+
 	@Override
 	public String toString() {
 		return "";
