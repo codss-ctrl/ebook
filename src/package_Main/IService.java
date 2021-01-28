@@ -111,6 +111,7 @@ public interface IService {
 	 */
 	
 	int chargePoint(Map<String, Integer> User); // 누구의 얼마만큼(매개변수), 반환타입
+<<<<<<< Updated upstream
 	
 =======
 	/**
@@ -121,6 +122,9 @@ public interface IService {
 	 */
 	
 	int chargePoint(Map<String, Integer> User); // 누구의 얼마만큼(매개변수), 반환타입
+	
+>>>>>>> Stashed changes
+=======
 	
 >>>>>>> Stashed changes
 	
