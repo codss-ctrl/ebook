@@ -306,10 +306,17 @@ public class View {
 			switch (iInput()) {
 			case 1:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				rentListView();
 				break;
 			case 2:
 				System.out.println("내 정보 조회 메서드 추가");
+=======
+				System.out.println("내 정보 조회입니다.");
+				break;
+			case 2:
+				System.out.println("대출 목록 조회 입니다.");
+>>>>>>> Stashed changes
 =======
 				System.out.println("내 정보 조회입니다.");
 				break;

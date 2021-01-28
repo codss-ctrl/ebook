@@ -17,6 +17,9 @@ public class IServiseImpl implements IService{
 		// TODO Auto-generated method stub
 		return false;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 	}
 
 	@Override
@@ -31,6 +34,7 @@ public class IServiseImpl implements IService{
 	}
 
 	@Override
+<<<<<<< Updated upstream
 	public boolean userLogin(Map<String, String> loginInfo) {
 		// TODO Auto-generated method stub
 		return false;
@@ -43,6 +47,14 @@ public class IServiseImpl implements IService{
 	}
 
 	@Override
+=======
+	public List<RentVO> rentListView(UserVO user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+>>>>>>> Stashed changes
 	public boolean giveGrade(RentVO rent_grade) {
 		// TODO Auto-generated method stub
 		return false;
@@ -169,6 +181,7 @@ public class IServiseImpl implements IService{
 
 	@Override
 	public List<NotifyVO> readAllNotify() {
+<<<<<<< Updated upstream
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -176,14 +189,24 @@ public class IServiseImpl implements IService{
 	@Override
 	public boolean addNotify(NotifyVO notify) {
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 <<<<<<< Updated upstream
 	@Override
+<<<<<<< Updated upstream
 	public boolean userLogin(Map<String, String> loginInfo) {
 =======
+=======
+	public boolean addNotify(NotifyVO notify) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+>>>>>>> Stashed changes
 	@Override
 	public NotifyVO notifyDetailView(int notify_seq) {
 		// TODO Auto-generated method stub
@@ -210,6 +233,9 @@ public class IServiseImpl implements IService{
 
 	@Override
 	public boolean addVoucher(VoucherVO voucher) {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		// TODO Auto-generated method stub
 		return false;

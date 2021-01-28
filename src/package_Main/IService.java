@@ -98,6 +98,7 @@ public interface IService {
 	
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	
 	
 	
@@ -111,6 +112,17 @@ public interface IService {
 	
 	int chargePoint(Map<String, Integer> User); // 누구의 얼마만큼(매개변수), 반환타입
 	
+=======
+	/**
+	 * 금액 충전- 사용자 메서드
+	 * @param User
+	 * @return 기존 금액과 충전한 금액의 합
+	 * @author 홍유리
+	 */
+	
+	int chargePoint(Map<String, Integer> User); // 누구의 얼마만큼(매개변수), 반환타입
+	
+>>>>>>> Stashed changes
 	
 	/**
 	 * 신간도서 보기 - 사용자 메서드
