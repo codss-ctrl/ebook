@@ -308,6 +308,7 @@ public class View {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				rentListView();
 				break;
 			case 2:
@@ -319,16 +320,21 @@ public class View {
 				System.out.println("대출 목록 조회 입니다.");
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> Stashed changes
 				System.out.println("내 정보 조회입니다.");
 				break;
 			case 2:
 				System.out.println("대출 목록 조회 입니다.");
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
 				System.out.println("내 정보 조회입니다.");
 				break;
 			case 2:
 				System.out.println("대출 목록 조회 입니다.");
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 				break;	
 			case 3:

@@ -19,6 +19,7 @@ public class IServiseImpl implements IService{
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 >>>>>>> Stashed changes
 	}
@@ -26,6 +27,8 @@ public class IServiseImpl implements IService{
 	@Override
 	public boolean adminLogin(Map<String, String> loginInfo) {
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	}
@@ -51,6 +54,7 @@ public class IServiseImpl implements IService{
 
 	@Override
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 	public List<RentVO> rentListView(UserVO user_id) {
 		// TODO Auto-generated method stub
@@ -58,6 +62,8 @@ public class IServiseImpl implements IService{
 	}
 
 	@Override
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -189,6 +195,7 @@ public class IServiseImpl implements IService{
 	public List<NotifyVO> readAllNotify() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -200,6 +207,8 @@ public class IServiseImpl implements IService{
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -208,9 +217,12 @@ public class IServiseImpl implements IService{
 	@Override
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	public boolean userLogin(Map<String, String> loginInfo) {
 =======
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	public boolean addNotify(NotifyVO notify) {
@@ -219,6 +231,9 @@ public class IServiseImpl implements IService{
 	}
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -250,6 +265,9 @@ public class IServiseImpl implements IService{
 	public boolean addVoucher(VoucherVO voucher) {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
