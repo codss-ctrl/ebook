@@ -289,8 +289,8 @@ public class View {
 //				return;
 //			}
 			System.out.println("-------------------");
-			System.out.println("[1] 대출 목록 조회");
-			System.out.println("[2] 내 정보 조회");
+			System.out.println("[1] 내 정보 조회");
+			System.out.println("[2] 대출 목록 조회");
 			System.out.println("[3] 금액 충전");
 			System.out.println("[4] 공지 조회");
 			System.out.println("[5] 이용권 조회");
@@ -305,10 +305,17 @@ public class View {
 			}//end if
 			switch (iInput()) {
 			case 1:
+<<<<<<< Updated upstream
 				rentListView();
 				break;
 			case 2:
 				System.out.println("내 정보 조회 메서드 추가");
+=======
+				System.out.println("내 정보 조회입니다.");
+				break;
+			case 2:
+				System.out.println("대출 목록 조회 입니다.");
+>>>>>>> Stashed changes
 				break;	
 			case 3:
 				chargePoint();
@@ -338,7 +345,7 @@ public class View {
 	//@param iInput - rentList의 seq를 입력 
 	//return 입력받은 seq의 bookList를 통해 책 정보를 반환./ 0 을 입력받으면 전 메뉴화면으로 돌아간다.
 	private void rentListView(){
-		String message = "";
+		
 		while(true){
 			System.out.println("도서의 상세정보를 보시려면 해당번호를 입력하세요.");
 			System.out.println("[1] 1번 도서");
