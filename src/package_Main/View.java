@@ -468,6 +468,123 @@ public class View {
 			break;
 		}	
 	}
+	
+	/**
+	 * 내 정보 조회 - 유저메서드
+	 * @author 조유진
+	 */
+	//DB - UserVO
+	//
+	//
+	private void userInfo(){
+		String message = "";
+		while(true){
+			System.out.println("[ 1 ] 이름 변경");
+			System.out.println("[ 2 ] 비밀번호 변경");
+			System.out.println("[ 3 ] 회원 탈퇴");
+			System.out.println("[ 0 ] 뒤로 가기");
+			switch(iInput()){
+			case 0 :
+				return;
+			case 1 :
+				modifyName();
+				break;
+			case 2 :
+				modifyPassword();
+				break;
+			case 3 :
+				deleteUser();
+				break;
+			default :
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");		
+				continue;
+			}
+		}
+	}
+	
+	/**
+	 * user_name 변경 -사용자 메서드
+	 * @author 조유진
+	 * 
+	 */
+	//DB - UserVO
+	//
+	//
+	private void modifyName(){
+		String message = "";
+		while(true){
+			System.out.println("이름을 변경하시겠습니까?");
+			System.out.println("[ 1 ] Y");
+			System.out.println("[ 0 ] 뒤로 가기");
+			
+			switch(iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("이름이 변경되었습니다.");
+				break;
+			default :
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+					
+			}
+		}
+	}
+	
+	/**
+	 * user_pw 변경 -사용자 메서드
+	 * @author 조유진
+	 */
+	//DB - UserVO
+	//
+	//
+	private void modifyPassword(){
+		String massage = "";
+		while(true){
+			System.out.println("비밀번호를 변경하시겠습니까?");
+			System.out.println("[ 1 ] Y");
+			System.out.println("[ 0 ] 뒤로 가기");
+			
+			switch(iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("비밀번호가 변경되었습니다.");
+				break;
+			default :
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}
+	
+	/**
+	 * 회원탈퇴 -사용자 메서드
+	 * @author 조유진
+	 */
+	//DB - UserVO
+	//
+	//
+	private void deleteUser(){
+		String message = "";
+		while(true){
+			System.out.println("정말로 탈퇴하시겠습니까?");
+			System.out.println("[ 1 ] 회원 탈퇴");
+			System.out.println("[ 0 ] 뒤로 가기");
+			switch(iInput()){
+			case 0 :
+				return;
+			case 1 :
+				System.out.println("탈퇴가 정상적으로 처리되었습니다.");
+				break;
+			default :
+				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
+				continue;
+			}
+		}
+	}		
+			
+	
 	/**
 	 * 금액 충전- 사용자 메서드
 	 * @author 홍유리
