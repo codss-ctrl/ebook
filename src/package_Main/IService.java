@@ -19,7 +19,7 @@ public interface IService {
 	 * 
 	 * @param user 유저한명의 정보
 	 * @return 성공 시 true, 실패 시 false 반환
-	 * @author 구현자
+	 * @author 조유진
 	 */
 	boolean insertUser(UserVO user);
 	
@@ -27,9 +27,9 @@ public interface IService {
 	 * 
 	 * id 중복 여부와 조건을 만족하는지 확인
 	 * 
-	 * @param id
+	 * @param user_id
 	 * @return 만족하면 true, 불만족하면 false 반환
-	 * @author
+	 * @author 조유진
 	 * 
 	 */
 	boolean checkId(String id);
@@ -38,17 +38,17 @@ public interface IService {
 	 * 
 	 * 관리자 계정 로그인
 	 * 
-	 * @param loginInfo ??
-	 * @return 로그인 성공 시 true, 실패 시 true 반환
-	 * @author
+	 * @param loginInfo - admin_id 아이디, admin_pw 비밀번호
+	 * @return 로그인 성공 시 true, 실패 시 false 반환
+	 * @author 조유진
 	 */
 	boolean adminLogin(Map<String, String> loginInfo);
 	
 	/**
 	 * 회원 계정 로그인
 	 * 
-	 * @param loginInfo user_id 유저의 아이디, user_pw 유저의 비밀번호
-	 * @return 로그인 성공 시
+	 * @param loginInfo - user_id 유저의 아이디, user_pw 유저의 비밀번호
+	 * @return 로그인 성공 시 true, 실패 시 false 반환
 	 * @author
 	 */
 	boolean userLogin(Map<String, String> loginInfo); //반환타입
@@ -57,162 +57,185 @@ public interface IService {
 	
 	
 ////////////////////////////////////////////////////////////////////////
-//							고객
+//고객
 ////////////////////////////////////////////////////////////////////////
-	/**
-	 * 대여 목록 조회 - 사용자 메서드
-	 * @param 
-	 * @return 대여한 책 목록을 반환.
-	 * 			
-	 * @author 홍유리
-	 */
-	List<RentVO> rentListView(); //매개변수 user_id
+
+
+/**
+* 유저 정보 보기
+* @param user_id
+* @return
+* @author 홍유리
+*/
+List<UserInfoVO> userInfoView(UserVO user_id);	
+
+/**
+* 대여 목록 조회 - 사용자 메서드
+* @param user_id
+* @return 대여한 책 목록을 반환.
+* 			
+* @author 홍유리
+*/
+List<RentVO> rentListView(UserVO user_id); //매개변수 user_id
+
+/**
+* 대여 목록 상세 조회 - 사용자 메서드
+* @param rent_seq
+* rent_seq에 담겨있는 book_seq를 통해 책의 정보를 읽을 수 있음
+* @return 
+* @author 홍유리
+*/
+List<RentVO> rentBookDetail(RentVO rent_seq);
+
+/**
+* 평점 달기 - 사용자 메서드
+* (평점을 입력하면 bookList와 userInfoList의 grade, user_grade에 저장되어야한다)
+* @param rent_grade
+* @return 성공  시 true, 실패시 false
+* @author 홍유리
+*/
+
+boolean giveGrade(RentVO rent_grade); //매개변수
+
+/**
+* 
+* 평점 수정 - 사용자 메서드
+* 
+* @param rentInfo
+* @return 성공 시 true, 실패 시 false
+* @author 홍유리
+*/
+
+boolean modifyGrade(Map<String, Object> rentInfo);
+
+/**
+* 평점 삭제 - 사용자 메서드
+* @param rentInfo
+* @return 성공 시 true, 실패 시 false
+* @author 홍유리
+*/
+boolean removeGrade(Map<String, Object> rentInfo);
+
+/**
+* 금액 충전- 사용자 메서드
+* @param point 기존 금액과 충전한 금액의 합
+* @return
+* @author 홍유리
+*/
+int chargePoint(Map<String, Integer> userobj); // 누구의 얼마만큼(매개변수), 반환타입
+/**
+* 모든 공지 조회
+* @return 공지사항 전체 리스트를 반환
+* @author 홍유리
+*/
+List<NotifyVO> userNotifyView();
+
+/**
+* * 유저 공지 상세 조회
+* @param notify_seq
+* @return 선택한 공지 내용을 반환
+* @author 홍유리
+*/
+List<NotifyVO> userNotifyDetail(int notify_seq);
+
+/**
+* 신간도서 보기 - 사용자 메서드
+* bookList의 end index로부터 3~5개의 seq를 추출하여 보여줌
+* 읽기 기능 외 기능 없음
+* @param book_seq
+* @return
+* @author 홍유리
+*/
+List<BookVO> newBookView();
+
+/**
+* 인기도서 보기 - 사용자 메서드
+* rentList에 중복된 book_seq의 개수를 합산하여 가장 높은 순서대로 3위까지 추출함
+* 읽기 기능 외 기능 없음
+* @param book_seq
+* @return
+* @author 홍유리
+*/
+List<RentVO> popularBookView(BookVO book_seq);
+
+/**
+* 유저가 소유한 이용권 보기 - 사용자 메서드
+* 보기만 가능
+* 사용자가 소유한 이용권 내역 확인- 
+* userInfoList에서 buyDate별로 지정된 v-seq를 이용 + activate 여부 확인 가능하게
+* @param user_id
+* @return
+* @author 홍유리
+*/
+
+List<UserInfoVO> userVoucher(UserVO user_id);
+
+/**
+* 유저의 이용권 상세보기 - 사용자 메서드
+* 보기만 가능
+* @param v_seq
+* @return
+*/
+List<VoucherVO> userVoucherDetail(VoucherVO v_seq);
+
+
+/**
+* 이용권 구매 - 사용자 메서드
+* voucherList에서 price 이용해서 구매
+* @author 홍유리
+* @param v_seq
+* @return 성공 시 true, 실패시 false 반환
+*/
+
+boolean buyvoucher(int v_seq);
+
+/**
+* 이용권 구매 후 남은 포인트 - 사용자 메서드
+* @param point
+* @return int 
+* @author 홍유리
+*/
+int pointAfterBuy(Map<String, Object> point);
+
+/**
+* 책 제목으로 책 검색 - 사용자 메서드 
+* @param searchName
+* @return 입력받은 String 으로 필터링한 책목록
+* @author  홍유리
+*/
+
+List<BookVO> searchBookName(Map<String, Object> searchName);
+
+/**
+* 작가로 책 검색 - 사용자 메서드
+* 
+* @param searchAuthor
+* @return 입력받은 String 으로 필터링한 책목록 
+* @author  홍유리
+*/
+
+List<BookVO> searchBookAuthor(Map<String, Object> searchAuthor);
+
+/**
+* 장르로 책 검색 - 사용자 메서드
+* @param searchGenre
+* @return 입력받은 String 으로 필터링한 책목록
+* @author  홍유리
+*/
+
+List<BookVO> searchBookGenre(Map<String, Object> searchGenre);
+
+
+/**
+*  대여하기 - 사용자 메서드
+* @param book_seq
+* 	
+*  rentList에 저장하여 유저가 확인할 수 있어야함
+* @return 성공 시  true, 실패 시 false
+* @author 홍유리
+*/
+boolean rentBook(BookVO book_seq);
 	
-	/**
-	 * 대여 도서 상세 보기 - 사용자 메서드
-	 * @param 
-	 * @return
-	 * @author 홍유리
-	 */
-	
-	List<RentVO> rentBookDetail(); // 중복메서드
-	
-	/**
-	 * 평점 달기 - 사용자 메서드
-	 * (평점을 입력하면 bookList와 userInfoList의 grade, user_grade에 저장되어야한다)
-	 * @param iInput
-	 * @return 성공 시 true, 실패시 false
-	 * @author 홍유리 
-	 */
-	
-	boolean giveGrade(int grade); //매개변수
-	
-	/**
-	 * 평점 수정 - 사용자 메서드
-	 * @param iInput
-	 * @author 홍유리
-	 * @return 성공  시 true, 실패시 false
-	 */
-	
-	boolean modifyGrade(Map<String, Object> UserInfo);
-	
-	/**
-	 * 평점 삭제 - 사용자 메서드
-	 * @param
-	 * @return 성공시 true, 실패시 false 반환
-	 * @author 홍유리
-	 */
-	
-	boolean removeGrade(Map<String, Object> UserInfo);
-	
-	/**
-	 * 금액 충전- 사용자 메서드
-	 * 
-	 * @param iInput()
-	 * @return 입력받은 값을 더한 총 금액 반환 (userList의 point + iInput() = int)
-	 * @author 홍유리
-	 */
-	
-	List<UserVO> chargePoint(); // 누구의 얼마만큼(매개변수), 반환타입
-	
-	/**
-	 * 유저용 공지사항 - 사용자 메서드
-	 * @param 
-	 * @return 
-	 * @author 홍유리
-	 * 
-	 */
-	
-	List<NotifyVO> userNotifyview();
-	
-	/**
-	 * 신간도서 보기 - 사용자 메서드
-	 * bookList의 end index로부터 3~5개의 seq를 추출하여 보여줌
-	 * @author 홍유리
-	 * 읽기 기능 외 기능 없음
-	 */
-	
-	List<BookVO> newBookView();
-	
-	/**
-	 * 인기도서 보기 - 사용자 메서드
-	 * rentList에 있는 book_seq의 개수를 합산하여 가장 높은 순서대로 3위까지 추출함
-	 * @author 홍유리
-	 * 읽기 기능 외 기능 없음
-	 */
-	List<RentVO> popularBookView();
-	
-	/**
-	 * 이용권 보기 - 사용자 메서드
-	 * 사용자가 소유한 이용권 내역 확인- 
-	 * userInfoList에서 buyDate별로 지정된 v-seq를 이용
-		+activate 여부 확인 가능하게
-	 * @author 홍유리
-	 */
-	
-	List<UserInfoVO> voucherView();
-	
-	
-	/**
-	 * 이용권 구매 - 사용자 메서드
-	 * voucherList에서 price 이용해서 구매
-	 * @param v_seq(iInput)
-	 * @return 구매 성공 시 true, 실패시 false 반환
-	 * @author 홍유리
-	 */
-	
-	boolean buyvoucher(int v_seq);
-	
-	/**
-	 * 도서 검색 - 사용자 메서드
-	 * @author 홍유리
-	 */
-	
-	List<BookVO> bookView();
-	
-	/**
-	 * 이름으로 책 검색 - 사용자 메서드 
-	 * @author  홍유리
-	 * @param String - bookList  bookName 
-	 * @return bookList를 입력받은 String 으로 필터링한 책목록 
-	 */
-	
-	List<BookVO> searchBookName();
-	
-	/**
-	 * 작가로 책 검색 - 사용자 메서드
-	 * @author  홍유리
-	 * @param String - bookList author
-	 * @return bookList를 입력받은 String 으로 필터링한 책목록 
-	 */
-	
-	List<BookVO> searchBookAuthor();
-	
-	/**
-	 * 장르로 책 검색 - 사용자 메서드
-	 * @author  홍유리
-	 * @param String - kindList genre
-	 * @return bookList를 입력받은 String 으로 필터링한 책목록
-	 */
-	
-	List<BookVO> searchBookGenre();
-	
-	/**
-	 * 
-	 * 도서 상세 보기 - 사용자 메서드
-	 * @author  홍유리
-	 */
-	
-	List<BookVO> userBookDetail();
-	
-	/**
-	 * 대여하기 - 사용자 메서드
-	 * @param - bookList - book_seq를 받아
-	 *  rentList에 저장하여 유저가 확인할 수 있어야함
-	 * @return - 성공시 true, 실패 시 false
-	 * @author 홍유리
-	 */
-	List<RentVO> rentBook();
 	
 	
 	////////////////////////////////////////////////////////////////////////
@@ -230,9 +253,8 @@ public interface IService {
 	
 	/**
 	* 
-	* 보유 도서 조회
+	* 모든 보유 도서 조회
 	* 
-	* @param 
 	* @return 보유 책 리스트
 	* @author 김대호
 	*/
@@ -241,7 +263,7 @@ public interface IService {
 	
 	/**
 	* 
-	* 보유 도서 조회
+	* 도서 추가
 	* 
 	* @param 추가할 책 객체 -> get메소드 활용 책속성 설정 
 	* @return 책 추가 성공시 true, 실패 시 false반환
@@ -258,36 +280,34 @@ public interface IService {
 	* @return 선택한 책 객체
 	* @author 김대호
 	*/
-	BookVO bookDetailView(int book_req);
-	
+	BookVO bookSelector(int book_seq);
 	
 	/**
 	* 
-	* 보유 도서 수정
+	* 선택한 도서 수정
 	* 
-	* @param 수정할 정보 Map으로 전달 
+	* @param 수정할 정보 Map으로 전달(매개변수에 있는 정보 DB에서 수정)
 	* @return 수정 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
-	boolean modifyBook(Map<String, Object> bookInfo); //매개변수 도서의??
+	boolean modifyBook(Map<String, Object> bookInfo); 
 	
 	
 	/**
 	* 
-	* 보유 도서 제거
+	* 선택 도서 제거
 	* 
-	* @param 선택한 책 seq 전달
-	* @return 삭제 성공시 true, 실패 시 false반환
+	* @param 선택한 책 전달
+	* @return 보유 책 삭제는 비활성화로 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
-	boolean deleteBook(int book_seq); // list.remoe(Object obj) 반환타입
+	boolean deleteBook(BookVO selBook);
 	
 	
 	/**
 	* 
 	* 회원 목록 조회
 	* 
-	* @param 
 	* @return 모든 유저 리스트
 	* @author 김대호
 	*/
@@ -309,7 +329,6 @@ public interface IService {
 	* 
 	* 모든 공지 조회 
 	* 
-	* @param 
 	* @return 모든 공지 리스트 조회
 	* @author 김대호
 	*/
@@ -342,7 +361,7 @@ public interface IService {
 	* 
 	* 공지 수정
 	* 
-	* @param 수정할 정보 Map으로 전달
+	* @param 수정할 정보 Map으로 전달(수정할 정보에 따라  DB에서 확인 후 수정)
 	* @return 수정 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
@@ -353,7 +372,7 @@ public interface IService {
 	* 
 	* 공지 삭제
 	* 
-	* @param 선택한 공지 seq 전달
+	* @param 선택한 공지 seq 전달(DB에서 seq로 해당 객체찾아서 삭제)
 	* @return 삭제 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
@@ -364,7 +383,6 @@ public interface IService {
 	* 
 	* 모든 이용권 조회
 	* 
-	* @param 
 	* @return 모든 이용권 리스트 
 	* @author 김대호
 	*/
@@ -395,9 +413,9 @@ public interface IService {
 	
 	/**
 	* 
-	* 이용권 수정
+	* 선택한 이용권 수정
 	* 
-	* @param 수정할 이용권 정보 Map으로 전달 
+	* @param 수정할 이용권 정보 Map으로 전달(수정할 정보 전달하여 DB에서 확인하고 수정)
 	* @return 수정 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
@@ -406,10 +424,10 @@ public interface IService {
 	
 	/**
 	* 
-	* 이용권 삭제
+	* 선택한 이용권 삭제
 	* 
 	* @param 삭제할 이용권 seq 전달 
-	* @return 삭제 성공시 true, 실패 시 false 반환
+	* @return 비활성화 성공시 true, 실패 시 false 반환
 	* @author 김대호
 	*/
 	boolean deleteVoucher(int voucher_seq);
@@ -417,34 +435,33 @@ public interface IService {
 	
 	/**
 	* 
-	* 일매출 조회
+	* 일매출 조회(일 이용권 내역 및 일매출 출력)
 	* 
-	* @param 
 	* @return 일매출 리스트(유저정보)	
 	* @author 김대호
 	*/
-	List<UserInfoVO> dailySalesView(); // 반환타입 int
+	int dailySalesView(); // 반환타입 int
 	
 	
 	/**
 	* 
-	* 월매출 조회
+	* 매월매출 조회(12개월 월매출 출력)
 	* 
 	* @param 
 	* @return 월매출 리스트(유저정보)
 	* @author 김대호
 	*/
-	List<UserInfoVO> monthlySalesView(); // 반환타입 int 
+	List<Map<String, Integer>> monthlySalesView();  
 	
 	/**
 	* 
-	* 연매출 조회
+	* 연매출 조회(5년 연매출 출력)
 	* 
 	* @param 
 	* @return 월매출 리스트(유저정보)
 	* @author 김대호
 	*/
-	List<UserInfoVO> annualSalesView();
+	List<Map<String, Integer>> annualSalesView();
 	
 	
 	/**
@@ -456,6 +473,10 @@ public interface IService {
 	* @author 김대호
 	*/
 	List<BookKindVO> readAllKind();
+////////////////////////////////////////////////////////////////////////
+//			관리자
+////////////////////////////////////////////////////////////////////////
+	
 	
 	
 }

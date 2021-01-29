@@ -1,5 +1,7 @@
 package package_VO;
 
+import package_Database.Database;
+
 public class UserInfoVO {
 	
 	private int info_seq; //유저 이용권 내역 PK
@@ -12,8 +14,8 @@ public class UserInfoVO {
 	public int getInfo_seq() {
 		return info_seq;
 	}
-	public void setInfo_seq(int info_seq) {
-		this.info_seq = info_seq;
+	public void setInfo_seq() {
+		info_seq = ++Database.userInfo_cur_seq;
 	}
 	public String getBuy_date() {
 		return buy_date;

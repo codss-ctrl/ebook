@@ -1,5 +1,7 @@
 package package_VO;
 
+import package_Database.Database;
+
 public class RentVO {
 	private int rent_seq; //대여 PK
 	private String rent_date; // 대여일
@@ -11,8 +13,8 @@ public class RentVO {
 	public int getRent_seq() {
 		return rent_seq;
 	}
-	public void setRent_seq(int rent_seq) {
-		this.rent_seq = rent_seq;
+	public void setRent_seq() {
+		rent_seq = ++Database.rent_cur_seq;
 	}
 	public String getUser_Id() {
 		return user_Id;

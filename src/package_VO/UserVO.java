@@ -6,7 +6,7 @@ public class UserVO {
 	private String user_name; //유저 이름
 	private String user_pw; //유저 비밀번호
 	private int user_point; //유저 포인트
-	private boolean user_isActivate; //유저 활성화 여부
+	private boolean user_isActivate=true; //유저 활성화 여부
 		
 		
 	public String getUser_id() {

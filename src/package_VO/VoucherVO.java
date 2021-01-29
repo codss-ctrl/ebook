@@ -1,19 +1,32 @@
 package package_VO;
 
+import package_Database.Database;
+
 public class VoucherVO {
 	private int v_seq; //이용권 PK
 	private int v_period; //이용권 기간
 	private String v_name; //이용권 이름
 	private int v_price; //이용권 가격
+	private boolean isActivate=true; //이용권 삭제 여부
 
 	
+	public boolean isActivate() {
+		return isActivate;
+	}
+
+
+	public void setActivate(boolean isActivate) {
+		this.isActivate = isActivate;
+	}
+
+
 	public int getV_seq() {
 		return v_seq;
 	}
 
 
-	public void setV_seq(int v_seq) {
-		this.v_seq = v_seq;
+	public void setV_seq() {
+		v_seq = ++Database.v_cur_seq;
 	}
 
 

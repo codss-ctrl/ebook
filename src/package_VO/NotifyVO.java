@@ -1,8 +1,23 @@
 package package_VO;
 
+import package_Database.Database;
+
 public class NotifyVO {
 	private int notify_seq; // 공지 PK
 	private String notify_title; // 공지 타이틀
+	private String contents; // 공지 내용
+	public String getContents() {
+		return contents;
+	}
+
+
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+
+
 	private String notify_date; // 공지 날짜
 	private int readCount; // 조회수
 	
@@ -14,8 +29,8 @@ public class NotifyVO {
 
 
 
-	public void setNotify_seq(int notify_seq) {
-		this.notify_seq = notify_seq;
+	public void setNotify_seq() {
+		notify_seq = ++Database.notify_cur_seq;
 	}
 
 

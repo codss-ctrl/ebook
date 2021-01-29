@@ -1,18 +1,30 @@
 package package_VO;
 
+import package_Database.Database;
+
 public class BookVO {
 	private int book_seq; // 책 PK
 	private String book_name; //책이름
 	private String author; //저자
 	private String regDate; //등록일
 	private int book_grade; //책평점
+	private boolean book_isActivate=true; //책 삭제여부 
 	private int g_seq; //장르 FK
+
+	
+	
+	public boolean getBook_isActivate() {
+		return book_isActivate;
+	}
+	public void setBook_isActivate(boolean book_isActivate) {
+		this.book_isActivate = book_isActivate;
+	}
 	
 	public int getBook_seq() {
 		return book_seq;
 	}
-	public void setBook_seq(int book_seq) {
-		this.book_seq = book_seq;
+	public void setBook_seq() {
+		book_seq = ++Database.book_cur_seq;
 	}
 	public String getBook_name() {
 		return book_name;
