@@ -633,27 +633,40 @@ return voucherList;
 		voucherList.add(v1);
 		
 		VoucherVO v2 = new VoucherVO();
+<<<<<<< HEAD
 		v2.setV_seq();
+=======
+		v2.setV_seq(2);
+>>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v2.setV_period(7);
 		v2.setV_name("7일권");
 		v2.setV_price(3000);
 		voucherList.add(v2);
 			
 		VoucherVO v3 = new VoucherVO();
+<<<<<<< HEAD
 		v3.setV_seq();
+=======
+		v3.setV_seq(3);
+>>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v3.setV_period(30);
 		v3.setV_name("30일권");
 		v3.setV_price(9900);
 		voucherList.add(v3);
 			
 		VoucherVO v4 = new VoucherVO();
+<<<<<<< HEAD
 		v4.setV_seq();
+=======
+		v4.setV_seq(4);
+>>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v4.setV_period(90);
 		v4.setV_name("90일권");
 		v4.setV_price(26000);
 		voucherList.add(v4);
 			
 		VoucherVO v5 = new VoucherVO();
+<<<<<<< HEAD
 		v5.setV_seq();
 		v5.setV_period(180);
 		v5.setV_name("180일권");
@@ -663,6 +676,16 @@ return voucherList;
 			
 		VoucherVO v6 = new VoucherVO();
 		v6.setV_seq();
+=======
+		v5.setV_seq(5);
+		v5.setV_period(180);
+		v5.setV_name("180일권");
+		v5.setV_price(33000);
+		voucherList.add(v5);
+			
+		VoucherVO v6 = new VoucherVO();
+		v6.setV_seq(6);
+>>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v6.setV_period(365);
 		v6.setV_name("365일권");
 		v6.setV_price(59500);
