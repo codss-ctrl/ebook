@@ -10,7 +10,6 @@ public class UserInfoVO {
 	private String user_id; // 유저 아이디 FK
 	private int v_seq; // 이용권 FK
 	
-	
 	public int getInfo_seq() {
 		return info_seq;
 	}

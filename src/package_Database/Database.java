@@ -1,7 +1,11 @@
 package package_Database;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import package_VO.AdminVO;
@@ -49,6 +53,32 @@ public class Database {
 	
 	/**
 	 * 
+	 * 회원가입
+	 * 
+	 * @param 
+	 * @return 
+	 * @author 
+	 */
+	public boolean insertUser(UserVO user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	/**
+	 * 
+	 * 관리자 계정 로그인
+	 * 
+	 * @param loginInfo - admin_id 아이디, admin_pw 비밀번호
+	 * @return 로그인 성공 시 true, 실패 시 false 반환
+	 * @author 조유진
+	 */
+	public boolean adminLogin(Map<String, String> loginInfo) {
+		return admin.getId().equals(loginInfo.get("user_id")) && admin.getPw().equals(loginInfo.get("user_pw"));
+	}
+	
+	/**
+	 * 
 	 * id 중복 여부와 조건을 만족하는지 확인
 	 * 
 	 * @param user_id
@@ -65,93 +95,170 @@ public class Database {
 		return true;
 	}
 	
-	
 	/**
-	 * <code>selectAllNotify</code> 메서드는 모든 공지사항을 불러오기 위한 메서드입니다.
-	 * @return List : 모든 게시판 내용을 담은 List
-	 * @author 홍유리
-	 */
-	public List<NotifyVO> selectAllNotify(){
-		return notifyList;
-	}
-	/**
-	 * <code>selectNotify</code> 메서드는 게시판의 내용 중 하나를 선택하여 불러오기 위한 메서드입니다.
+	 * 회원 계정 로그인
 	 * 
-	 * @param seq 
-	 * 			 : 원하는 게시판 내용을 판별할 수 있는 숫자
-	 * @return 해당 게시판 내용을 반환
-	 * @author 홍유리
+	 * @param loginInfo - user_id 유저의 아이디, user_pw 유저의 비밀번호
+	 * @author
+	 * @return 
 	 */
-	
-	public NotifyVO selectNotify(int seq){
-		for(NotifyVO notify : notifyList){
-			if (notify.getNotify_seq()== seq) {
-				return notify;
+	public UserVO userLogin(Map<String, String> loginInfo) {
+		for(UserVO user : userList){
+			if(user.getUser_id().equals(loginInfo.get("user_id"))){
+				return user;
 			}
 		}
 		return null;
+		 
 	}
-	/**
-	 * <code>insertNotify</code> 메서드는 공지사항을 추가하기 위한 메서드입니다.
-	 * 
-	 * @param 새로운 공지사항의 정보를 담고있는 NotifyVO 객체
-	 * 
-	 * @return 공지사항 등록 성공 시 true, 실패 시 false 반환
-	 * 
-	 */
 	
-	/**
-	 * <code>updateNotify</code> 메서드는 게시판을 수정하기 위한 메서드입니다.
-	 * 
-	 * @param notifyObj : notify_seq,topRent,newBook
-	 * @return 갱신에 성공한다면 1, 실패한다면 0 반환
-	 * @author 홍유리
-	 */
-//	public int updateNotify(Map<String, Object> notifyObj){
-//		if (notifyObj.get("notify_seq")==null) {
-//			return 0;
-//		}
-//		return 0;
-//	}
 	
-	/**
-	 * <code>deleteNotify</code> 메서드는 게시판의 내용을 삭제하기 위한 메서드입니다.
-	 * 
-	 * @param seq
-	 *            : 게시판의 내용을 판별할 수 있는 숫자
-	 * @return 삭제에 성공한다면 1, 실패한다면 0 반환
-	 * @author 홍유리
-	 */
-	public int deleteNotify(int seq){
-		if (notifyList.remove(selectNotify(seq))) {
-			return 1;
-		}
-		return 0;
-	}
 	
 	
 	
 ////////////////////////////////////////////////////////////////////////
 //고객
 ////////////////////////////////////////////////////////////////////////
-public List<BookVO> readBook() {
-return bookList;
-}
-
-public List<BookVO> newBookView() {
-
-return bookList;
-}
-public List<NotifyVO> userNotifyView() {
-return notifyList;
-}
-public List<NotifyVO> userNotifyDetail(int notify_seq) {
-return notifyList;
-}
-public List<VoucherVO> userVoucherDetail(int v_seq) {
-return voucherList;
-}
 	
+	
+	/**
+	 * 사용자 이름 변경 - 사용자 메서드
+	 * @param userInfo
+	 * @return 성공시 true, 실패시 false
+	 * @author 홍유리
+	 */
+	public boolean modifyName(Map<String, Object> nameInfo) {
+		UserVO user = new UserVO();
+		
+		if (nameInfo.containsKey("user")) {//user라는 키 가지고 있으면
+			user.setUser_name((String)nameInfo.get("user"));
+		}else{
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 사용자 비밀번호 변경 - 사용자 메서드
+	 * @param pwInfo
+	 * @return
+	 * @author 홍유리
+	 */
+	public boolean modifyPassword(Map<String, Object> pwInfo){
+		UserVO user = new UserVO();
+		
+		if (pwInfo.containsKey("user")) {//user라는 키 가지고 있다면
+			user.setUser_pw((String)pwInfo.get("user"));
+			//user키 이용해서 value값 빼옴 - string으로 변환해서 user객체 pw로 저장
+		}else{
+			
+			return false;
+		}
+		return true;
+		
+	}
+	/**
+	 * 회원 탈퇴 - 사용자 메서드
+	 * @param actInfo
+	 * @author 홍유리
+	 */
+	public boolean deleteUser(Map<String, Object> actInfo){
+		UserVO user = new UserVO();
+		
+		if (actInfo.containsKey("user")) {
+			user.setUser_isActivate(false);
+		}else{
+			return false;
+		}
+		return true;
+	}
+	/**
+	 * 유저 내 정보 조회 - 사용자 메서드
+	 * @param user_id
+	 * @return 유저의 정보를 담은 리스트
+	 */
+	public UserInfoVO userInfo(String user_id) {
+		for(UserInfoVO userInfoDetail : userInfoList){
+			if (userInfoDetail.getUser_id()==user_id) {
+				return userInfoDetail;
+			}
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * 신간보기 - 사용자 메서드
+	 * @return
+	 * @author 홍유리
+	 */
+	public List<BookVO> newBookView() {
+		return bookList;
+	}
+	
+	/**
+	 * 사용자 공지 보기 - 사용자 메서드
+	 * @return
+	 * @author 홍유리
+	 */
+	public List<NotifyVO> userNotifyView() {
+	return notifyList;
+	}
+	
+	/**
+	 * 사용자 공지 상세 보기 - 사용자 메서드
+	 * @param notify_seq
+	 * @return
+	 * @author 홍유리
+	 */
+	public List<NotifyVO> userNotifyDetail(int notify_seq) {
+	return notifyList;
+	}
+	
+	/**
+	 * 사용자 이용권 내역보기 - 사용자 메서드
+	 * @param v_seq
+	 * @return
+	 * @author 홍유리
+	 */
+	public List<VoucherVO> userVoucherDetail(int user_seq) {
+		 userInfoList.get(user_seq).getV_seq();
+		return null;
+	}
+	
+	/**
+	 * 금액 충전- 사용자 메서드
+	 * @param userobj - 충전한 user_point를 담은 Map
+	 * @return  기존 금액과 충전한 금액의 합
+	 * @author 홍유리
+	 */
+	public int chargePoint(Map<String, Object> userobj){
+		UserVO user = new UserVO();
+		int finalPoint = user.getUser_point()+(int)userobj.get("user_point");
+		userobj.put("user_point",(Integer)finalPoint);
+		
+		return finalPoint;
+		
+	}
+	
+
+	/**
+	* 이용권 구매 - 사용자 메서드
+	* voucherList에서 price 이용해서 구매
+	* @author 홍유리
+	* @param v_seq
+	* @return 성공 시 true, 실패시 false 반환
+	*/
+	public boolean buyVoucher(int v_seq,UserVO user) {
+		
+		if (userList.contains(user) && user.getUser_point()>voucherList.get(v_seq).getV_price()) {
+			int point = user.getUser_point()-voucherList.get(v_seq).getV_price();
+			user.setUser_point(point);
+			
+		}
+		
+		return false;
+	}
 	
 	
 	
@@ -224,29 +331,169 @@ return voucherList;
 		if(bookInfo.containsKey("name")){
 			book.setBook_name((String)bookInfo.get("name"));
 		}else if(bookInfo.containsKey("auther")){
-			book.setBook_name((String)bookInfo.get("auther"));
+			book.setAuthor((String)bookInfo.get("auther"));
 		}else if(bookInfo.containsKey("genre")){
-			book.setBook_name((String)bookInfo.get("genre"));
+			book.setG_seq((Integer)bookInfo.get("genre"));
 		}
 		
 		return true;
 	}
 	
+	
+	/**
+	 * 
+	 * @param selBook
+	 * @return
+	 */
 	public boolean deleteBook(BookVO selBook) {
-		
+		if(bookList.remove(selBook)){
+			return true;
+		}
 		return false;
 	}
 
-	
 	
 	public List<UserVO> readAllUser() {
 		return userList;
 	}
+	
+
+	public List<NotifyVO> readAllNotify() {
+		return notifyList;
+	}
+	
+	public boolean addNotify(NotifyVO notify) {
+		return notifyList.add(notify);
+	}
+	
+	public boolean modifyNotify(Map<String, Object> notifyInfo) {
+		NotifyVO notify = (NotifyVO)notifyInfo.get("notify");
+		
+		if(notify == null){
+			return false;
+		}
+		
+		if(notifyInfo.containsKey("title")){
+			notify.setNotify_title((String)notifyInfo.get("title"));
+			return true;
+		}else if(notifyInfo.containsKey("content")){
+			notify.setContents((String)notifyInfo.get("content"));
+			return true;
+		}
+		return false;
+	}
+	
+
+	public NotifyVO notifySelector(int selNum) {
+		for(NotifyVO notify : notifyList){
+			if(notify.getNotify_seq() == selNum){
+				return notify;
+			}
+		}
+		return null;
+	}
+	
+	public boolean deleteNotify(NotifyVO notify) {
+		if(notifyList.remove(notify)){
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public List<UserInfoVO> dailySalesView() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+		Calendar cal = Calendar.getInstance();
+		String date = simpleDateFormat.format(cal.getTime());
+		
+		List<UserInfoVO> dailySaleList = new ArrayList<>();
+		for(UserInfoVO info : userInfoList){
+			if(date.equals(info.getBuy_date())){
+				dailySaleList.add(info);
+			}
+		}
+		return userInfoList;
+	}
 
 	
-	public boolean insertUser(UserVO user) {
-		// TODO Auto-generated method stub
+	///////////////////////////////////////////////////
+	// 이용권 조회, 추가, 상세보기, 수정, 삭제
+	///////////////////////////////////////////////////
+	
+	/**
+	 * <code>readAllVoucher</code> 메서드는 모든 이용권 정보를 불러오기 위한 메서드입니다.
+	 * 
+	 * @return 모든 이용권 정보를 담고 있는 List
+	 * @author
+	 */
+	public List<VoucherVO> readAllVoucher(){
+		List<VoucherVO> voucherList = new ArrayList<>();
+		for(VoucherVO allVoucher : this.voucherList){
+			if(allVoucher.isActivate()){
+				voucherList.add(allVoucher);
+			}
+		}
+		return voucherList;
+	}
+	
+	/**
+	 * 
+	 * @param voucher
+	 * @return
+	 */
+	public boolean addVoucher(VoucherVO voucher){
+		return voucherList.add(voucher);
+	}
+	
+	/**
+	 * 
+	 * @param voucher_seq
+	 * @return
+	 */
+	public VoucherVO voucherDetailView(int voucher_seq){
+		for(VoucherVO voucherSelect : voucherList){
+			if(voucherSelect.getV_seq() == voucher_seq){
+				return voucherSelect;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param voucherInfo
+	 * @return
+	 */
+	public boolean modifyVoucher(Map<String, Object> voucherInfo){
+		if(voucherInfo.get("v_seq")==null){
+			return false;	
+		}
+		VoucherVO modVoucher = voucherDetailView((Integer) voucherInfo.get("v_seq"));
+		
+		if(voucherInfo.get("v_period")!=null){
+			modVoucher.setV_period((Integer)voucherInfo.get("v_period"));
+			return true;
+		}else if (voucherInfo.get("v_name")!=null){
+			modVoucher.setV_name((String)voucherInfo.get("v_name"));
+			return true;
+		}else if (voucherInfo.get("v_price")!=null){
+			modVoucher.setV_price((Integer)voucherInfo.get("v_price"));
+		}
 		return false;
+	}
+	
+	/**
+	 * 
+	 * @param voucher_seq
+	 * @return
+	 */
+	public boolean deleteVoucher(int voucher_seq){
+		VoucherVO delVoucher = voucherDetailView(voucher_seq);
+		if(delVoucher==null){
+			return false;	
+		}
+		delVoucher.setActivate(false);
+		return true;
 	}
 	
 	
@@ -330,9 +577,51 @@ return voucherList;
 		NotifyVO n1 = new NotifyVO();
 		n1.setNotify_seq();
 		n1.setNotify_date("2015-01-25");
-		n1.setNotify_title("안녕하세요");
-//		n1.setTopRent(topRent);
-//		n1.setPopularBook(popularBook);
+		n1.setContents("글사랑닷컴에서는 고객님들의 독서 생활을 응원합니다.");
+		n1.setNotify_title("글사랑닷컴 오픈");
+		n1.setReadCount(1100);
+		notifyList.add(n1);
+		
+		NotifyVO n2 = new NotifyVO();
+		n2.setNotify_seq();
+		n2.setNotify_date("2015-02-25");
+		n2.setContents("매주 셋째주 수요일은 문화의 날입니다. 매달 다양한 이벤트를 즐겨보세요");
+		n2.setNotify_title("문화의 날 ");
+		n2.setReadCount(2100);
+		notifyList.add(n2);
+		
+		NotifyVO n3 = new NotifyVO();
+		n3.setNotify_seq();
+		n3.setNotify_date("2018-01-01");
+		n3.setContents("모든 고객님들 새해 복 많이 받으세요~~");
+		n3.setNotify_title("새해 복 많이 받으세요");
+		n3.setReadCount(1500);
+		notifyList.add(n3);
+		
+		NotifyVO n4 = new NotifyVO();
+		n4.setNotify_seq();
+		n4.setNotify_date("2019-01-28");
+		n4.setContents("민음사에서 진행하는 설문조사 이벤트에 참여하시면 추첨하여 민음사의 굿즈를 드립니다 ");
+		n4.setNotify_title("출판사 이벤트");
+		n4.setReadCount(4556);
+		notifyList.add(n4);
+		
+		NotifyVO n5 = new NotifyVO();
+		n5.setNotify_seq();
+		n5.setNotify_date("2020-01-25");
+		n5.setContents("시스템 오류로 일주일간 글사랑닷컴과 무관한 광고창 팝업이 발생하였습니다.이용에 불편을 드려 죄송합니다. ");
+		n5.setNotify_title("광고 팝업 오류");
+		n5.setReadCount(1523);
+		notifyList.add(n5);
+		
+		NotifyVO n6 = new NotifyVO();
+		n6.setNotify_seq();
+		n6.setNotify_date("2021-01-25");
+		n6.setContents("1월 26일 오전 9시부터 11시까지 점검이 있을예정입니다. 이용에 불편을 드려 죄송합니다.");
+		n6.setNotify_title("정기점검 안내");
+		n6.setReadCount(5625);
+		notifyList.add(n6);
+		
 	}
 	
 	
@@ -633,40 +922,27 @@ return voucherList;
 		voucherList.add(v1);
 		
 		VoucherVO v2 = new VoucherVO();
-<<<<<<< HEAD
 		v2.setV_seq();
-=======
-		v2.setV_seq(2);
->>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v2.setV_period(7);
 		v2.setV_name("7일권");
 		v2.setV_price(3000);
 		voucherList.add(v2);
 			
 		VoucherVO v3 = new VoucherVO();
-<<<<<<< HEAD
 		v3.setV_seq();
-=======
-		v3.setV_seq(3);
->>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v3.setV_period(30);
 		v3.setV_name("30일권");
 		v3.setV_price(9900);
 		voucherList.add(v3);
 			
 		VoucherVO v4 = new VoucherVO();
-<<<<<<< HEAD
 		v4.setV_seq();
-=======
-		v4.setV_seq(4);
->>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v4.setV_period(90);
 		v4.setV_name("90일권");
 		v4.setV_price(26000);
 		voucherList.add(v4);
 			
 		VoucherVO v5 = new VoucherVO();
-<<<<<<< HEAD
 		v5.setV_seq();
 		v5.setV_period(180);
 		v5.setV_name("180일권");
@@ -676,16 +952,6 @@ return voucherList;
 			
 		VoucherVO v6 = new VoucherVO();
 		v6.setV_seq();
-=======
-		v5.setV_seq(5);
-		v5.setV_period(180);
-		v5.setV_name("180일권");
-		v5.setV_price(33000);
-		voucherList.add(v5);
-			
-		VoucherVO v6 = new VoucherVO();
-		v6.setV_seq(6);
->>>>>>> 12019d9c1059dc326b97cad001490aa93faa3bc2
 		v6.setV_period(365);
 		v6.setV_name("365일권");
 		v6.setV_price(59500);
@@ -693,6 +959,18 @@ return voucherList;
 		
 		
 	}
+
+	
+
+	
+	
+
+	
+	
+
+	
+
+	
 
 
 	

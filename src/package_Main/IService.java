@@ -51,7 +51,7 @@ public interface IService {
 	 * @return 로그인 성공 시 true, 실패 시 false 반환
 	 * @author
 	 */
-	boolean userLogin(Map<String, String> loginInfo); //반환타입
+	UserVO userLogin(Map<String, String> loginInfo); //반환타입
 	
 	
 	
@@ -61,181 +61,198 @@ public interface IService {
 ////////////////////////////////////////////////////////////////////////
 
 
-/**
-* 유저 정보 보기
-* @param user_id
-* @return
-* @author 홍유리
-*/
-List<UserInfoVO> userInfoView(UserVO user_id);	
-
-/**
-* 대여 목록 조회 - 사용자 메서드
-* @param user_id
-* @return 대여한 책 목록을 반환.
-* 			
-* @author 홍유리
-*/
-List<RentVO> rentListView(UserVO user_id); //매개변수 user_id
-
-/**
-* 대여 목록 상세 조회 - 사용자 메서드
-* @param rent_seq
-* rent_seq에 담겨있는 book_seq를 통해 책의 정보를 읽을 수 있음
-* @return 
-* @author 홍유리
-*/
-List<RentVO> rentBookDetail(RentVO rent_seq);
-
-/**
-* 평점 달기 - 사용자 메서드
-* (평점을 입력하면 bookList와 userInfoList의 grade, user_grade에 저장되어야한다)
-* @param rent_grade
-* @return 성공  시 true, 실패시 false
-* @author 홍유리
-*/
-
-boolean giveGrade(RentVO rent_grade); //매개변수
-
-/**
-* 
-* 평점 수정 - 사용자 메서드
-* 
-* @param rentInfo
-* @return 성공 시 true, 실패 시 false
-* @author 홍유리
-*/
-
-boolean modifyGrade(Map<String, Object> rentInfo);
-
-/**
-* 평점 삭제 - 사용자 메서드
-* @param rentInfo
-* @return 성공 시 true, 실패 시 false
-* @author 홍유리
-*/
-boolean removeGrade(Map<String, Object> rentInfo);
-
-/**
-* 금액 충전- 사용자 메서드
-* @param point 기존 금액과 충전한 금액의 합
-* @return
-* @author 홍유리
-*/
-int chargePoint(Map<String, Integer> userobj); // 누구의 얼마만큼(매개변수), 반환타입
-/**
-* 모든 공지 조회
-* @return 공지사항 전체 리스트를 반환
-* @author 홍유리
-*/
-List<NotifyVO> userNotifyView();
-
-/**
-* * 유저 공지 상세 조회
-* @param notify_seq
-* @return 선택한 공지 내용을 반환
-* @author 홍유리
-*/
-List<NotifyVO> userNotifyDetail(int notify_seq);
-
-/**
-* 신간도서 보기 - 사용자 메서드
-* bookList의 end index로부터 3~5개의 seq를 추출하여 보여줌
-* 읽기 기능 외 기능 없음
-* @param book_seq
-* @return
-* @author 홍유리
-*/
-List<BookVO> newBookView();
-
-/**
-* 인기도서 보기 - 사용자 메서드
-* rentList에 중복된 book_seq의 개수를 합산하여 가장 높은 순서대로 3위까지 추출함
-* 읽기 기능 외 기능 없음
-* @param book_seq
-* @return
-* @author 홍유리
-*/
-List<RentVO> popularBookView(BookVO book_seq);
-
-/**
-* 유저가 소유한 이용권 보기 - 사용자 메서드
-* 보기만 가능
-* 사용자가 소유한 이용권 내역 확인- 
-* userInfoList에서 buyDate별로 지정된 v-seq를 이용 + activate 여부 확인 가능하게
-* @param user_id
-* @return
-* @author 홍유리
-*/
-
-List<UserInfoVO> userVoucher(UserVO user_id);
-
-/**
-* 유저의 이용권 상세보기 - 사용자 메서드
-* 보기만 가능
-* @param v_seq
-* @return
-*/
-List<VoucherVO> userVoucherDetail(VoucherVO v_seq);
-
-
-/**
-* 이용권 구매 - 사용자 메서드
-* voucherList에서 price 이용해서 구매
-* @author 홍유리
-* @param v_seq
-* @return 성공 시 true, 실패시 false 반환
-*/
-
-boolean buyvoucher(int v_seq);
-
-/**
-* 이용권 구매 후 남은 포인트 - 사용자 메서드
-* @param point
-* @return int 
-* @author 홍유리
-*/
-int pointAfterBuy(Map<String, Object> point);
-
-/**
-* 책 제목으로 책 검색 - 사용자 메서드 
-* @param searchName
-* @return 입력받은 String 으로 필터링한 책목록
-* @author  홍유리
-*/
-
-List<BookVO> searchBookName(Map<String, Object> searchName);
-
-/**
-* 작가로 책 검색 - 사용자 메서드
-* 
-* @param searchAuthor
-* @return 입력받은 String 으로 필터링한 책목록 
-* @author  홍유리
-*/
-
-List<BookVO> searchBookAuthor(Map<String, Object> searchAuthor);
-
-/**
-* 장르로 책 검색 - 사용자 메서드
-* @param searchGenre
-* @return 입력받은 String 으로 필터링한 책목록
-* @author  홍유리
-*/
-
-List<BookVO> searchBookGenre(Map<String, Object> searchGenre);
-
-
-/**
-*  대여하기 - 사용자 메서드
-* @param book_seq
-* 	
-*  rentList에 저장하여 유저가 확인할 수 있어야함
-* @return 성공 시  true, 실패 시 false
-* @author 홍유리
-*/
-boolean rentBook(BookVO book_seq);
+//	/**
+//	 * 내 정보 조회 - 유저메서드
+//	 * @author 조유진
+//	 * @return 고객의 정보를 반환
+//	 */
+//	UserVO userInfo(UserVO user_id);	
+//	
+	/**
+	 * 유저 이름 변경 - 사용자 메서드
+	 * @param name
+	 * @return 
+	 * @author 홍유리
+	 */
+	boolean modifyName(Map<String, Object> nameInfo);
+	/**
+	 * 사용자 비밀번호 변경 - 사용자 메서드
+	 * @param pwInfo
+	 * @return
+	 * @author 홍유리
+	 */
+	boolean modifyPassword(Map<String, Object> pwInfo);
+	/**
+	 * 회원 탈퇴 - 사용자 메서드
+	 * @param actInfo
+	 * @return
+	 * @author 홍유리
+	 */
+	boolean deleteUser(Map<String, Object> actInfo);
 	
+	
+	
+	
+	/**
+	* 대여 목록 조회 - 사용자 메서드
+	* @param user_id
+	* @return 대여한 책 목록을 반환.
+	* 			
+	* @author 홍유리
+	*/
+	List<RentVO> rentListView(UserVO user_id); //매개변수 user_id
+	
+	/**
+	* 대여 목록 상세 조회 - 사용자 메서드
+	* @param rent_seq
+	* rent_seq에 담겨있는 book_seq를 통해 책의 정보를 읽을 수 있음
+	* @return 
+	* @author 홍유리
+	*/
+	List<RentVO> rentBookDetail(RentVO rent_seq);
+	
+	/**
+	* 평점 달기 - 사용자 메서드
+	* (평점을 입력하면 bookList와 userInfoList의 grade, user_grade에 저장되어야한다)
+	* @param rent_grade
+	* @return 성공  시 true, 실패시 false
+	* @author 홍유리
+	*/
+	
+	boolean giveGrade(RentVO rent_grade); //매개변수
+	
+	/**
+	* 
+	* 평점 수정 - 사용자 메서드
+	* 
+	* @param rentInfo
+	* @return 성공 시 true, 실패 시 false
+	* @author 홍유리
+	*/
+	
+	boolean modifyGrade(Map<String, Object> rentInfo);
+	
+	/**
+	* 평점 삭제 - 사용자 메서드
+	* @param rentInfo
+	* @return 성공 시 true, 실패 시 false
+	* @author 홍유리
+	*/
+	boolean removeGrade(Map<String, Object> rentInfo);
+	
+	/**
+	* 금액 충전- 사용자 메서드
+	* @param point 기존 금액과 충전한 금액의 합
+	* @return
+	* @author 홍유리
+	*/
+	int chargePoint(Map<String, Object> userobj); // 누구의 얼마만큼(매개변수), 반환타입
+	/**
+	* 모든 공지 조회
+	* @return 공지사항 전체 리스트를 반환
+	* @author 홍유리
+	*/
+	List<NotifyVO> userNotifyView();
+	
+	/**
+	* 유저 공지 상세 조회
+	* @param notify_seq
+	* @return 선택한 공지 내용을 반환
+	* @author 홍유리
+	*/
+	List<NotifyVO> userNotifyDetail(int notify_seq);
+	
+	/**
+	* 신간도서 보기 - 사용자 메서드
+	* bookList의 end index로부터 3~5개의 seq를 추출하여 보여줌
+	* 읽기 기능 외 기능 없음
+	* @param book_seq
+	* @return
+	* @author 홍유리
+	*/
+	List<BookVO> newBookView();
+	
+	/**
+	* 인기도서 보기 - 사용자 메서드
+	* rentList에 중복된 book_seq의 개수를 합산하여 가장 높은 순서대로 3위까지 추출함
+	* 읽기 기능 외 기능 없음
+	* @param book_seq
+	* @return
+	* @author 홍유리
+	*/
+	List<RentVO> popularBookView(BookVO book_seq);
+	
+	/**
+	* 유저가 소유한 이용권 보기 - 사용자 메서드
+	* 보기만 가능
+	* 사용자가 소유한 이용권 내역 확인- 
+	* userInfoList에서 buyDate별로 지정된 v-seq를 이용 + activate 여부 확인 가능하게
+	* @param user_id
+	* @return
+	* @author 홍유리
+	*/
+	
+	List<UserInfoVO> userVoucher(UserVO user_id);
+	
+	/**
+	* 유저의 이용권 상세보기 - 사용자 메서드
+	* 보기만 가능
+	* @param v_seq
+	* @return
+	* @author 홍유리
+	*/
+	List<VoucherVO> userVoucherDetail(VoucherVO v_seq);
+	
+	
+	/**
+	* 이용권 구매 - 사용자 메서드
+	* voucherList에서 price 이용해서 구매
+	* @author 홍유리
+	* @param v_seq
+	* @return 성공 시 true, 실패시 false 반환
+	*/
+	
+	boolean buyVoucher(int v_seq);
+	
+	
+	/**
+	* 책 제목으로 책 검색 - 사용자 메서드 
+	* @param searchName
+	* @return 입력받은 String 으로 필터링한 책목록
+	* @author  홍유리
+	*/
+	
+	List<BookVO> searchBookName(Map<String, Object> searchName);
+	
+	/**
+	* 작가로 책 검색 - 사용자 메서드
+	* 
+	* @param searchAuthor
+	* @return 입력받은 String 으로 필터링한 책목록 
+	* @author  홍유리
+	*/
+	
+	List<BookVO> searchBookAuthor(Map<String, Object> searchAuthor);
+	
+	/**
+	* 장르로 책 검색 - 사용자 메서드
+	* @param searchGenre
+	* @return 입력받은 String 으로 필터링한 책목록
+	* @author  홍유리
+	*/
+	
+	List<BookVO> searchBookGenre(Map<String, Object> searchGenre);
+	
+	
+	/**
+	*  대여하기 - 사용자 메서드
+	* @param book_seq
+	* 	
+	*  rentList에 저장하여 유저가 확인할 수 있어야함
+	* @return 성공 시  true, 실패 시 false
+	* @author 홍유리
+	*/
+	boolean rentBook(BookVO book_seq);
 	
 	
 	////////////////////////////////////////////////////////////////////////
@@ -313,7 +330,7 @@ boolean rentBook(BookVO book_seq);
 	*/
 	List<UserVO> readAllUser();
 	
-	
+		
 	/**
 	* 
 	* 선택한 회원 상세 조회
@@ -368,15 +385,29 @@ boolean rentBook(BookVO book_seq);
 	boolean modifyNotify(Map<String, Object> notifyInfo);	
 	
 	
+	
+	
+	/**
+	 * 
+	 * 선택한 공지 가져오기
+	 * 
+	 * @param 선택한 공지 seq
+	 * @return 성공시 Notify객체 반환, 없을 시 null반환
+	 * @author 김대호
+	 */
+	NotifyVO notifySelector(int selNum);
+	
+	
+	
 	/**
 	* 
 	* 공지 삭제
 	* 
-	* @param 선택한 공지 seq 전달(DB에서 seq로 해당 객체찾아서 삭제)
+	* @param 선택한 공지 객체 전달
 	* @return 삭제 성공시 true, 실패 시 false반환
 	* @author 김대호
 	*/
-	boolean deleteNotify(int notify_seq);
+	boolean deleteNotify(NotifyVO notify);
 	
 	
 	/**
@@ -440,7 +471,7 @@ boolean rentBook(BookVO book_seq);
 	* @return 일매출 리스트(유저정보)	
 	* @author 김대호
 	*/
-	int dailySalesView(); // 반환타입 int
+	List<UserInfoVO> dailySalesView();
 	
 	
 	/**
