@@ -3,6 +3,7 @@ package package_Database;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,13 +210,35 @@ public class Database {
 	/**
 	* 평점 달기 - 사용자 메서드
 	* (평점을 입력하면 bookList와 userInfoList의 grade, user_grade에 저장되어야한다)
-	* @param rent_grade
+	* @param rent_grade1
 	* @return 성공  시 true, 실패시 false
 	* @author 홍유리
 	*/
-	public int giveGrade(int grade) {
+	public void giveGrade(Map<String, Object> user_grade) {
+		RentVO selRent = (RentVO)user_grade.get("rent");
+		int grade = (Integer)user_grade.get("grade");  
+		selRent.setRent_grade(grade); //selRent에 평점 주기
+		int count = 0;
+		float sum = 0;
 		
-		return 0;
+		for(RentVO rent : rentList){
+			if(rent.getBook_seq() == selRent.getBook_seq()){
+				sum += rent.getRent_grade();
+				count++;
+			}
+		}
+		
+		float grade_avg;
+		if(count == 0){
+			grade_avg = 0;
+			((BookVO)user_grade.get("book")).setBook_grade(grade_avg);
+		}else{
+			System.out.println("sum:" + sum);
+			System.out.println("count:" + count);
+			grade_avg = ((int)((sum/count+0.05)*10))/10f;
+			
+			((BookVO)user_grade.get("book")).setBook_grade(grade_avg);
+		}
 	}
 	/**
 	 * 신간보기 - 사용자 메서드
@@ -225,6 +248,32 @@ public class Database {
 	public List<BookVO> newBookView() {
 		return bookList;
 	}
+	
+	/**
+	 * 인기도서보기 - 사용자 메서드
+	 * @return
+	 * @author 홍유리
+	 */
+	public List<BookVO> popularBookView(){
+		List<BookVO> tempList = bookList;
+		List<BookVO> popularList = new ArrayList<>();
+		BookVO maxBook;
+		
+		for(int i=0; i<5; i++){
+			maxBook = tempList.get(0);
+			for(int j=1; j<tempList.size(); j++){
+				if( maxBook.getBook_grade() < tempList.get(j).getBook_grade()){
+					maxBook = tempList.get(j);
+				}
+			}
+			popularList.add(maxBook);
+			tempList.remove(maxBook);
+		}
+		
+		return popularList;
+	}
+	
+	
 	
 	/**
 	 * 사용자 공지 보기 - 사용자 메서드
@@ -369,12 +418,14 @@ public class Database {
 		RentVO rent = new RentVO();
 		UserVO user = (UserVO)infoList.get("user");
 		BookVO selBook = (BookVO)infoList.get("selBook");
+		System.out.println(selBook.getBook_name());
 		
 		if(user != null && selBook != null){
 			rent.setRent_seq();
 			rent.setRent_date(getTodayDate());
 			rent.setUser_Id(user.getUser_id());
 			rent.setBook_seq(selBook.getBook_seq());
+			rentList.add(rent);
 			return true;
 		}
 		return false;
@@ -573,22 +624,24 @@ public class Database {
 	 * @return
 	 */
 	public boolean modifyVoucher(Map<String, Object> voucherInfo){
-		if(voucherInfo.get("v_seq")==null){
-			return false;	
+		VoucherVO voucher;
+		if(voucherInfo.containsKey("voucher")){
+			voucher = (VoucherVO)voucherInfo.get("voucher");
 		}
-		VoucherVO modVoucher = (VoucherVO)voucherInfo.get("v_seq");
-		
-		if(voucherInfo.get("v_period")!=null){
-			modVoucher.setV_period((Integer)voucherInfo.get("v_period"));
-			return true;
-		}else if (voucherInfo.get("v_name")!=null){
-			modVoucher.setV_name((String)voucherInfo.get("v_name"));
-			return true;
-		}else if (voucherInfo.get("v_price")!=null){
-			modVoucher.setV_price((Integer)voucherInfo.get("v_price"));
+		else{
+			return false;
+		}
+		if(voucherInfo.containsKey("name")){
+			voucher.setV_name((String)voucherInfo.get("name"));
+		}else if(voucherInfo.containsKey("period")){
+			voucher.setV_period((Integer)voucherInfo.get("period"));
+		}else if(voucherInfo.containsKey("price")){
+			voucher.setV_price((Integer)voucherInfo.get("price"));
 		}
 		return false;
 	}
+
+
 	
 	/**
 	 * 
@@ -610,12 +663,17 @@ public class Database {
 	 * @return
 	 */
 	public boolean deleteVoucher (VoucherVO voucher) {
+		int voucher_seq = voucher.getV_seq();
 			if (voucherList.remove(voucher)) {
+				for(int i = voucher.getV_seq(); i < voucherList.size(); i++){
+					voucherList.get(i).setV_seq(voucherList.get(i).getV_seq());
+				}
+				v_cur_seq--;
 				return true;
+				
 			}
-		return false;
+			return false;
 	}
-	
 	
 //////////////////////////////////////////////////////////////////////
 //관리자      끝						       								//
@@ -845,47 +903,47 @@ public class Database {
 		n1.setNotify_date("2015-01-25");
 		n1.setContents("글사랑닷컴에서는 고객님들의 독서 생활을 응원합니다.");
 		n1.setNotify_title("글사랑닷컴 오픈");
-		n1.setReadCount(1100);
+		n1.setReadCount(11);
 		notifyList.add(n1);
 		
 		NotifyVO n2 = new NotifyVO();
 		n2.setNotify_seq();
 		n2.setNotify_date("2015-02-25");
-		n2.setContents("매주 셋째주 수요일은 문화의 날입니다. 매달 다양한 이벤트를 즐겨보세요");
+		n2.setContents("매주 셋째주 수요일은 문화의 날입니다.\n  다양한 이벤트를 즐겨보세요");
 		n2.setNotify_title("문화의 날 ");
-		n2.setReadCount(2100);
+		n2.setReadCount(21);
 		notifyList.add(n2);
 		
 		NotifyVO n3 = new NotifyVO();
 		n3.setNotify_seq();
 		n3.setNotify_date("2018-01-01");
 		n3.setContents("모든 고객님들 새해 복 많이 받으세요~~");
-		n3.setNotify_title("새해 복 많이 받으세요");
-		n3.setReadCount(1500);
+		n3.setNotify_title("새해인사");
+		n3.setReadCount(15);
 		notifyList.add(n3);
 		
 		NotifyVO n4 = new NotifyVO();
 		n4.setNotify_seq();
 		n4.setNotify_date("2019-01-28");
-		n4.setContents("민음사에서 진행하는 설문조사 이벤트에 참여하시면 추첨하여 민음사의 굿즈를 드립니다 ");
+		n4.setContents("민음사에서 진행하는 설문조사 이벤트에 참여하시면\n 추첨하여 민음사의 굿즈를 드립니다 ");
 		n4.setNotify_title("출판사 이벤트");
-		n4.setReadCount(4556);
+		n4.setReadCount(45);
 		notifyList.add(n4);
 		
 		NotifyVO n5 = new NotifyVO();
 		n5.setNotify_seq();
 		n5.setNotify_date("2020-01-25");
-		n5.setContents("시스템 오류로 일주일간 글사랑닷컴과 무관한 광고창 팝업이 발생하였습니다.이용에 불편을 드려 죄송합니다. ");
+		n5.setContents("시스템 오류로 일주일간 글사랑닷컴과 무관한\n 광고창 팝업이 발생하였습니다.\n 이용에 불편을 드려 죄송합니다. ");
 		n5.setNotify_title("광고 팝업 오류");
-		n5.setReadCount(1523);
+		n5.setReadCount(15);
 		notifyList.add(n5);
 		
 		NotifyVO n6 = new NotifyVO();
 		n6.setNotify_seq();
 		n6.setNotify_date("2021-01-25");
-		n6.setContents("1월 26일 오전 9시부터 11시까지 점검이 있을예정입니다. 이용에 불편을 드려 죄송합니다.");
+		n6.setContents("1월 26일 오전 9시부터 11시까지 점검이 있을예정입니다.\n 이용에 불편을 드려 죄송합니다.");
 		n6.setNotify_title("정기점검 안내");
-		n6.setReadCount(5625);
+		n6.setReadCount(56);
 		notifyList.add(n6);
 		
 	}
@@ -895,6 +953,7 @@ public class Database {
 	{
 		
 		BookVO b1 = new BookVO();
+		b1.setBook_grade(7.2f);
 		b1.setBook_seq();
 		b1.setBook_name("하백의 신부 1");
 		b1.setAuthor("윤미경");
@@ -903,6 +962,7 @@ public class Database {
 		bookList.add(b1);
 		
 		BookVO b2 = new BookVO();
+		b1.setBook_grade(6.1f);
 		b2.setBook_seq();
 		b2.setBook_name("티아라 7");
 		b2.setAuthor("이윤희");
@@ -911,6 +971,7 @@ public class Database {
 		bookList.add(b2);
 		
 		BookVO b3 = new BookVO();
+		b3.setBook_grade(9.2f);
 		b3.setBook_seq();
 		b3.setBook_name("나의 짐승남 1");
 		b3.setAuthor("차경희");
@@ -920,6 +981,7 @@ public class Database {
 		bookList.add(b3);
 		
 		BookVO b4 = new BookVO();
+		b4.setBook_grade(5.5f);
 		b4.setBook_seq();
 		b4.setBook_name("지나치게 낭만적인 1");
 		b4.setAuthor("김설희");
@@ -928,6 +990,7 @@ public class Database {
 		bookList.add(b4);
 		
 		BookVO b5 = new BookVO();
+		b5.setBook_grade(8.5f);
 		b5.setBook_seq();
 		b5.setBook_name("열혈강호 82 ");
 		b5.setAuthor("전극진");
@@ -936,6 +999,7 @@ public class Database {
 		bookList.add(b5);
 		
 		BookVO b6 = new BookVO();
+		b6.setBook_grade(9.5f);
 		b6.setBook_seq();
 		b6.setBook_name("원피스 97");
 		b6.setAuthor("오다 에이치로");
@@ -944,6 +1008,7 @@ public class Database {
 		bookList.add(b6);
 		
 		BookVO b7 = new BookVO();
+		b7.setBook_grade(6.2f);
 		b7.setBook_seq();
 		b7.setBook_name("다이아몬드 에이스 21");
 		b7.setAuthor("테라지마 유지");
@@ -952,6 +1017,7 @@ public class Database {
 		bookList.add(b7);
 		
 		BookVO b8 = new BookVO();
+		b8.setBook_grade(5.0f);
 		b8.setBook_seq();
 		b8.setBook_name("하이큐!! 45");
 		b8.setAuthor("후루다테 하루이치");
@@ -960,6 +1026,7 @@ public class Database {
 		bookList.add(b8);
 		
 		BookVO b9 = new BookVO();
+		b9.setBook_grade(3.5f);
 		b9.setBook_seq();
 		b9.setBook_name("신테니스의왕자 30");
 		b9.setAuthor("코노미 다케시");
@@ -969,6 +1036,7 @@ public class Database {
 		bookList.add(b9);
 		
 		BookVO b10 = new BookVO();
+		b10.setBook_grade(7.5f);
 		b10.setBook_seq();
 		b10.setBook_name("날씨의아이 2");
 		b10.setAuthor("신카이 마코토");
@@ -977,6 +1045,7 @@ public class Database {
 		bookList.add(b10);
 		
 		BookVO b11 = new BookVO();
+		b11.setBook_grade(7.9f);
 		b11.setBook_seq();
 		b11.setBook_name("지나치게 낭만적인 2");
 		b11.setAuthor("김설희");
@@ -985,6 +1054,7 @@ public class Database {
 		bookList.add(b11);
 		
 		BookVO b12 = new BookVO();
+		b12.setBook_grade(6.4f);
 		b12.setBook_seq();
 		b12.setBook_name("지나치게 이기적인 1");
 		b12.setAuthor("김설희");
@@ -993,6 +1063,7 @@ public class Database {
 		bookList.add(b12);
 		
 		BookVO b13 = new BookVO();
+		b13.setBook_grade(7.7f);
 		b13.setBook_seq();
 		b13.setBook_name("지나치게 이기적인 2");
 		b13.setAuthor("김설희");
@@ -1001,6 +1072,7 @@ public class Database {
 		bookList.add(b13);
 		
 		BookVO b14 = new BookVO();
+		b14.setBook_grade(8.2f);
 		b14.setBook_seq();
 		b14.setBook_name("지나치게 로맨틱한 1");
 		b14.setAuthor("김설희");
@@ -1009,6 +1081,7 @@ public class Database {
 		bookList.add(b14);
 		
 		BookVO b15 = new BookVO();
+		b15.setBook_grade(5.5f);
 		b15.setBook_seq();
 		b15.setBook_name("지나치게 낭만적인 3");
 		b15.setAuthor("김설희");

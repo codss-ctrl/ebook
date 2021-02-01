@@ -58,6 +58,10 @@ public class VoucherVO {
 	public void setV_price(int v_price) {
 		this.v_price = v_price;
 	}
+	
+	public void setV_seq(int seq) {
+		V_seq = ++Database.v_cur_seq;
+	}
 
 
 	@Override

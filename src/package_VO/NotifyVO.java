@@ -53,6 +53,9 @@ public class NotifyVO {
 	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
+	public void setReadCount() {
+		this.readCount++;
+	}
 
 	@Override
 	public String toString() {

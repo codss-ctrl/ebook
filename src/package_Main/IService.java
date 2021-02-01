@@ -106,7 +106,7 @@ public interface IService {
 	* @author 홍유리
 	*/
 	
-	int giveGrade(int grade); //매개변수
+	void giveGrade(Map<String, Object> user_grade); //매개변수
 	
 	/**
 	* 
@@ -167,7 +167,7 @@ public interface IService {
 	* @return
 	* @author 홍유리
 	*/
-	List<RentVO> popularBookView(BookVO book_seq);
+	List<BookVO> popularBookView();
 	
 	/**
 	* 유저가 소유한 이용권 보기 - 사용자 메서드

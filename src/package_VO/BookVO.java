@@ -7,7 +7,7 @@ public class BookVO {
 	private String book_name; //책이름
 	private String author; //저자
 	private String regDate; //등록일
-	private int book_grade; //책평점
+	private float book_grade; //책평점
 	private boolean book_isActivate=true; //책 삭제여부 
 	private int g_seq; //장르 FK
 
@@ -47,10 +47,10 @@ public class BookVO {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public int getBook_grade() {
+	public float getBook_grade() {
 		return book_grade;
 	}
-	public void setBook_grade(int book_grade) {
+	public void setBook_grade(float book_grade) {
 		this.book_grade = book_grade;
 	}
 	@Override

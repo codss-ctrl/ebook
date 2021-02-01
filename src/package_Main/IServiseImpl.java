@@ -81,9 +81,8 @@ public class IServiseImpl implements IService{
 	}
 	
 	@Override
-	public int giveGrade(int grade) {
-//		return database.giveGrade(userobj);
-		return 0;
+	public void giveGrade(Map<String, Object> user_grade) {
+		database.giveGrade(user_grade);
 	}
 	
 	@Override
@@ -105,10 +104,9 @@ public class IServiseImpl implements IService{
 	
 	}
 	
-	@Override
-	public List<RentVO> popularBookView(BookVO book_seq) {
-	// TODO Auto-generated method stub
-		return null;
+//	@Override
+	public List<BookVO> popularBookView() {
+		return database.popularBookView();
 	}
 	
 	
