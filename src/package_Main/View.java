@@ -465,20 +465,22 @@ public class View {
 	private void modifyName(){
 		
 		while(true){
-			System.out.println("현재 고객님의 성함은 "+user.getUser_name()+" 입니다.");
+			System.out.println("현재 고객님의 이름은 "+user.getUser_name()+" 입니다.");
 			System.out.println("이름을 변경하시겠습니까? Y/N");
 			System.out.println("N을 입력하시면 이전화면으로 돌아갑니다.");
 			
 			Map<String, Object> userInfo = new HashMap<>();
 			userInfo.put("user_id",user.getUser_id());
 			
-			if(sInput().equals("Y")){
+			String input = sInput();
+			
+			if(input.equals("Y") || input.equals("y")){
 				System.out.println("이름 변경을 위해 새로운 이름을 입력해주세요");
 				userInfo.put("user_name",scanName());//key : name, value : scanName()
 				iServiceImpl.userUpdate(userInfo);
 				return;
 				
-			}else if(sInput().equals("N")){
+			}else if(input.equals("N") || input.equals("n")){
 				return;
 			 }// end else if	
 		  	
