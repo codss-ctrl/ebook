@@ -18,9 +18,8 @@ public class IServiseImpl implements IService{
 	
 
 	@Override
-	public boolean insertUser(UserVO user) {
-		// TODO Auto-generated method stub
-		return database.insertUser(user);
+	public boolean addUser(UserVO user) {
+		return database.addUser(user);
 	}
 
 	@Override
@@ -43,6 +42,7 @@ public class IServiseImpl implements IService{
 //고객
 ////////////////////////////////////////////////////////////////////////
 	
+
 
 	/**
 	 * 유저 이름 변경 - 사용자 메서드
@@ -77,15 +77,14 @@ public class IServiseImpl implements IService{
 	
 	/**
 	* 대여 목록 조회 - 사용자 메서드
-	* @param user_id
-	* @return 대여한 책 목록을 반환.
+	* @param user
+	* @return 해당 사용자가 대여한 책 목록을 반환.
 	* 			
 	* @author 홍유리
 	*/
 	@Override
-	public List<RentVO> rentListView(UserVO user_id) {
-	// TODO Auto-generated method stub
-	return null;
+	public List<RentVO> rentListView(String user_id) {
+		return database.rentListView(user_id);
 	}
 	
 	@Override
@@ -95,9 +94,9 @@ public class IServiseImpl implements IService{
 	}
 	
 	@Override
-	public boolean giveGrade(RentVO rent_grade) {
-	// TODO Auto-generated method stub
-	return false;
+	public int giveGrade(int grade) {
+//		return database.giveGrade(userobj);
+		return 0;
 	}
 	
 	@Override
@@ -111,8 +110,6 @@ public class IServiseImpl implements IService{
 	// TODO Auto-generated method stub
 	return false;
 	}
-	
-	
 	
 	
 	@Override
@@ -134,31 +131,40 @@ public class IServiseImpl implements IService{
 	return false;
 	}
 	
-	
+//////////////////////////////////////////////////////////////////////////////
+//	kdh
+//////////////////////////////////////////////////////////////////////////////	
 	@Override
-	public List<BookVO> searchBookName(Map<String, Object> searchName) {
-	// TODO Auto-generated method stub
-	return null;
+	public List<BookVO> searchBookName(String searchName) {
+		return database.searchBookName(searchName);
 	}
 	
 	@Override
-	public List<BookVO> searchBookAuthor(Map<String, Object> searchAuthor){
-	// TODO Auto-generated method stub
-	return null;
+	public List<BookVO> searchBookAuthor(String searchAuthor){
+		return database.searchBookAuthor(searchAuthor);
 	}
 	
 	@Override
-	public List<BookVO> searchBookGenre(Map<String, Object> searchGenre) {
-	// TODO Auto-generated method stub
-	return null;
+	public List<BookVO> searchBookGenre(String searchGenre) {
+		return database.searchBookGenre(searchGenre);
 	}
-	
-	
 	
 	@Override
-	public boolean rentBook(BookVO book_seq){
-	return false;
+	public boolean checkUserInfo(String user_id) {
+		return database.checkUserInfo(user_id);
 	}
+
+	@Override
+	public boolean rentBook(Map<String, Object> infoList){
+		return database.rentBook(infoList);
+	}
+
+	
+	/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////	
+	
+	
+	
 	
 	@Override
 	public int chargePoint(Map<String, Object> userobj) {
@@ -166,9 +172,8 @@ public class IServiseImpl implements IService{
 	}
 	
 	@Override
-	public List<UserInfoVO> userVoucher(UserVO user_id) {
-	
-	return null;
+	public List<UserInfoVO> userVoucher(String user_id) {
+		return database.userVoucher(user_id);
 	}
 	
 	@Override
@@ -281,7 +286,6 @@ public boolean deleteNotify(NotifyVO notify) {
 }
 
 
-
 ///////////////////////////////////////////////////
 //>>>>>>>>>>>>>>	이용권 조회, 추가, 상세보기, 수정, 삭제
 ///////////////////////////////////////////////////
@@ -297,7 +301,7 @@ return database.addVoucher(voucher);
 
 @Override
 public VoucherVO voucherDetailView(int voucher_seq) {
-return database.voucherDetailView(voucher_seq);
+return null;
 }
 
 @Override
@@ -306,31 +310,37 @@ return database.modifyVoucher(voucherInfo);
 }
 
 @Override
-public boolean deleteVoucher(int voucher_seq) {
-return database.deleteVoucher(voucher_seq);
+public VoucherVO voucherSelector(int selVoucher){
+return database.voucherSelector(selVoucher);
+}
+
+@Override
+public boolean deleteVoucher(VoucherVO voucher) {
+return database.deleteVoucher(voucher);
 }
 ///////////////////////////////////////////////////
 //<<<<<<<<<<<<<<<<<
 ///////////////////////////////////////////////////
 
 
-
-@Override
-public List<Map<String, Integer>> monthlySalesView() {
-// TODO Auto-generated method stub
-return null;
-}
-
-@Override
-public List<Map<String, Integer>> annualSalesView() {
-// TODO Auto-generated method stub
-return null;
-}
-
 @Override
 public List<UserInfoVO> dailySalesView() {
-	return null;
+	return database.dailySalesView();
 }
+
+@Override
+public Map<Integer, Integer> monthlySalesView() {
+	return database.monthlySalesView();
+}
+
+@Override
+public List<UserInfoVO> readMonthDetail(int month) {
+	return database.readMonthDetail(month);
+}
+
+
+
+
 
 
 

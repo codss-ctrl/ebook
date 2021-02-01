@@ -3,7 +3,7 @@ package package_VO;
 import package_Database.Database;
 
 public class VoucherVO {
-	private int v_seq; //이용권 PK
+	private int V_seq; //이용권 PK
 	private int v_period; //이용권 기간
 	private String v_name; //이용권 이름
 	private int v_price; //이용권 가격
@@ -21,12 +21,12 @@ public class VoucherVO {
 
 
 	public int getV_seq() {
-		return v_seq;
+		return V_seq;
 	}
 
 
 	public void setV_seq() {
-		v_seq = ++Database.v_cur_seq;
+		V_seq = ++Database.v_cur_seq;
 	}
 
 

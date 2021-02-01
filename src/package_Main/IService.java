@@ -21,7 +21,7 @@ public interface IService {
 	 * @return 성공 시 true, 실패 시 false 반환
 	 * @author 조유진
 	 */
-	boolean insertUser(UserVO user);
+	boolean addUser(UserVO user);
 	
 	/**
 	 * 
@@ -100,7 +100,7 @@ public interface IService {
 	* 			
 	* @author 홍유리
 	*/
-	List<RentVO> rentListView(UserVO user_id); //매개변수 user_id
+	List<RentVO> rentListView(String user_id); //매개변수 user_id
 	
 	/**
 	* 대여 목록 상세 조회 - 사용자 메서드
@@ -119,7 +119,7 @@ public interface IService {
 	* @author 홍유리
 	*/
 	
-	boolean giveGrade(RentVO rent_grade); //매개변수
+	int giveGrade(int grade); //매개변수
 	
 	/**
 	* 
@@ -192,7 +192,7 @@ public interface IService {
 	* @author 홍유리
 	*/
 	
-	List<UserInfoVO> userVoucher(UserVO user_id);
+	List<UserInfoVO> userVoucher(String user_id);
 	
 	/**
 	* 유저의 이용권 상세보기 - 사용자 메서드
@@ -215,33 +215,45 @@ public interface IService {
 	boolean buyVoucher(int v_seq);
 	
 	
+/////////////////////////////////////////////////////////////////////////////
+//kdh
+//////////////////////////////////////////////////////////////////////////////	
+	
 	/**
 	* 책 제목으로 책 검색 - 사용자 메서드 
 	* @param searchName
 	* @return 입력받은 String 으로 필터링한 책목록
-	* @author  홍유리
+	* @author  김대호
 	*/
 	
-	List<BookVO> searchBookName(Map<String, Object> searchName);
+	List<BookVO> searchBookName(String searchName);
 	
 	/**
 	* 작가로 책 검색 - 사용자 메서드
 	* 
 	* @param searchAuthor
 	* @return 입력받은 String 으로 필터링한 책목록 
-	* @author  홍유리
+	* @author  김대호
 	*/
 	
-	List<BookVO> searchBookAuthor(Map<String, Object> searchAuthor);
+	List<BookVO> searchBookAuthor(String searchAuthor);
 	
 	/**
 	* 장르로 책 검색 - 사용자 메서드
 	* @param searchGenre
 	* @return 입력받은 String 으로 필터링한 책목록
-	* @author  홍유리
+	* @author  김대호
 	*/
 	
-	List<BookVO> searchBookGenre(Map<String, Object> searchGenre);
+	List<BookVO> searchBookGenre(String searchGenre);
+	
+	/**
+	* 장르로 책 검색 - 사용자 메서드
+	* @param searchGenre
+	* @return 입력받은 String 으로 필터링한 책목록
+	* @author  김대호
+	*/
+	boolean checkUserInfo(String user_id);
 	
 	
 	/**
@@ -250,9 +262,9 @@ public interface IService {
 	* 	
 	*  rentList에 저장하여 유저가 확인할 수 있어야함
 	* @return 성공 시  true, 실패 시 false
-	* @author 홍유리
+	* @author 김대호
 	*/
-	boolean rentBook(BookVO book_seq);
+	boolean rentBook(Map<String, Object> infoList);
 	
 	
 	////////////////////////////////////////////////////////////////////////
@@ -384,7 +396,15 @@ public interface IService {
 	*/
 	boolean modifyNotify(Map<String, Object> notifyInfo);	
 	
-	
+	/**
+	* 
+	* 공지 삭제
+	* 
+	* @param 선택한 공지 객체 전달
+	* @return 삭제 성공시 true, 실패 시 false반환
+	* @author 김대호
+	*/
+	boolean deleteNotify(NotifyVO notify);
 	
 	
 	/**
@@ -397,17 +417,6 @@ public interface IService {
 	 */
 	NotifyVO notifySelector(int selNum);
 	
-	
-	
-	/**
-	* 
-	* 공지 삭제
-	* 
-	* @param 선택한 공지 객체 전달
-	* @return 삭제 성공시 true, 실패 시 false반환
-	* @author 김대호
-	*/
-	boolean deleteNotify(NotifyVO notify);
 	
 	
 	/**
@@ -452,6 +461,12 @@ public interface IService {
 	*/
 	boolean modifyVoucher(Map<String, Object> voucherInfo);
 	
+	/**
+	 * 선택한 이용권 가져오기
+	 * @param selVoucher
+	 * @return
+	 */
+	VoucherVO voucherSelector(int selVoucher);
 	
 	/**
 	* 
@@ -461,7 +476,7 @@ public interface IService {
 	* @return 비활성화 성공시 true, 실패 시 false 반환
 	* @author 김대호
 	*/
-	boolean deleteVoucher(int voucher_seq);
+	boolean deleteVoucher(VoucherVO selVoucher);
 	
 	
 	/**
@@ -482,17 +497,17 @@ public interface IService {
 	* @return 월매출 리스트(유저정보)
 	* @author 김대호
 	*/
-	List<Map<String, Integer>> monthlySalesView();  
+	Map<Integer, Integer> monthlySalesView();
 	
 	/**
 	* 
-	* 연매출 조회(5년 연매출 출력)
+	* 월 상세 매출 조회
 	* 
-	* @param 
-	* @return 월매출 리스트(유저정보)
+	* @param 선택한 월 int
+	* @return 선택한 월의 일별 매출 리스트(UserInfo)
 	* @author 김대호
 	*/
-	List<Map<String, Integer>> annualSalesView();
+	List<UserInfoVO> readMonthDetail(int month);
 	
 	
 	/**
@@ -504,6 +519,7 @@ public interface IService {
 	* @author 김대호
 	*/
 	List<BookKindVO> readAllKind();
+	
 ////////////////////////////////////////////////////////////////////////
 //			관리자
 ////////////////////////////////////////////////////////////////////////

@@ -26,6 +26,9 @@ public class BookVO {
 	public void setBook_seq() {
 		book_seq = ++Database.book_cur_seq;
 	}
+	public void setBook_seq(int book_seq) {
+		this.book_seq = book_seq;
+	}
 	public String getBook_name() {
 		return book_name;
 	}
