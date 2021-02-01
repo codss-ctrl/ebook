@@ -111,9 +111,8 @@ public class IServiseImpl implements IService{
 	
 	
 	@Override
-	public boolean buyVoucher(int v_seq) {
-//		return database.buyVoucher()
-	return false;
+	public boolean buyVoucher(Map<String, Object> voucherInfo) {
+		return database.buyVoucher(voucherInfo);
 	}
 	
 //////////////////////////////////////////////////////////////////////////////

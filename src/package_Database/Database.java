@@ -3,7 +3,6 @@ package package_Database;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -291,7 +290,7 @@ public class Database {
 	 * @author 홍유리
 	 */
 	public List<NotifyVO> userNotifyDetail(int notify_seq) {
-	return notifyList;
+		return notifyList;
 	}
 	
 	/**
@@ -350,11 +349,20 @@ public class Database {
 	* @param v_seq
 	* @return 성공 시 true, 실패시 false 반환
 	*/
-	public boolean buyVoucher(int v_seq,UserVO user) {
+	public boolean buyVoucher(Map<String, Object> voucherInfo) {
+		UserVO user = (UserVO)voucherInfo.get("user");
+		VoucherVO selVoucher = (VoucherVO)voucherInfo.get("selVoucher");
 		
-		if (userList.contains(user) && user.getUser_point()>voucherList.get(v_seq).getV_price()) {
-			int point = user.getUser_point()-voucherList.get(v_seq).getV_price();
-			user.setUser_point(point);
+		if (user.getUser_point() >= selVoucher.getV_price()){
+			UserInfoVO userInfo = new UserInfoVO();
+			userInfo.setInfo_seq();
+			userInfo.setUser_id(user.getUser_id());
+			userInfo.setv_seq(selVoucher.getV_seq());
+			userInfo.setBuy_date(getTodayDate());
+			userInfoList.add(userInfo);
+			return true;
+		}else{
+			System.out.println("포인트가 부족하여 선택하신 이용권을 구매할 수 없습니다");
 		}
 		
 		return false;
@@ -707,7 +715,7 @@ public class Database {
 		
 		List<UserInfoVO> dailySaleList = new ArrayList<>();
 		for(UserInfoVO info : userInfoList){
-			if("2021-01-30".equals(info.getBuy_date())){
+			if("2021-02-02".equals(info.getBuy_date())){
 				dailySaleList.add(info);
 			}
 		}
@@ -816,7 +824,7 @@ public class Database {
 		UserInfoVO i1 = new UserInfoVO();   
 		i1.setInfo_seq();                   
 		i1.setv_seq(1);//1일권                
-		i1.setUser_id("abc123");            
+		i1.setUser_id("abcd123");            
 		i1.setBuy_date("2021-01-30");       
 		i1.setInfo_isActivate(false);
 		userInfoList.add(i1);
@@ -825,7 +833,7 @@ public class Database {
 		i2.setInfo_seq();                   
 		i2.setv_seq(2);//7일권                
 		i2.setUser_id("abc123");             
-		i2.setBuy_date("2021-01-31");       
+		i2.setBuy_date("2021-02-02");       
 		i2.setInfo_isActivate(true);        
 		userInfoList.add(i2);
 		
@@ -848,7 +856,7 @@ public class Database {
 		UserInfoVO i5 = new UserInfoVO();   
 		i5.setInfo_seq();                   
 		i5.setv_seq(3);//30일권               
-		i5.setUser_id("abc123");           
+		i5.setUser_id("asbc123");           
 		i5.setBuy_date("2020-01-11");       
 		i5.setInfo_isActivate(true);        
 		userInfoList.add(i5);                   
@@ -856,16 +864,16 @@ public class Database {
 		UserInfoVO i6 = new UserInfoVO();   
 		i6.setInfo_seq();                   
 		i6.setv_seq(4);//1일권                
-		i6.setUser_id("abc123");            
+		i6.setUser_id("abs123");            
 		i6.setBuy_date("2021-01-25");       
-		i6.setInfo_isActivate(true);        
+		i6.setInfo_isActivate(false);        
 		userInfoList.add(i6);                   
 		
 		UserInfoVO i7 = new UserInfoVO();   
 		i7.setInfo_seq();                   
 		i7.setv_seq(1);//1일권                
 		i7.setUser_id("dd1232");            
-		i7.setBuy_date("2021-02-23");       
+		i7.setBuy_date("2021-02-02");       
 		i7.setInfo_isActivate(true);        
 		userInfoList.add(i7);
 		
@@ -881,7 +889,7 @@ public class Database {
 		i9.setInfo_seq();                   
 		i9.setv_seq(4);//90일권               
 		i9.setUser_id("bbb123");            
-		i9.setBuy_date("2020-10-25");       
+		i9.setBuy_date("2020-11-25");       
 		i9.setInfo_isActivate(true);        
 		userInfoList.add(i9);                   
 		
@@ -889,7 +897,7 @@ public class Database {
 		i10.setInfo_seq();                  
 		i10.setv_seq(5);//365일권             
 		i10.setUser_id("cbb123");           
-		i10.setBuy_date("2020-02-25");      
+		i10.setBuy_date("2020-02-02");      
 		i10.setInfo_isActivate(true);       
 		userInfoList.add(i10);
 		

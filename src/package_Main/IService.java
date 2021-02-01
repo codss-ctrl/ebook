@@ -199,7 +199,7 @@ public interface IService {
 	* @return 성공 시 true, 실패시 false 반환
 	*/
 	
-	boolean buyVoucher(int v_seq);
+	boolean buyVoucher(Map<String, Object> voucherInfo);
 	
 	
 /////////////////////////////////////////////////////////////////////////////
