@@ -120,56 +120,59 @@ public class Database {
 	
 	
 	/**
-	 * 사용자 이름 변경 - 사용자 메서드
-	 * @param userInfo
-	 * @return 성공시 true, 실패시 false
-	 * @author 홍유리
+	 * 고객 선택 - 고객 업데이트,탈퇴에 이용
+	 * @param id
+	 * @return
 	 */
-	public boolean modifyName(Map<String, Object> nameInfo) {
-		UserVO user = new UserVO();
-		
-		if (nameInfo.containsKey("user")) {//user라는 키 가지고 있으면
-			user.setUser_name((String)nameInfo.get("user"));
-		}else{
-			return false;
+	
+	public UserVO userSelector(String id){
+		for(UserVO user : userList){
+			if (user.getUser_id().equals(id)) {
+				return user;
+			}
 		}
-		return true;
+		return null;
+	}
+	/**
+	 * 고객 업데이트 - 이름, 비밀번호, 포인트 수정
+	 * @param userInfo
+	 * @return 성공 시 1, 실패 시 0
+	 */
+	public int userUpdate(Map<String, Object> userInfo){
+		UserVO user = userSelector((String)userInfo.get("user_id"));
+		if(user == null){
+			return 0;
+		}
+		if (userInfo.get("user_pw") != null) {
+			user.setUser_pw((String)userInfo.get("user_pw"));
+			return 1;
+		}else if(userInfo.get("user_name") != null){
+			user.setUser_name((String)userInfo.get("user_name"));
+			return 1;
+		}else if(userInfo.get("user_point")!=null){
+			user.setUser_point((Integer) userInfo.get("user_point"));
+			return 1;
+		}
+		
+		
+		return 0;
 	}
 	
-	/**
-	 * 사용자 비밀번호 변경 - 사용자 메서드
-	 * @param pwInfo
-	 * @return
-	 * @author 홍유리
-	 */
-	public boolean modifyPassword(Map<String, Object> pwInfo){
-		UserVO user = new UserVO();
-		
-		if (pwInfo.containsKey("user")) {//user라는 키 가지고 있다면
-			user.setUser_pw((String)pwInfo.get("user"));
-			//user키 이용해서 value값 빼옴 - string으로 변환해서 user객체 pw로 저장
-		}else{
-			
-			return false;
-		}
-		return true;
-		
-	}
 	/**
 	 * 회원 탈퇴 - 사용자 메서드
 	 * @param actInfo
 	 * @author 홍유리
 	 */
-	public boolean deleteUser(Map<String, Object> actInfo){
-		UserVO user = new UserVO();
-		
-		if (actInfo.containsKey("user")) {
-			user.setUser_isActivate(false);
-		}else{
+	public boolean deleteUser(String user_id){
+		UserVO user = userSelector(user_id);
+		if (user == null) {
 			return false;
 		}
+		user.setUser_isActivate(false);
 		return true;
+		
 	}
+	
 	/**
 	 * 유저 내 정보 조회 - 사용자 메서드
 	 * @param user_id
@@ -282,9 +285,9 @@ public class Database {
 	 * @author 홍유리
 	 */
 	public int chargePoint(Map<String, Object> userobj){
-		UserVO user = new UserVO();
+		UserVO user = userSelector((String)userobj.get("user_id"));
 		int finalPoint = user.getUser_point()+(int)userobj.get("user_point");
-		userobj.put("user_point",(Integer)finalPoint);
+		user.setUser_point(finalPoint);
 		
 		return finalPoint;
 		
@@ -334,25 +337,23 @@ public class Database {
 		return searchList;
 	}
 
-	
-	public List<BookVO> searchBookGenre(String searchGenre) {
+///////////////////////////////////////////////////////////////////
+//	kdh 수정
+///////////////////////////////////////////////////////////////////
+	public List<BookVO> searchBookGenre(int genre_seq) {
 		List<BookVO> searchList = new ArrayList<>();
-		
-		int select_genreSeq = 0;
-		for(BookKindVO genre : kindList){
-			if(searchGenre.equals(genre.getGenre_name())){
-				select_genreSeq = genre.getGenre_seq();
-				break;
-			}
-		}
 			
 		for(BookVO book : bookList){
-			if(book.getG_seq() == select_genreSeq){
+			if(book.getG_seq() == genre_seq){
 				searchList.add(book);
 			}
 		}
 		return searchList;
 	}
+///////////////////////////////////////////////////////////////////
+//kdh  끝
+///////////////////////////////////////////////////////////////////	
+	
 	
 	public boolean checkUserInfo(String user_id) {
 		for(UserInfoVO info : userInfoList){
@@ -468,11 +469,6 @@ public class Database {
 		int book_seq = selBook.getBook_seq();
 		if(bookList.remove(selBook)){
 			
-//			for(BookVO book : bookList){
-//				if(book.getBook_seq() > book_seq){
-//					book.setBook_seq(book.getBook_seq()+1);
-//				}
-//			}
 			for(int i=selBook.getBook_seq()-1; i<bookList.size(); i++){
 				bookList.get(i).setBook_seq(bookList.get(i).getBook_seq()-1);
 			}
@@ -524,12 +520,16 @@ public class Database {
 	}
 	
 	public boolean deleteNotify(NotifyVO notify) {
+		int notify_seq = notify.getNotify_seq();
 		if(notifyList.remove(notify)){
+			for(int i=notify.getNotify_seq()-1; i<notifyList.size(); i++){
+				notifyList.get(i).setNotify_seq(notifyList.get(i).getNotify_seq()-1);
+			}
+			notify_cur_seq--;
 			return true;
 		}
 		return false;
 	}
-	
 	
 	
 	///////////////////////////////////////////////////

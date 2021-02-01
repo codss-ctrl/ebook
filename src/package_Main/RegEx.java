@@ -13,7 +13,7 @@ public class RegEx {
 	
 	//8 ~ 15자리 영문 대 소문자, 숫자, 특수문자만 사용 가능합니다.
 	public static boolean checkUser_pw(String pw) {
-		String patternUPw = "\\S{8,15}";
+		String patternUPw = "(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&])[A-Za-z0-9$@$!%*#?&]{8,15}";
 		return Pattern.matches(patternUPw, pw);
 	}
 	

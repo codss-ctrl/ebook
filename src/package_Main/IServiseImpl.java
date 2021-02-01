@@ -43,36 +43,23 @@ public class IServiseImpl implements IService{
 ////////////////////////////////////////////////////////////////////////
 	
 
+	/**
+	 * 고객 업데이트 - 이름, 비밀번호, 포인트 수정
+	 * @param userInfo
+	 * @return 성공 시 1, 실패 시 0
+	 */
+	public int userUpdate(Map<String, Object> userInfo){
+		return database.userUpdate(userInfo);
+	}
 
-	/**
-	 * 유저 이름 변경 - 사용자 메서드
-	 * @param name
-	 * @return 
-	 * @author 홍유리
-	 */
-	@Override
-	public boolean modifyName(Map<String, Object> nameInfo) {
-		return database.modifyName(nameInfo);
-		
-	}
-	/**
-	 * 사용자 비밀번호 변경 - 사용자 메서드
-	 * @param pwInfo
-	 * @return
-	 * @author 홍유리
-	 */
-	@Override
-	public boolean modifyPassword(Map<String, Object> pwInfo) {
-		return database.modifyPassword(pwInfo);
-	}
 	/**
 	 * 회원 탈퇴 - 사용자 메서드
 	 * @param actInfo
 	 * @author 홍유리
 	 */
 	@Override
-	public boolean deleteUser(Map<String, Object> actInfo) {
-		return database.deleteUser(actInfo);
+	public boolean deleteUser(String user_id) {
+		return database.deleteUser(user_id);
 	}
 	
 	/**
@@ -145,8 +132,8 @@ public class IServiseImpl implements IService{
 	}
 	
 	@Override
-	public List<BookVO> searchBookGenre(String searchGenre) {
-		return database.searchBookGenre(searchGenre);
+	public List<BookVO> searchBookGenre(int genre_seq) {
+		return database.searchBookGenre(genre_seq);
 	}
 	
 	@Override

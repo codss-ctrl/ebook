@@ -25,6 +25,10 @@ public class NotifyVO {
 	public void setNotify_seq() {
 		notify_seq = ++Database.notify_cur_seq;
 	}
+	
+	public void setNotify_seq(int notify_seq) {
+		this.notify_seq = notify_seq;
+	}
 
 	public String getNotify_title() {
 		return notify_title;

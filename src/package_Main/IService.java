@@ -61,34 +61,21 @@ public interface IService {
 ////////////////////////////////////////////////////////////////////////
 
 
-//	/**
-//	 * 내 정보 조회 - 유저메서드
-//	 * @author 조유진
-//	 * @return 고객의 정보를 반환
-//	 */
-//	UserVO userInfo(UserVO user_id);	
-//	
 	/**
-	 * 유저 이름 변경 - 사용자 메서드
-	 * @param name
-	 * @return 
-	 * @author 홍유리
+	 * 고객 업데이트 - 이름, 비밀번호, 포인트 수정
+	 * @param userInfo
+	 * @return 성공 시 1, 실패 시 0
 	 */
-	boolean modifyName(Map<String, Object> nameInfo);
-	/**
-	 * 사용자 비밀번호 변경 - 사용자 메서드
-	 * @param pwInfo
-	 * @return
-	 * @author 홍유리
-	 */
-	boolean modifyPassword(Map<String, Object> pwInfo);
+	public int userUpdate(Map<String, Object> userInfo);
+	
+
 	/**
 	 * 회원 탈퇴 - 사용자 메서드
 	 * @param actInfo
 	 * @return
 	 * @author 홍유리
 	 */
-	boolean deleteUser(Map<String, Object> actInfo);
+	boolean deleteUser(String user_Id);
 	
 	
 	
@@ -245,7 +232,7 @@ public interface IService {
 	* @author  김대호
 	*/
 	
-	List<BookVO> searchBookGenre(String searchGenre);
+	List<BookVO> searchBookGenre(int genre_seq);
 	
 	/**
 	* 장르로 책 검색 - 사용자 메서드
