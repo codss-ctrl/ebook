@@ -42,6 +42,11 @@ public class IServiseImpl implements IService{
 //고객
 ////////////////////////////////////////////////////////////////////////
 	
+	
+	public void userInfoUpdate(){
+		database.userInfoUpdate();
+	}
+	
 
 	/**
 	 * 고객 업데이트 - 이름, 비밀번호, 포인트 수정

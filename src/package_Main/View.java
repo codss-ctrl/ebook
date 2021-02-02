@@ -82,6 +82,13 @@ public class View {
 	}
 
 	
+	
+	void userInfoUpdate(){
+		iServiceImpl.userInfoUpdate();
+	}
+	
+	
+	
 	/**
 	 * 메인뷰
 	 * 
@@ -89,7 +96,7 @@ public class View {
 	 * 
 	 */
 	void startMethod(){
-		String message = "";
+		userInfoUpdate();
 		while (true) {
 			System.out.println(" ┌──────────────────────────┐ ");
 			System.out.println("  ꧁글사랑닷컴에 오신걸 환영합니다.꧂");
@@ -99,11 +106,6 @@ public class View {
 			System.out.println("[1] 로그인");
 			System.out.println("[2] 회원가입");
 			System.out.println("[0] 종료");
-			if (!"".equals(message)) {
-				System.out.println();
-				System.out.println(message);
-				message = "";
-			}
 			
 			switch (iInput()){
 			case 0 :
@@ -115,8 +117,8 @@ public class View {
 			case 2 :
 				addUserView();
 				break;
-				default :
-					message = "잘못 입력하셨습니다. 다시 입력해 주세요.";
+			default :
+				System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
 			}
 		}
 	}
@@ -398,6 +400,7 @@ public class View {
 				bookView();
 				break;	
 			case 0:
+				user=null;
 				return;
 
 			default:
@@ -610,8 +613,7 @@ public class View {
 //			}
 			
 			System.out.println("===================================================\n");
-			System.out.println("[1] 평점 달기");
-			System.out.println("[2] 평점 수정");
+			System.out.println("[1] 내평점");
 			System.out.println("[0] 뒤로 가기");
 			
 			switch (iInput()) {
@@ -619,9 +621,6 @@ public class View {
 				return;
 			case 1:
 				giveGrade(selRent);
-				break;
-			case 2:
-				modifyGrade(selRent);
 				break;
 			default:
 				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
@@ -1236,7 +1235,7 @@ public class View {
 			}else{
 				System.out.println("[ 2 ~ " + (bookList.size()) + " ] 상세보기 선택");
 			}
-			System.out.println("[ 1 ] 책 추가하기");
+			System.out.println("[ 1 ] 책1111 추가하기");
 			System.out.println("[ 0 ] 뒤로가기");
 			System.out.println("===========================================================");
 			
@@ -2238,13 +2237,14 @@ public class View {
 			
 			int sum = 0;
 			for(int i=0; i<dailyList.size(); i++){
-				
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String buy_date = formatter.format(dailyList.get(i).getBuy_date());
 				int selVoucher = dailyList.get(i).getv_seq(); //선택한 voucher seq
 				VoucherVO voucher = iServiceImpl.voucherSelector(selVoucher);
 				sum += voucher.getV_price();	
 				System.out.print(String.format("[%2d ] \t%-10s\t%5s\t%15s\t%8d", 
 						i+1, dailyList.get(i).getUser_id(), voucher.getV_name(), 
-						dailyList.get(i).getBuy_date(), voucher.getV_price()));
+						buy_date, voucher.getV_price()));
 				System.out.println("원");
 			}
 			System.out.println("-------------------------------------------------------------");
@@ -2342,13 +2342,18 @@ public class View {
 			for(int i=0; i<monthList.size(); i++){
 				int selVoucher = monthList.get(i).getv_seq(); //선택한 voucher seq
 				VoucherVO voucher = iServiceImpl.voucherSelector(selVoucher);
-				month_sum += voucher.getV_price();	
+				month_sum += voucher.getV_price();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String buy_date = formatter.format(monthList.get(i).getBuy_date());
+				
+				
+				
 				System.out.print(String.format("[%2d ] \t%-10s\t%5s\t%15s\t%8d원\n", 
 						i+1, monthList.get(i).getUser_id(), voucher.getV_name(), 
-						monthList.get(i).getBuy_date(), voucher.getV_price()));
+						buy_date, voucher.getV_price()));
 			}
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("\t\t\t\t\t\t일매출 : " + month_sum + "원");
+			System.out.println("\t\t\t\t\t\t월매출 : " + month_sum + "원");
 			System.out.println("=============================================================");
 			System.out.println("[ 0 ] 뒤로가기");
 			System.out.println("=============================================================");

@@ -119,6 +119,20 @@ public class Database {
 //고객
 ////////////////////////////////////////////////////////////////////////
 	
+	public void userInfoUpdate() {
+		for(int i=0; i<userInfoList.size(); i++){
+			UserInfoVO userInfo = userInfoList.get(i);
+			float buy_time = userInfo.getBuy_date();
+			float cur_time = System.currentTimeMillis();
+			int voucher_period = voucherSelector(userInfo.getv_seq()).getV_period();
+			if(((buy_time-cur_time)/1000) <= 0){
+				userInfo.setInfo_isActivate(false);
+			}
+		}
+	}
+	
+	
+	
 	
 	/**
 	 * 고객 선택 - 고객 업데이트,탈퇴에 이용
@@ -233,8 +247,6 @@ public class Database {
 			grade_avg = 0;
 			((BookVO)user_grade.get("book")).setBook_grade(grade_avg);
 		}else{
-			System.out.println("sum:" + sum);
-			System.out.println("count:" + count);
 			grade_avg = ((int)((sum/count+0.05)*10))/10f;
 			
 			((BookVO)user_grade.get("book")).setBook_grade(grade_avg);
@@ -359,7 +371,14 @@ public class Database {
 			userInfo.setInfo_seq();
 			userInfo.setUser_id(user.getUser_id());
 			userInfo.setv_seq(selVoucher.getV_seq());
-			userInfo.setBuy_date(getTodayDate());
+//			userInfo.setBuy_date(getTodayDate());
+
+			long day = System.currentTimeMillis();
+			userInfo.setBuy_date(day);
+			
+			
+			
+			
 			user.setUser_point(user.getUser_point() - selVoucher.getV_price()); 
 			
 			userInfoList.add(userInfo);
@@ -714,11 +733,18 @@ public class Database {
 	 */
 	public List<UserInfoVO> dailySalesView() {
 		
-		String date = getTodayDate();
+		String date = getTodayDate().substring(0,10);
+		
 		
 		List<UserInfoVO> dailySaleList = new ArrayList<>();
 		for(UserInfoVO info : userInfoList){
-			if("2021-02-02".equals(info.getBuy_date())){
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String buy_date = formatter.format(info.getBuy_date());
+			System.out.println(date);
+			System.out.println(buy_date);
+			
+			
+			if(date.equals(buy_date)){
 				dailySaleList.add(info);
 			}
 		}
@@ -735,8 +761,6 @@ public class Database {
 	 */
 	public Map<Integer, Integer> monthlySalesView() {
 		String date = getTodayDate();
-		
-		date = "2021-02-31";	//임시로 값 주었음
 		
 		Map<Integer, Integer> monthlyList = new HashMap<>();	//각월별 매출 Map( 1(월), 1000(매출값) )
 
@@ -756,9 +780,11 @@ public class Database {
 			//월별 합계 저장
 			int sum = 0;
 			for(UserInfoVO info : userInfoList){
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String buy_date = formatter.format(info.getBuy_date());
 				
-				if(info.getBuy_date().contains(year)){
-					if(month_str.equals(info.getBuy_date().substring(5, 7))){	//해당월과 같은지 비교
+				if(buy_date.contains(year)){
+					if(month_str.equals(buy_date.substring(5, 7))){	//해당월과 같은지 비교
 						int selVoucher = info.getv_seq(); //선택한 voucher seq
 						VoucherVO voucher = voucherSelector(selVoucher);  //선택한 voucher 객체 가져오기
 						sum += voucher.getV_price(); //월 매출 합계
@@ -803,8 +829,11 @@ public class Database {
 		
 		for(UserInfoVO info : userInfoList){
 			
-			if(info.getBuy_date().contains(year)){
-				if(month_str.equals(info.getBuy_date().substring(5, 7))){	//해당월과 같은지 비교
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String buy_date = formatter.format(info.getBuy_date());
+			
+			if(buy_date.contains(year)){
+				if(month_str.equals(buy_date.substring(5, 7))){	//해당월과 같은지 비교
 					monthList.add(info);
 				}
 			}
@@ -828,7 +857,7 @@ public class Database {
 		i1.setInfo_seq();                   
 		i1.setv_seq(1);//1일권                
 		i1.setUser_id("abcd123");            
-		i1.setBuy_date("2021-01-30");       
+		i1.setBuy_date(1611536943481f);       
 		i1.setInfo_isActivate(false);
 		userInfoList.add(i1);
 		                                    
@@ -836,7 +865,8 @@ public class Database {
 		i2.setInfo_seq();                   
 		i2.setv_seq(2);//7일권                
 		i2.setUser_id("abc123");             
-		i2.setBuy_date("2021-02-02");       
+//		i2.setBuy_date(1612228143481f);       
+		i2.setBuy_date(1612228143481f);       
 		i2.setInfo_isActivate(true);        
 		userInfoList.add(i2);
 		
@@ -844,7 +874,7 @@ public class Database {
 		i3.setInfo_seq();                   
 		i3.setv_seq(2);//7일권                
 		i3.setUser_id("des123");            
-		i3.setBuy_date("2021-01-30");       
+		i3.setBuy_date(1612055343481f);       
 		i3.setInfo_isActivate(true);        
 		userInfoList.add(i3);                   
 		
@@ -852,7 +882,7 @@ public class Database {
 		i4.setInfo_seq();                   
 		i4.setv_seq(2);//7일권                
 		i4.setUser_id("bdc123");            
-		i4.setBuy_date("2021-03-30");       
+		i4.setBuy_date(1612055343481f);       
 		i4.setInfo_isActivate(true);        
 		userInfoList.add(i4);                   
 		
@@ -860,7 +890,7 @@ public class Database {
 		i5.setInfo_seq();                   
 		i5.setv_seq(3);//30일권               
 		i5.setUser_id("asbc123");           
-		i5.setBuy_date("2020-01-11");       
+		i5.setBuy_date(1610500143481f);       
 		i5.setInfo_isActivate(true);        
 		userInfoList.add(i5);                   
 		
@@ -868,7 +898,7 @@ public class Database {
 		i6.setInfo_seq();                   
 		i6.setv_seq(4);//1일권                
 		i6.setUser_id("abs123");            
-		i6.setBuy_date("2021-01-25");       
+		i6.setBuy_date(1611364143481f);       
 		i6.setInfo_isActivate(false);        
 		userInfoList.add(i6);                   
 		
@@ -876,7 +906,7 @@ public class Database {
 		i7.setInfo_seq();                   
 		i7.setv_seq(1);//1일권                
 		i7.setUser_id("dd1232");            
-		i7.setBuy_date("2021-02-02");       
+		i7.setBuy_date(1612228143481f);       
 		i7.setInfo_isActivate(true);        
 		userInfoList.add(i7);
 		
@@ -884,7 +914,7 @@ public class Database {
 		i8.setInfo_seq();                   
 		i8.setv_seq(5);//365일권              
 		i8.setUser_id("des123");            
-		i8.setBuy_date("2019-01-25");       
+		i8.setBuy_date(1611623343481f);       
 		i8.setInfo_isActivate(true);        
 		userInfoList.add(i8);                   
 		
@@ -892,7 +922,7 @@ public class Database {
 		i9.setInfo_seq();                   
 		i9.setv_seq(4);//90일권               
 		i9.setUser_id("bbb123");            
-		i9.setBuy_date("2020-11-25");       
+		i9.setBuy_date(1604452143481f);       
 		i9.setInfo_isActivate(true);        
 		userInfoList.add(i9);                   
 		
@@ -900,7 +930,7 @@ public class Database {
 		i10.setInfo_seq();                  
 		i10.setv_seq(5);//365일권             
 		i10.setUser_id("cbb123");           
-		i10.setBuy_date("2020-02-02");      
+		i10.setBuy_date(1612228143481f);      
 		i10.setInfo_isActivate(true);       
 		userInfoList.add(i10);
 		
@@ -1320,6 +1350,8 @@ public class Database {
 		voucherList.add(v5);                
 		
 	}
+
+	
 
 	
 

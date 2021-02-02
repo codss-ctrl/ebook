@@ -5,7 +5,7 @@ import package_Database.Database;
 public class UserInfoVO {
 	
 	private int info_seq; //유저 이용권 내역 PK
-	private String buy_date; //유저 이용권 구매일
+	private float buy_date; //유저 이용권 구매일
 	private boolean info_isActivate = true; // 유저 이용권 만료 여부
 	private String user_id; // 유저 아이디 FK
 	private int v_seq; // 이용권 FK
@@ -27,10 +27,10 @@ public class UserInfoVO {
 	public void setInfo_seq() {
 		info_seq = ++Database.userInfo_cur_seq;
 	}
-	public String getBuy_date() {
+	public float getBuy_date() {
 		return buy_date;
 	}
-	public void setBuy_date(String buy_date) {
+	public void setBuy_date(float buy_date) {
 		this.buy_date = buy_date;
 	}
 		
