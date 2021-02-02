@@ -824,20 +824,20 @@ public class View {
 		List<NotifyVO> notifyList = iServiceImpl.userNotifyDetail(notify_seq);
 		notifyList.get(notify_seq).setReadCount();
 		System.out.println("========================================");
-			System.out.println("\t\t"+notifyList.get(notify_seq).getNotify_title());
-			System.out.println("----------------------------------------");
-			System.out.println(notifyList.get(notify_seq).getContents());
-			System.out.println("----------------------------------------");
-			System.out.println("[0] 뒤로 가기");
-			System.out.println("========================================");
-			while(true){
-				int input=iInput();
-				if (input==0) {
-					return;
-				}else{
-					System.out.println("잘못 입력하였습니다.");
-				}
+		System.out.println("\t\t"+notifyList.get(notify_seq).getNotify_title());
+		System.out.println("----------------------------------------");
+		System.out.println(notifyList.get(notify_seq).getContents());
+		System.out.println("----------------------------------------");
+		System.out.println("[0] 뒤로 가기");
+		System.out.println("========================================");
+		while(true){
+			int input=iInput();
+			if (input==0) {
+				return;
+			}else{
+				System.out.println("잘못 입력하였습니다.");
 			}
+		}
 	}
 	
 	/**
@@ -856,7 +856,9 @@ public class View {
 		System.out.println();
 		List<BookVO> bookList = iServiceImpl.newBookView();
 		while(true){
+			System.out.println("========================================");
 			System.out.println("책 제목 \t\t작가 \t\t 등록일");
+			System.out.println("----------------------------------------");
 			for (int i = bookList.size()-1; i > bookList.size()-6; i--) {
 				System.out.print(bookList.get(i).getBook_name());
 				System.out.print("\t");
@@ -865,8 +867,10 @@ public class View {
 				System.out.println(bookList.get(i).getRegDate());
 				
 			}
-			System.out.println();
+
+			System.out.println("----------------------------------------");
 			System.out.println("[0] 뒤로가기");
+			System.out.println("========================================");
 			
 			switch (iInput()) {
 			case 0:

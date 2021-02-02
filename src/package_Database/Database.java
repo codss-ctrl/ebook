@@ -270,7 +270,11 @@ public class Database {
 	 * @author 홍유리
 	 */
 	public List<BookVO> popularBookView(){
-		List<BookVO> tempList = bookList;
+		List<BookVO> tempList = new ArrayList<>();
+		for(BookVO book : bookList){  //깊은 복사
+			tempList.add(book);
+		}
+
 		List<BookVO> popularList = new ArrayList<>();
 		BookVO maxBook;
 		
