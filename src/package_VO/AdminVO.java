@@ -4,7 +4,7 @@ public class AdminVO {
 	
 	
 	public String getId(){
-		return "admin";
+		return "adm";
 	}
 	public String getPw(){
 		return "pass1234";
