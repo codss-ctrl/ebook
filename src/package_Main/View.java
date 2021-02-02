@@ -190,18 +190,17 @@ public class View {
 	 * @author 
 	 * @param string - 표시해줄 문자열
 	 */
-	private void showBanner(String string) {
-		System.out.println("");
-		System.out.println(" ┌───────────────────────────────┐ ");
-		System.out.println(" |   개미는  (ง˙∇˙)ว 오늘도              ♪ ♬ | ");
-		System.out.println(" |        열심히  (ว˙∇˙)ง           | ");
-		System.out.println(" | ♬♪                     일을  ٩(ˊᗜˋ*)و 하네  | ");
-		System.out.println(" └───────────────────────────────┘ ");
-		System.out.println("\t" + string);
-		System.out.println("  ‿︵‿︵‿︵‿︵‿︵‿︵☆︵‿︵‿︵‿︵‿︵︵‿︵");
-		System.out.println();
-	}
-	
+//	private void showBanner(String string) {
+//		System.out.println("");
+//		System.out.println(" ┌───────────────────────────────┐ ");
+//		System.out.println(" |   개미는  (ง˙∇˙)ว 오늘도              ♪ ♬ | ");
+//		System.out.println(" |        열심히  (ว˙∇˙)ง           | ");
+//		System.out.println(" | ♬♪                     일을  ٩(ˊᗜˋ*)و 하네  | ");
+//		System.out.println(" └───────────────────────────────┘ ");
+//		System.out.println("\t" + string);
+//		System.out.println("  ‿︵‿︵‿︵‿︵‿︵‿︵☆︵‿︵‿︵‿︵‿︵︵‿︵");
+//		System.out.println();
+//	}
 	
 	/**
 	 * 회원가입 - 사용자 메서드

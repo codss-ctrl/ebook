@@ -853,15 +853,11 @@ public class Database {
 		}
 		return monthList;
 	}
-		
-	
 	
 	
 //////////////////////////////////////////////////////////////////////
 //관리자      끝						       								//
 //////////////////////////////////////////////////////////////////////
-	
-	
 	
 	
 	//회원정보 생성자
@@ -870,7 +866,7 @@ public class Database {
 		i1.setInfo_seq();                   
 		i1.setv_seq(1);//1일권                
 		i1.setUser_id("des123");            
-		i1.setBuy_date(1611536943481f);       
+		i1.setBuy_date(1611536943481f); //2021-01-25      
 		i1.setInfo_isActivate(false);
 		userInfoList.add(i1);
 		                                    
@@ -878,7 +874,7 @@ public class Database {
 		i2.setInfo_seq();                   
 		i2.setv_seq(2);//7일권                
 		i2.setUser_id("abc123");             
-		i2.setBuy_date(1612258775043f);       
+		i2.setBuy_date(1612258775043f); //2021-02-02      
 		i2.setInfo_isActivate(true);        
 		userInfoList.add(i2);
 		
@@ -886,7 +882,7 @@ public class Database {
 		i3.setInfo_seq();                   
 		i3.setv_seq(2);//7일권                
 		i3.setUser_id("bbb123");            
-		i3.setBuy_date(1612055343481f);       
+		i3.setBuy_date(1612055343481f); //2021-01-31      
 		i3.setInfo_isActivate(true);        
 		userInfoList.add(i3);                   
 		
@@ -894,7 +890,7 @@ public class Database {
 		i4.setInfo_seq();                   
 		i4.setv_seq(2);//7일권                
 		i4.setUser_id("aaa233");            
-		i4.setBuy_date(1612055343481f);       
+		i4.setBuy_date(1612055343481f); //2021-01-31      
 		i4.setInfo_isActivate(true);        
 		userInfoList.add(i4);                   
 		
@@ -902,7 +898,7 @@ public class Database {
 		i5.setInfo_seq();                   
 		i5.setv_seq(3);//30일권               
 		i5.setUser_id("dd1232");           
-		i5.setBuy_date(1610500143481f);       
+		i5.setBuy_date(1610500143481f); //2021-01-13      
 		i5.setInfo_isActivate(true);        
 		userInfoList.add(i5);                   
 		
@@ -910,7 +906,7 @@ public class Database {
 		i6.setInfo_seq();                   
 		i6.setv_seq(4);//1일권                
 		i6.setUser_id("zzz654");            
-		i6.setBuy_date(1611364143481f);       
+		i6.setBuy_date(1611364143481f); //2021-01-23      
 		i6.setInfo_isActivate(false);        
 		userInfoList.add(i6);                   
 		
@@ -918,7 +914,7 @@ public class Database {
 		i7.setInfo_seq();                   
 		i7.setv_seq(1);//1일권                
 		i7.setUser_id("asdf321");            
-		i7.setBuy_date(1612228143481f);       
+		i7.setBuy_date(1612228143481f); //2021-02-02      
 		i7.setInfo_isActivate(true);        
 		userInfoList.add(i7);
 		
@@ -926,7 +922,7 @@ public class Database {
 		i8.setInfo_seq();                   
 		i8.setv_seq(5);//365일권              
 		i8.setUser_id("qwer1234");            
-		i8.setBuy_date(1611623343481f);       
+		i8.setBuy_date(1611623343481f); //2021-01-26      
 		i8.setInfo_isActivate(true);        
 		userInfoList.add(i8);                   
 		
@@ -934,7 +930,7 @@ public class Database {
 		i9.setInfo_seq();                   
 		i9.setv_seq(4);//90일권               
 		i9.setUser_id("zxcv123");            
-		i9.setBuy_date(1604452143481f);       
+		i9.setBuy_date(1604452143481f); //2020-11-04      
 		i9.setInfo_isActivate(true);        
 		userInfoList.add(i9);                   
 		
@@ -942,7 +938,7 @@ public class Database {
 		i10.setInfo_seq();                  
 		i10.setv_seq(5);//365일권             
 		i10.setUser_id("fdsa098");           
-		i10.setBuy_date(1612228143481f);      
+		i10.setBuy_date(1612228143481f); //2021-02-02     
 		i10.setInfo_isActivate(true);       
 		userInfoList.add(i10);
 		
