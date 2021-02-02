@@ -103,7 +103,8 @@ public class Database {
 	public UserVO userLogin(Map<String, String> loginInfo) {
 		for(UserVO user : userList){
 			if(user.getUser_id().equals(loginInfo.get("user_id"))&&user.getUser_pw().equals(loginInfo.get("user_pw"))){
-				return user;
+				if(user.isUser_isActivate())
+					return user;
 			}
 		}
 		return null;

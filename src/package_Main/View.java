@@ -189,7 +189,7 @@ public class View {
 			System.out.println("========================");
 			if(user.getUser_id() == null){
 				System.out.println(" * 1. 아이디 설정");
-				System.out.println("2. 비밀 번호 설");
+				System.out.println("2. 비밀 번호 설정");
 				System.out.println("3. 이름 설정");
 				System.out.println("4. 포인트 설정");
 				System.out.println("========================");
@@ -293,7 +293,7 @@ public class View {
 		while(true){
 			System.out.println();
 			System.out.println("비밀번호 입력");
-			System.out.println("8 ~ 15자리 영문 대 소문자, 숫자, 특수문자($@$!%*#?&)만 사용 가능합니다.");
+			System.out.println("8 ~ 15자리 영문 대 소문자, 숫자, 특수문자($@!%*#?&)만 사용 가능합니다.");
 			System.out.println("영문자, 숫자, 특수문자가 한드시 하나씩 포함되어야 합니다");
 			System.out.println("========================================================");
 			
@@ -1030,6 +1030,7 @@ public class View {
 			List<VoucherVO> voucherList = iServiceImpl.readAllVoucher();
 			for(int i=0; i< voucherList.size(); i++){
 				System.out.print("[" + (i+1) + "] ");
+				System.out.println("[ 0 ] 뒤로가기");
 				System.out.println(voucherList.get(i).getV_name());
 				
 			}
