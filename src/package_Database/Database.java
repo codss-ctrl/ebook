@@ -124,9 +124,12 @@ public class Database {
 			UserInfoVO userInfo = userInfoList.get(i);
 			float buy_time = userInfo.getBuy_date();
 			float cur_time = System.currentTimeMillis();
+			
+			System.out.println(userInfoList.get(i).getUser_id() + " : " + (cur_time - buy_time));
 			int voucher_period = voucherSelector(userInfo.getv_seq()).getV_period();
-			if(((buy_time-cur_time)/1000) <= 0){
-				userInfo.setInfo_isActivate(false);
+	
+			if(((cur_time - buy_time)/1000) < voucher_period){
+//				userInfo.setInfo_isActivate(false);
 			}
 		}
 	}
@@ -349,8 +352,7 @@ public class Database {
 		UserVO user = userSelector((String)userobj.get("user_id"));
 		int finalPoint = user.getUser_point()+(int)userobj.get("user_point");
 		user.setUser_point(finalPoint);
-		
-		return finalPoint;
+		return 1;
 		
 	}
 	
@@ -371,15 +373,10 @@ public class Database {
 			userInfo.setInfo_seq();
 			userInfo.setUser_id(user.getUser_id());
 			userInfo.setv_seq(selVoucher.getV_seq());
-//			userInfo.setBuy_date(getTodayDate());
+			user.setUser_point(user.getUser_point() - selVoucher.getV_price()); 
 
 			long day = System.currentTimeMillis();
 			userInfo.setBuy_date(day);
-			
-			
-			
-			
-			user.setUser_point(user.getUser_point() - selVoucher.getV_price()); 
 			
 			userInfoList.add(userInfo);
 			return true;
@@ -849,8 +846,7 @@ public class Database {
 		i2.setInfo_seq();                   
 		i2.setv_seq(2);//7일권                
 		i2.setUser_id("abc123");             
-//		i2.setBuy_date(1612228143481f);       
-		i2.setBuy_date(1612228143481f);       
+		i2.setBuy_date(1612258775043f);       
 		i2.setInfo_isActivate(true);        
 		userInfoList.add(i2);
 		
@@ -1074,7 +1070,7 @@ public class Database {
 		b11.setBook_seq();
 		b11.setBook_name("지나치게 낭만적인 2");
 		b11.setAuthor("김설희");
-		b11.setRegDate("2021-02-1");
+		b11.setRegDate("2021-02-01");
 		b11.setG_seq(2);
 		bookList.add(b11);
 		
