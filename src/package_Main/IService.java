@@ -91,14 +91,6 @@ public interface IService {
 	*/
 	List<RentVO> rentListView(String user_id); //매개변수 user_id
 	
-	/**
-	* 대여 목록 상세 조회 - 사용자 메서드
-	* @param rent_seq
-	* rent_seq에 담겨있는 book_seq를 통해 책의 정보를 읽을 수 있음
-	* @return 
-	* @author 홍유리
-	*/
-	List<RentVO> rentBookDetail(RentVO rent_seq);
 	
 	/**
 	* 평점 달기 - 사용자 메서드
@@ -121,13 +113,13 @@ public interface IService {
 	
 	boolean modifyGrade(Map<String, Object> rentInfo);
 	
-	/**
-	* 평점 삭제 - 사용자 메서드
-	* @param rentInfo
-	* @return 성공 시 true, 실패 시 false
-	* @author 홍유리
-	*/
-	boolean removeGrade(Map<String, Object> rentInfo);
+//	/**
+//	* 평점 삭제 - 사용자 메서드
+//	* @param rentInfo
+//	* @return 성공 시 true, 실패 시 false
+//	* @author 홍유리
+//	*/
+//	boolean removeGrade(Map<String, Object> rentInfo);
 	
 	/**
 	* 금액 충전- 사용자 메서드

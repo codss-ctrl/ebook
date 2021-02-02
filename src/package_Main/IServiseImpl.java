@@ -84,11 +84,6 @@ public class IServiseImpl implements IService{
 		return database.rentListView(user_id);
 	}
 	
-	@Override
-	public List<RentVO> rentBookDetail(RentVO rent_seq) {
-	// TODO Auto-generated method stub
-	return null;
-	}
 	
 	@Override
 	public void giveGrade(Map<String, Object> user_grade) {
@@ -97,15 +92,13 @@ public class IServiseImpl implements IService{
 	
 	@Override
 	public boolean modifyGrade(Map<String, Object> UserInfo) {
-	// TODO Auto-generated method stub
-	return false;
+		return false;
 	}
 	
-	@Override
-	public boolean removeGrade(Map<String, Object> UserInfo) {
-	// TODO Auto-generated method stub
-	return false;
-	}
+//	@Override
+//	public boolean removeGrade(Map<String, Object> UserInfo) {
+//		return false;
+//	}
 	
 	
 	@Override
@@ -178,20 +171,18 @@ public class IServiseImpl implements IService{
 	
 	@Override
 	public List<VoucherVO> userVoucherDetail(VoucherVO v_seq) {
-	// TODO Auto-generated method stub
-	return null;
+		return null;
 	}
 	
 		
 	@Override
 	public List<NotifyVO> userNotifyView() {
-	return database.userNotifyView();
+		return database.userNotifyView();
 	
 	}
 	
 	@Override
 	public List<NotifyVO> userNotifyDetail(int notify_seq) {
-	
 		return database.userNotifyDetail(notify_seq);
 	}
 	
@@ -204,153 +195,145 @@ public class IServiseImpl implements IService{
 /////////////////////////////////////////////////////////////////////
 //관리자
 /////////////////////////////////////////////////////////////////////
-@Override
-public List<BookKindVO> readAllKind() {
-	return database.readAllKind();
-}
-
-@Override
-public List<RentVO> readRentList() {
-	return database.readRentList();
-}
-
-
-@Override
-public List<BookVO> readAllBook() {
-	return database.readAllBook();
-}
-
-
-@Override
-public boolean addBook(BookVO book) {
-	return database.addBook(book);
-}
-
-@Override
-public BookVO bookSelector(int book_seq) {
-	return database.bookSelector(book_seq);
-}
-
-@Override
-public boolean modifyBook(Map<String, Object> bookInfo) {
-	return database.modifyBook(bookInfo);
-}
-
-@Override
-public boolean deleteBook(BookVO selBook) {
-	return database.deleteBook(selBook);
-}
-
-@Override
-public List<UserVO> readAllUser() {
-	return database.readAllUser();
-}
-
-@Override
-public UserVO userDetailView(String user_id) {
-// TODO Auto-generated method stub
-return null;
-}
-
-@Override
-public NotifyVO notifySelector(int selNum){
-	return database.notifySelector(selNum);
-}
-
-
-
-@Override
-public List<NotifyVO> readAllNotify() {
-	return database.readAllNotify();
-}
-
-@Override
-public boolean addNotify(NotifyVO notify) {
-	return database.addNotify(notify);
-}
-
-@Override
-public NotifyVO notifyDetailView(int notify_seq) {
-// TODO Auto-generated method stub
-return null;
-}
-
-@Override
-public boolean modifyNotify(Map<String, Object> modifyInfo) {
-	return database.modifyNotify(modifyInfo);
-}
-
-@Override
-public boolean deleteNotify(NotifyVO notify) {
-	return database.deleteNotify(notify);
-}
-
-
-///////////////////////////////////////////////////
-//>>>>>>>>>>>>>>	이용권 조회, 추가, 상세보기, 수정, 삭제
-///////////////////////////////////////////////////
-@Override
-public List<VoucherVO> readAllVoucher() {
-return database.readAllVoucher();
-}
-
-@Override
-public boolean addVoucher(VoucherVO voucher) {
-return database.addVoucher(voucher);
-}
-
-@Override
-public VoucherVO voucherDetailView(int voucher_seq) {
-return null;
-}
-
-@Override
-public boolean modifyVoucher(Map<String, Object> voucherInfo) {
-return database.modifyVoucher(voucherInfo);
-}
-
-@Override
-public VoucherVO voucherSelector(int selVoucher){
-return database.voucherSelector(selVoucher);
-}
-
-@Override
-public boolean deleteVoucher(VoucherVO voucher) {
-return database.deleteVoucher(voucher);
-}
-///////////////////////////////////////////////////
-//<<<<<<<<<<<<<<<<<
-///////////////////////////////////////////////////
-
-
-@Override
-public List<UserInfoVO> dailySalesView() {
-	return database.dailySalesView();
-}
-
-@Override
-public Map<Integer, Integer> monthlySalesView() {
-	return database.monthlySalesView();
-}
-
-@Override
-public List<UserInfoVO> readMonthDetail(int month) {
-	return database.readMonthDetail(month);
-}
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////
-//관리자 끝
-/////////////////////////////////////////////////////////////////////	
-
+	@Override
+	public List<BookKindVO> readAllKind() {
+		return database.readAllKind();
+	}
+	
+	@Override
+	public List<RentVO> readRentList() {
+		return database.readRentList();
+	}
+	
+	
+	@Override
+	public List<BookVO> readAllBook() {
+		return database.readAllBook();
+	}
+	
+	
+	@Override
+	public boolean addBook(BookVO book) {
+		return database.addBook(book);
+	}
+	
+	@Override
+	public BookVO bookSelector(int book_seq) {
+		return database.bookSelector(book_seq);
+	}
+	
+	@Override
+	public boolean modifyBook(Map<String, Object> bookInfo) {
+		return database.modifyBook(bookInfo);
+	}
+	
+	@Override
+	public boolean deleteBook(BookVO selBook) {
+		return database.deleteBook(selBook);
+	}
+	
+	@Override
+	public List<UserVO> readAllUser() {
+		return database.readAllUser();
+	}
+	
+	@Override
+	public UserVO userDetailView(String user_id) {
+		return null;
+	}
+	
+	@Override
+	public NotifyVO notifySelector(int selNum){
+		return database.notifySelector(selNum);
+	}
+	
+	
+	
+	@Override
+	public List<NotifyVO> readAllNotify() {
+		return database.readAllNotify();
+	}
+	
+	@Override
+	public boolean addNotify(NotifyVO notify) {
+		return database.addNotify(notify);
+	}
+	
+	@Override
+	public NotifyVO notifyDetailView(int notify_seq) {
+		return null;
+	}
+	
+	@Override
+	public boolean modifyNotify(Map<String, Object> modifyInfo) {
+		return database.modifyNotify(modifyInfo);
+	}
+	
+	@Override
+	public boolean deleteNotify(NotifyVO notify) {
+		return database.deleteNotify(notify);
+	}
+	
+	
+	///////////////////////////////////////////////////
+	//>>>>>>>>>>>>>>	이용권 조회, 추가, 상세보기, 수정, 삭제
+	///////////////////////////////////////////////////
+	@Override
+	public List<VoucherVO> readAllVoucher() {
+		return database.readAllVoucher();
+	}
+	
+	@Override
+	public boolean addVoucher(VoucherVO voucher) {
+		return database.addVoucher(voucher);
+	}
+	
+	@Override
+	public VoucherVO voucherDetailView(int voucher_seq) {
+		return null;
+	}
+	
+	@Override
+	public boolean modifyVoucher(Map<String, Object> voucherInfo) {
+		return database.modifyVoucher(voucherInfo);
+	}
+	
+	@Override
+	public VoucherVO voucherSelector(int selVoucher){
+		return database.voucherSelector(selVoucher);
+	}
+	
+	@Override
+	public boolean deleteVoucher(VoucherVO voucher) {
+		return database.deleteVoucher(voucher);
+	}
+	///////////////////////////////////////////////////
+	//<<<<<<<<<<<<<<<<<
+	///////////////////////////////////////////////////
+	
+	
+	@Override
+	public List<UserInfoVO> dailySalesView() {
+		return database.dailySalesView();
+	}
+	
+	@Override
+	public Map<Integer, Integer> monthlySalesView() {
+		return database.monthlySalesView();
+	}
+	
+	@Override
+	public List<UserInfoVO> readMonthDetail(int month) {
+		return database.readMonthDetail(month);
+	}
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////////////////
+	//관리자 끝
+	/////////////////////////////////////////////////////////////////////	
+	
 
 }
