@@ -119,23 +119,24 @@ public class Database {
 //고객
 ////////////////////////////////////////////////////////////////////////
 	
+	/**
+	 * 프로그램 시작시 고객 이용권 유효 여부 업데이트
+	 * 
+	 * @author 김대호
+	 * 
+	 */
 	public void userInfoUpdate() {
 		for(int i=0; i<userInfoList.size(); i++){
 			UserInfoVO userInfo = userInfoList.get(i);
 			float buy_time = userInfo.getBuy_date();
 			float cur_time = System.currentTimeMillis();
 			
-			System.out.println(userInfoList.get(i).getUser_id() + " : " + (cur_time - buy_time));
 			int voucher_period = voucherSelector(userInfo.getv_seq()).getV_period();
-	
-			if(((cur_time - buy_time)/1000) < voucher_period){
-//				userInfo.setInfo_isActivate(false);
+			if((buy_time/1000/60/60/24 + voucher_period) < (cur_time/1000/60/60/24)){
+				userInfo.setInfo_isActivate(false);
 			}
 		}
 	}
-	
-	
-	
 	
 	/**
 	 * 고객 선택 - 고객 업데이트,탈퇴에 이용
@@ -461,11 +462,17 @@ public class Database {
 		return false;
 	}
 	
-	public boolean rentBook(Map<String, Object> infoList) {
+	public int rentBook(Map<String, Object> infoList) {
 		
 		RentVO rent = new RentVO();
 		UserVO user = (UserVO)infoList.get("user");
 		BookVO selBook = (BookVO)infoList.get("selBook");
+		
+		for(RentVO rents : rentList){
+			if(rents.getBook_seq() == selBook.getBook_seq()){
+				return -1;
+			}
+		}
 		
 		if(user != null && selBook != null){
 			rent.setRent_seq();
@@ -473,9 +480,9 @@ public class Database {
 			rent.setUser_Id(user.getUser_id());
 			rent.setBook_seq(selBook.getBook_seq());
 			rentList.add(rent);
-			return true;
+			return 1;
 		}
-		return false;
+		return 0;
 	}
 	
 	
@@ -734,7 +741,7 @@ public class Database {
 	 * @return 오늘 날자 데이터 전달
 	 */
 	public String getTodayDate(){
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		String date = simpleDateFormat.format(cal.getTime());
 		return date;
@@ -825,8 +832,6 @@ public class Database {
 		Calendar cal = Calendar.getInstance();
 		String date = simpleDateFormat.format(cal.getTime());
 		
-		date = "2021-02-31";	//임시로 값 주었음
-		
 		List monthList = new ArrayList<>();	//선택한 월의 UserInfoVO 리스트 
 
 		String year = date.substring(0,4);	//년도 문자열로 저장( ex)2021 )
@@ -874,7 +879,7 @@ public class Database {
 		i2.setInfo_seq();                   
 		i2.setv_seq(2);//7일권                
 		i2.setUser_id("abc123");             
-		i2.setBuy_date(1612258775043f); //2021-02-02      
+		i2.setBuy_date(1612314500281f); //2021-02-03      
 		i2.setInfo_isActivate(true);        
 		userInfoList.add(i2);
 		
@@ -904,9 +909,9 @@ public class Database {
 		
 		UserInfoVO i6 = new UserInfoVO();   
 		i6.setInfo_seq();                   
-		i6.setv_seq(4);//1일권                
+		i6.setv_seq(1);//1일권                
 		i6.setUser_id("zzz654");            
-		i6.setBuy_date(1611364143481f); //2021-01-23      
+		i6.setBuy_date(1612314500281f); //2021-02-03      
 		i6.setInfo_isActivate(false);        
 		userInfoList.add(i6);                   
 		
@@ -914,7 +919,7 @@ public class Database {
 		i7.setInfo_seq();                   
 		i7.setv_seq(1);//1일권                
 		i7.setUser_id("asdf321");            
-		i7.setBuy_date(1612228143481f); //2021-02-02      
+		i7.setBuy_date(1612314500281f); //2021-02-03      
 		i7.setInfo_isActivate(true);        
 		userInfoList.add(i7);
 		
@@ -938,7 +943,7 @@ public class Database {
 		i10.setInfo_seq();                  
 		i10.setv_seq(5);//365일권             
 		i10.setUser_id("fdsa098");           
-		i10.setBuy_date(1612228143481f); //2021-02-02     
+		i10.setBuy_date(1612314500281f); //2021-02-03     
 		i10.setInfo_isActivate(true);       
 		userInfoList.add(i10);
 		

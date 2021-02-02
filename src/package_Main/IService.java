@@ -261,7 +261,7 @@ public interface IService {
 	* @return 성공 시  true, 실패 시 false
 	* @author 김대호
 	*/
-	boolean rentBook(Map<String, Object> infoList);
+	int rentBook(Map<String, Object> infoList);
 	
 	
 	////////////////////////////////////////////////////////////////////////

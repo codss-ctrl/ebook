@@ -42,7 +42,12 @@ public class IServiseImpl implements IService{
 //고객
 ////////////////////////////////////////////////////////////////////////
 	
-	
+	/**
+	 * 프로그램 시작시 고객 이용권 유효 여부 업데이트
+	 * 
+	 * @author 김대호
+	 * 
+	 */
 	public void userInfoUpdate(){
 		database.userInfoUpdate();
 	}
@@ -150,7 +155,7 @@ public class IServiseImpl implements IService{
 	}
 
 	@Override
-	public boolean rentBook(Map<String, Object> infoList){
+	public int rentBook(Map<String, Object> infoList){
 		return database.rentBook(infoList);
 	}
 

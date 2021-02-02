@@ -103,7 +103,7 @@ public class View {
 	/**
 	 * 프로그램 시작시 고객 이용권 유효 여부 업데이트
 	 * 
-	 * @author 홍유리
+	 * @author 김대호
 	 * 
 	 */
 	void userInfoUpdate(){
@@ -562,6 +562,7 @@ public class View {
 	//@param iInput - rentList의 seq를 입력 
 	//return 입력받은 seq의 bookList를 통해 책 정보를 반환./ 0 을 입력받으면 전 메뉴화면으로 돌아간다.
 	private void rentListView(){
+		
 		List<RentVO> userRentDetail = iServiceImpl.rentListView(user.getUser_id());
 		
 		while(true){
@@ -1263,8 +1264,11 @@ public class View {
 		}
 		infoList.put("selBook", selBook);
 		infoList.put("user", user);
-		if(iServiceImpl.rentBook(infoList)){
+		int flag = iServiceImpl.rentBook(infoList);
+		if(flag == 1){
 			System.out.println("대여가 완료 되었습니다");
+		}else if(flag == -1){
+			System.out.println("이미 대여하고 있는 책입니다");
 		}else{
 			System.out.println("대여가 완료되지 않았습니다");
 		}
