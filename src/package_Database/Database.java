@@ -856,7 +856,7 @@ public class Database {
 		UserInfoVO i1 = new UserInfoVO();   
 		i1.setInfo_seq();                   
 		i1.setv_seq(1);//1일권                
-		i1.setUser_id("abcd123");            
+		i1.setUser_id("des123");            
 		i1.setBuy_date(1611536943481f);       
 		i1.setInfo_isActivate(false);
 		userInfoList.add(i1);
@@ -873,7 +873,7 @@ public class Database {
 		UserInfoVO i3 = new UserInfoVO();   
 		i3.setInfo_seq();                   
 		i3.setv_seq(2);//7일권                
-		i3.setUser_id("des123");            
+		i3.setUser_id("bbb123");            
 		i3.setBuy_date(1612055343481f);       
 		i3.setInfo_isActivate(true);        
 		userInfoList.add(i3);                   
@@ -881,7 +881,7 @@ public class Database {
 		UserInfoVO i4 = new UserInfoVO();   
 		i4.setInfo_seq();                   
 		i4.setv_seq(2);//7일권                
-		i4.setUser_id("bdc123");            
+		i4.setUser_id("aaa233");            
 		i4.setBuy_date(1612055343481f);       
 		i4.setInfo_isActivate(true);        
 		userInfoList.add(i4);                   
@@ -889,7 +889,7 @@ public class Database {
 		UserInfoVO i5 = new UserInfoVO();   
 		i5.setInfo_seq();                   
 		i5.setv_seq(3);//30일권               
-		i5.setUser_id("asbc123");           
+		i5.setUser_id("dd1232");           
 		i5.setBuy_date(1610500143481f);       
 		i5.setInfo_isActivate(true);        
 		userInfoList.add(i5);                   
@@ -897,7 +897,7 @@ public class Database {
 		UserInfoVO i6 = new UserInfoVO();   
 		i6.setInfo_seq();                   
 		i6.setv_seq(4);//1일권                
-		i6.setUser_id("abs123");            
+		i6.setUser_id("zzz654");            
 		i6.setBuy_date(1611364143481f);       
 		i6.setInfo_isActivate(false);        
 		userInfoList.add(i6);                   
@@ -905,7 +905,7 @@ public class Database {
 		UserInfoVO i7 = new UserInfoVO();   
 		i7.setInfo_seq();                   
 		i7.setv_seq(1);//1일권                
-		i7.setUser_id("dd1232");            
+		i7.setUser_id("asdf321");            
 		i7.setBuy_date(1612228143481f);       
 		i7.setInfo_isActivate(true);        
 		userInfoList.add(i7);
@@ -913,7 +913,7 @@ public class Database {
 		UserInfoVO i8 = new UserInfoVO();   
 		i8.setInfo_seq();                   
 		i8.setv_seq(5);//365일권              
-		i8.setUser_id("des123");            
+		i8.setUser_id("qwer1234");            
 		i8.setBuy_date(1611623343481f);       
 		i8.setInfo_isActivate(true);        
 		userInfoList.add(i8);                   
@@ -921,7 +921,7 @@ public class Database {
 		UserInfoVO i9 = new UserInfoVO();   
 		i9.setInfo_seq();                   
 		i9.setv_seq(4);//90일권               
-		i9.setUser_id("bbb123");            
+		i9.setUser_id("zxcv123");            
 		i9.setBuy_date(1604452143481f);       
 		i9.setInfo_isActivate(true);        
 		userInfoList.add(i9);                   
@@ -929,7 +929,7 @@ public class Database {
 		UserInfoVO i10 = new UserInfoVO();  
 		i10.setInfo_seq();                  
 		i10.setv_seq(5);//365일권             
-		i10.setUser_id("cbb123");           
+		i10.setUser_id("fdsa098");           
 		i10.setBuy_date(1612228143481f);      
 		i10.setInfo_isActivate(true);       
 		userInfoList.add(i10);

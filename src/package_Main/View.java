@@ -81,12 +81,15 @@ public class View {
 		return input;
 	}
 
-	
-	
+	/**
+	 * 프로그램 시작시 고객 이용권 유효 여부 업데이트
+	 * 
+	 * @author 홍유리
+	 * 
+	 */
 	void userInfoUpdate(){
 		iServiceImpl.userInfoUpdate();
 	}
-	
 	
 	
 	/**
@@ -347,7 +350,7 @@ public class View {
 			
 			point = iInput();
 			
-			if (point > 0) {
+			if (point >= 0) {
 				break;
 			}
 		}
@@ -956,7 +959,11 @@ public class View {
 				VoucherVO voucher = iServiceImpl.voucherSelector(userInfoList.get(i).getv_seq());
 				System.out.print(voucher.getV_name() + "\t\t");
 				System.out.print(voucher.getV_price() + "원\t");
-				System.out.println(userInfoList.get(i).getBuy_date() +"\t");
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String buy_date = formatter.format(userInfoList.get(i).getBuy_date());
+				
+				System.out.println(buy_date +"\t");
 
 			}			
 				
@@ -1029,19 +1036,9 @@ public class View {
 			List<VoucherVO> voucherList = iServiceImpl.readAllVoucher();
 			for(int i=0; i< voucherList.size(); i++){
 				System.out.print("[" + (i+1) + "] ");
-				System.out.println("[ 0 ] 뒤로가기");
 				System.out.println(voucherList.get(i).getV_name());
-				
 			}
-//			
-//			
-//			
-//			System.out.println("[1] 1일권");
-//			System.out.println("[2] 7일권");
-//			System.out.println("[3] 30일권");
-//			System.out.println("[4] 90일권");
-//			System.out.println("[5] 365일권");
-//			System.out.println("[0] 뒤로가기");
+			System.out.println("[ 0 ] 뒤로가기");
 			
 			Map<String, Object> voucherInfo = new HashMap<>();
 			
@@ -1235,7 +1232,7 @@ public class View {
 			}else{
 				System.out.println("[ 2 ~ " + (bookList.size()) + " ] 상세보기 선택");
 			}
-			System.out.println("[ 1 ] 책1111 추가하기");
+			System.out.println("[ 1 ] 책 추가하기");
 			System.out.println("[ 0 ] 뒤로가기");
 			System.out.println("===========================================================");
 			
