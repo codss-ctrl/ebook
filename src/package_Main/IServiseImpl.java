@@ -109,9 +109,15 @@ public class IServiseImpl implements IService{
 	
 	}
 	
-//	@Override
+	@Override
 	public List<BookVO> popularBookView() {
 		return database.popularBookView();
+	}
+	
+	
+	@Override
+	public List<VoucherVO> readValidVoucher() {
+		return database.readValidVoucher();
 	}
 	
 	
@@ -326,6 +332,8 @@ public Map<Integer, Integer> monthlySalesView() {
 public List<UserInfoVO> readMonthDetail(int month) {
 	return database.readMonthDetail(month);
 }
+
+
 
 
 

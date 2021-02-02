@@ -356,7 +356,24 @@ public class Database {
 		
 	}
 	
-
+	
+	/**
+	* 활성화된 이용권 가져오기 - 사용자 메서드
+	* 보기만 가능
+	* @return 활성화된 이용권 리턴
+	* @author 홍유리
+	*/
+	public List<VoucherVO> readValidVoucher() {
+		List<VoucherVO> validList = new ArrayList<>();
+		for(VoucherVO voucher : voucherList){
+			if(voucher.isActivate() == true){
+				validList.add(voucher);
+			}
+		}
+		return validList;
+	}
+	
+	
 	/**
 	* 이용권 구매 - 사용자 메서드
 	* voucherList에서 price 이용해서 구매
@@ -445,7 +462,6 @@ public class Database {
 		RentVO rent = new RentVO();
 		UserVO user = (UserVO)infoList.get("user");
 		BookVO selBook = (BookVO)infoList.get("selBook");
-		System.out.println(selBook.getBook_name());
 		
 		if(user != null && selBook != null){
 			rent.setRent_seq();
@@ -641,21 +657,33 @@ public class Database {
 	 * @return
 	 */
 	public boolean modifyVoucher(Map<String, Object> voucherInfo){
-		VoucherVO voucher;
-		if(voucherInfo.containsKey("voucher")){
-			voucher = (VoucherVO)voucherInfo.get("voucher");
-		}
-		else{
+		VoucherVO newVoucher = new VoucherVO();
+		if(!(voucherInfo.containsKey("voucher"))){
 			return false;
 		}
+
+		VoucherVO selVoucher = (VoucherVO)voucherInfo.get("voucher");
+
 		if(voucherInfo.containsKey("name")){
-			voucher.setV_name((String)voucherInfo.get("name"));
+			newVoucher.setV_name((String)voucherInfo.get("name"));
+			newVoucher.setV_period(selVoucher.getV_period());
+			newVoucher.setV_seq(selVoucher.getV_seq());
+			newVoucher.setV_price(selVoucher.getV_price());
 		}else if(voucherInfo.containsKey("period")){
-			voucher.setV_period((Integer)voucherInfo.get("period"));
+			newVoucher.setV_name(selVoucher.getV_name());
+			newVoucher.setV_period((Integer)voucherInfo.get("period"));
+			newVoucher.setV_seq(selVoucher.getV_seq());
+			newVoucher.setV_price(selVoucher.getV_price());
 		}else if(voucherInfo.containsKey("price")){
-			voucher.setV_price((Integer)voucherInfo.get("price"));
+			newVoucher.setV_price((Integer)voucherInfo.get("price"));
+			newVoucher.setV_name(selVoucher.getV_name());
+			newVoucher.setV_period(selVoucher.getV_period());
+			newVoucher.setV_seq(selVoucher.getV_seq());
 		}
-		return false;
+		voucherList.add(newVoucher);
+		selVoucher.setActivate(false);
+		
+		return true;
 	}
 
 
@@ -1330,6 +1358,8 @@ public class Database {
 		voucherList.add(v5);                
 		
 	}
+
+	
 
 	
 

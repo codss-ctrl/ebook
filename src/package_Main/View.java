@@ -88,16 +88,15 @@ public class View {
 			try{
 				Scanner scanner = new Scanner(System.in);
 				input = scanner.nextInt();
-				break;
 			}catch (Exception e){
 				System.out.println();
 				System.out.println("숫자만 입력해주세요.");
 			}
-			if(input < 0){
-				System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
+			if(input > 0){
+				return input;
 			}
+			System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
 		}
-		return input;
 	}
 	
 	
@@ -222,19 +221,19 @@ public class View {
 				System.out.println("========================");
 			}else if(user.getUser_pw() == null){
 				System.out.println("1. 아이디 설정");
-				System.out.println(" * 2. 비밀 번호 설");
+				System.out.println(" * 2. 비밀 번호 설정");
 				System.out.println("3. 이름 설정");
 				System.out.println("4. 포인트 설정");
 				System.out.println("========================");
 			}else if(user.getUser_name() == null){
 				System.out.println("1. 아이디 설정");
-				System.out.println("2. 비밀 번호 설");
+				System.out.println("2. 비밀 번호 설정");
 				System.out.println(" * 3. 이름 설정");
 				System.out.println("4. 포인트 설정");
 				System.out.println("========================");
 			}else if(user.getUser_point() == -1){
 				System.out.println("1. 아이디 설정");
-				System.out.println("2. 비밀 번호 설");
+				System.out.println("2. 비밀 번호 설정");
 				System.out.println("3. 이름 설정");
 				System.out.println(" * 4. 포인트 설정");
 				System.out.println("========================");
@@ -545,7 +544,7 @@ public class View {
 			case 1 :
 				iServiceImpl.deleteUser(user.getUser_id());
 				System.out.println("그 동안 글사랑닷컴을 이용해 주셔서 감사합니다.");
-				startMethod();
+				System.exit(0);
 			default :
 				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
 				continue;
@@ -1021,7 +1020,7 @@ public class View {
 			System.out.println("=========================");
 			System.out.println("\t이용권 구매");
 			System.out.println("-------------------------");
-			List<VoucherVO> voucherList = iServiceImpl.readAllVoucher();
+			List<VoucherVO> voucherList = iServiceImpl.readValidVoucher();
 			for(int i=0; i< voucherList.size(); i++){
 				System.out.print("[" + (i+1) + "] ");
 				System.out.println(String.format("%7s\t%8s", voucherList.get(i).getV_name(),
@@ -1194,7 +1193,6 @@ public class View {
 		}
 	}
 	
-	
 	/**
 	 * 책 리스트 출력하기
 	 * @param bookList
@@ -1221,7 +1219,7 @@ public class View {
 			if(bookList.size() == 1){
 				System.out.println("[ 2 ] 상세보기 선택");
 			}else{
-				System.out.println("[ 2 ~ " + (bookList.size()) + " ] 상세보기 선택");
+				System.out.println("[ 2 ~ " + (bookList.size()+1) + " ] 상세보기 선택");
 			}
 			System.out.println("[ 1 ] 책 추가하기");
 			System.out.println("[ 0 ] 뒤로가기");
@@ -1260,12 +1258,10 @@ public class View {
 			System.out.println("유효한 이용권이 없습니다.");
 			return;
 		}
-		System.out.println(selBook.getBook_name());
 		infoList.put("selBook", selBook);
 		infoList.put("user", user);
 		if(iServiceImpl.rentBook(infoList)){
 			System.out.println("대여가 완료 되었습니다");
-			System.out.println(selBook.getBook_name());
 		}else{
 			System.out.println("대여가 완료되지 않았습니다");
 		}
@@ -1424,7 +1420,6 @@ public class View {
 	//@param 선택한 책  seq
 	//@return 선택한 책 객체
 		while(true){
-		
 			System.out.println("==========================");
 			System.out.println("     " + selBook.getBook_name() + " 상세정보");
 			System.out.println("==========================");
@@ -2025,12 +2020,11 @@ public class View {
 			String voucherName = sInput();
 			voucher.setV_name(voucherName);
 			System.out.println("기간 : ");
-			
-			int voucherPeriod = iInput();
+			int voucherPeriod = iInputAd();
 			
 			voucher.setV_period(voucherPeriod);
 			System.out.println("가격 : ");
-			int voucherPrice = iInput();
+			int voucherPrice = iInputAd();
 			voucher.setV_price(voucherPrice);
 			
 			if(iServiceImpl.addVoucher(voucher)){

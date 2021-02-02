@@ -194,6 +194,14 @@ public interface IService {
 	
 	
 	/**
+	* 활성화된 이용권 가져오기 - 사용자 메서드
+	* 보기만 가능
+	* @return 활성화된 이용권 리턴
+	* @author 홍유리
+	*/
+	List<VoucherVO> readValidVoucher();
+	
+	/**
 	* 이용권 구매 - 사용자 메서드
 	* voucherList에서 price 이용해서 구매
 	* @author 홍유리
