@@ -82,6 +82,30 @@ public class View {
 	}
 
 	/**
+	 * 숫자 입력 메서드(0보다 큰 값만 입력 가능)
+	 * 
+	 * @author 김대호
+	 */
+	int iInputAd(){
+		int input = -1;
+		while(true){
+			try{
+				Scanner scanner = new Scanner(System.in);
+				input = scanner.nextInt();
+				break;
+			}catch (Exception e){
+				System.out.println();
+				System.out.println("숫자만 입력해주세요.");
+			}
+			if(input < 0){
+				System.out.println("잘못 입력하셨습니다. 다시 입력해 주세요.");
+			}
+		}
+		return input;
+	}
+	
+	
+	/**
 	 * 프로그램 시작시 고객 이용권 유효 여부 업데이트
 	 * 
 	 * @author 홍유리
@@ -688,29 +712,6 @@ public class View {
 			}else{
 				System.out.println("잘못된 입력입니다. 다시 입력해 주세요.");
 			}
-		}
-	}
-	/**
-	 * 평점 삭제 - 사용자 메서드
-	 * @param rentInfo
-	 * @return 성공 시 true, 실패 시 false
-	 * @author 홍유리
-	 */
-	//DB 필요 - userInfoList의 user_grade를 삭제함
-	//@param
-	//return 성공시 true, 실패시 false 반환
-	public void deleteGrade(){
-		// sql → DBClass
-		// boolean deleteGrade(int grade_seq)
-		String message = "";
-		int grade;
-		while(true){
-			System.out.println("평점을 삭제하시겠습니까?");
-			System.out.println("[ 1 ] Y");
-			System.out.println("[ 2 ] N");
-			System.out.println(message);
-			System.out.println("평점을 삭제하였습니다.");
-			break;
 		}
 	}
 
@@ -1623,7 +1624,8 @@ public class View {
 			case 3:
 				// 장르 수정
 				System.out.println("수정할 장르명을 입력하세요");
-				modifyInfo.put("genre", iInput());
+				
+				modifyInfo.put("genre", selectGenre());
 				iServiceImpl.modifyBook(modifyInfo);
 				return;
 			default:
@@ -1971,12 +1973,17 @@ public class View {
 		while(true){
 			List<VoucherVO> voucherList = iServiceImpl.readAllVoucher();
 			System.out.println("==============================================================");
-			System.out.println(" No  이용권이름      유요일수        가격");
+			System.out.println(" No  이용권이름\t   유효일수\t\t\t가격\t상태");
 			System.out.println("--------------------------------------------------------------");
 			for(int i=0; i<voucherList.size(); i++){
-				System.out.println(String.format("[%2d ]  %-8s\t%8s\t%10s  " , i+2, 
+				System.out.print(String.format("[%2d ]  %-8s\t%8s\t%10s\t" , i+2, 
 						voucherList.get(i).getV_name(), voucherList.get(i).getV_period()+"일"
 												, voucherList.get(i).getV_price()+"원"));
+				if(voucherList.get(i).isActivate() == true){
+					System.out.println("사용중");
+				}else{
+					System.out.println("사용안함");
+				}
 			}
 			System.out.println("--------------------------------------------------------------");
 			System.out.println("[ 1 ] 이용권 추가 하기");
@@ -2003,6 +2010,9 @@ public class View {
 		}
 	}
 	
+	
+
+	
 	/**
 	 * 이용권 추가 - 관리자 메서드
 	 * 
@@ -2019,10 +2029,13 @@ public class View {
 			voucher.setV_seq();
 			System.out.println("추가할 이용권 정보를 입력하세요");
 			System.out.println("이용권 : ");
+			
 			String voucherName = sInput();
 			voucher.setV_name(voucherName);
 			System.out.println("기간 : ");
+			
 			int voucherPeriod = iInput();
+			
 			voucher.setV_period(voucherPeriod);
 			System.out.println("가격 : ");
 			int voucherPrice = iInput();
@@ -2126,13 +2139,13 @@ public class View {
 			case 2 :
 				//기간 수정
 				System.out.println("수정할 기간을 입력하세요");
-				voucherInfo.put("period",iInput());
+				voucherInfo.put("period",iInputAd());
 				iServiceImpl.modifyVoucher(voucherInfo);		
 				return;
 			case 3 :
 				//가격 수정
 				System.out.println("수정할 가격을 입력하세요");
-				voucherInfo.put("price",iInput());
+				voucherInfo.put("price",iInputAd());
 				iServiceImpl.modifyVoucher(voucherInfo);		
 				return;
 			default:
@@ -2165,11 +2178,15 @@ public class View {
 			
 			case 1 :
 				//이용권 삭제
-				if(iServiceImpl.deleteVoucher(selVoucher)==true){
-					System.out.println("이용권을 삭제하였습니다.");
+				if(selVoucher.isActivate() == false){
+					System.out.println("이미 비활성화된 이용권입니다.");
+					return;
+				}
+				if(iServiceImpl.deleteVoucher(selVoucher) == true){
+					System.out.println("이용권을 비활성화 하였습니다.");
 					return;
 				}else{
-				System.out.println("이용권을 삭제하지 못했습니다.");
+					System.out.println("이용권을 삭제하지 못했습니다.");
 				return;
 				}
 			
@@ -2364,6 +2381,5 @@ public class View {
 			}
 		}
 	}
-	
 	
 }

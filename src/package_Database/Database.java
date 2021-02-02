@@ -636,17 +636,7 @@ public class Database {
 		return voucherList.add(voucher);
 	}
 	
-//	/**
-//	 * 
-//	 * @param voucher_seq
-//	 * @return
-//	 */
-//	public boolean voucherDetailView(VoucherVO voucher){
-//		if(voucherList.remove(voucher)){
-//			return true;
-//		}
-//		return false;
-//	}
+
 	
 	/**
 	 * 
@@ -687,6 +677,7 @@ public class Database {
 		return null;
 	}
 	
+	
 	/**
 	 * 
 	 * @param voucher_seq
@@ -694,14 +685,10 @@ public class Database {
 	 */
 	public boolean deleteVoucher (VoucherVO voucher) {
 		int voucher_seq = voucher.getV_seq();
-			if (voucherList.remove(voucher)) {
-				for(int i = voucher.getV_seq(); i < voucherList.size(); i++){
-					voucherList.get(i).setV_seq(voucherList.get(i).getV_seq());
-				}
-				v_cur_seq--;
-				return true;
-				
-			}
+		if(voucher.getV_seq()==voucher_seq){
+			voucher.setActivate(false);
+			return true;
+		}
 			return false;
 	}
 	
@@ -740,9 +727,6 @@ public class Database {
 		for(UserInfoVO info : userInfoList){
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String buy_date = formatter.format(info.getBuy_date());
-			System.out.println(date);
-			System.out.println(buy_date);
-			
 			
 			if(date.equals(buy_date)){
 				dailySaleList.add(info);
