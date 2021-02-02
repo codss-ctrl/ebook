@@ -360,6 +360,8 @@ public class Database {
 			userInfo.setUser_id(user.getUser_id());
 			userInfo.setv_seq(selVoucher.getV_seq());
 			userInfo.setBuy_date(getTodayDate());
+			user.setUser_point(user.getUser_point() - selVoucher.getV_price()); 
+			
 			userInfoList.add(userInfo);
 			return true;
 		}else{
