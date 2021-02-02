@@ -4,11 +4,9 @@ public class AdminVO {
 	
 	
 	public String getId(){
-//		return "admin";
-		return "a";
+		return "admin";
 	}
 	public String getPw(){
-//		return "p@ssW0rd";
-		return "a";
+		return "pass1234";
 	}
 }

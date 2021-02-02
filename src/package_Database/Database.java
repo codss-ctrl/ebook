@@ -86,11 +86,11 @@ public class Database {
 	 */
 	public boolean checkId(String user_id) {
 		for(UserVO user : userList){
-			if(!(user.getUser_id().equals(user_id))){
-				return true;
+			if(user.getUser_id().equals(user_id)){
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	/**
