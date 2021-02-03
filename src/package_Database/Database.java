@@ -469,7 +469,7 @@ public class Database {
 		BookVO selBook = (BookVO)infoList.get("selBook");
 		
 		for(RentVO rents : rentList){
-			if(rents.getBook_seq() == selBook.getBook_seq()){
+			if(rents.getUser_Id() == user.getUser_id() &&rents.getBook_seq() == selBook.getBook_seq()){
 				return -1;
 			}
 		}

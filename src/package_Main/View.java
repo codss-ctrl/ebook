@@ -945,7 +945,7 @@ public class View {
 			System.out.println(" No      제목                               가격                구매일");
 			System.out.println("--------------------------------------------------------------");
 			for(int i = 0; i < userInfoList.size(); i++){
-				System.out.print("  " + (i+1) +"\t");
+				System.out.print("  " + (i+2) +"\t");
 								
 				VoucherVO voucher = iServiceImpl.voucherSelector(userInfoList.get(i).getv_seq());
 				System.out.print(voucher.getV_name() + "\t\t");
@@ -959,6 +959,7 @@ public class View {
 				
 			System.out.println("--------------------------------------------------------------");
 			System.out.println("[ 1 ] 이용권 구매");
+			System.out.println("[ 2 ~ ]" );
 			System.out.println("[ 0 ] 뒤로가기");
 			System.out.println("==============================================================");
 	
